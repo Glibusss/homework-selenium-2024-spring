@@ -14,7 +14,7 @@ class CommercePage(BasePage):
         return self.became_visible(self.locators.SIDEBAR)
     
     def sidebar_became_invisible(self):
-        return self.became_invisible(self.locators.SIDEBAR)
+        return self.became_invisible(self.locators.SIDEBAR, timeout=1)
     
     def new_catalog_h2_became_visible(self):
         return self.became_visible(self.locators.NEW_CATALOG_H2)
@@ -58,7 +58,7 @@ class CommercePage(BasePage):
         return self.became_visible(self.locators.CATEGORY_SELECT) and self.became_visible(self.locators.DOWNLOAD_BUTTON) and self.became_visible(self.locators.DROPZONE) and self.became_visible(self.locators.CHECKBOX_UTM_SIGN)
     
     def click_create_button(self):
-        self.click(self.locators.CREATE_BUTTON)
+        self.click(self.locators.CREATE_BUTTON, timeout=1)
 
     def click_feed_tabs(self):
         self.click(self.locators.TABS_NAME(self.TABS_LIST[0]))
@@ -73,32 +73,5 @@ class CommercePage(BasePage):
         self.click(self.locators.CANCEL_BUTTON)
 
     def click_cross_button(self):
-        self.click(self.locators.CROSS_BUTTON)
-
-    def tooltip_became_visible(self):
-        return self.became_visible(self.locators.HELP_TOOLTIP)
-    
-    def tooltip_became_invisible(self):
-        return self.became_invisible(self.locators.HELP_TOOLTIP)
-
-    def cells_became_visible(self):
-        for t in self.TIP_LIST:
-            if not self.became_visible(self.locators.TIP_NAME(t)):
-                return False
-        return True
-
-    def click_cases_tip(self):
-        self.click(self.locators.TIP_NAME('Кейсы компаний'))
-
-    def click_help_tip(self):
-        self.click(self.locators.TIP_NAME('Справка'))
-
-    def click_forum_tip(self):
-        self.click(self.locators.TIP_NAME('Форум идей'))
-
-    def click_ask_tip(self):
-        self.click(self.locators.TIP_NAME('Задать вопрос'))
-
-    def iframe_became_visible(self):
-        return self.became_visible(self.locators.IFRAME)
+        self.click(self.locators.CROSS_BUTTON, timeout=1)
     
