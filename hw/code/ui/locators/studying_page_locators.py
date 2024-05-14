@@ -41,6 +41,7 @@ class StudyingPageLocators(BasePageLocators):
     TIP_CLOSE_MODAL_H2 = (By.XPATH, "//h2[contains(@class, 'vkuiTitle--level-2') and text()='Прервать обучение?']")
     TIP_CLOSE_MODAL_H4 = (By.XPATH, "//h5[text()='Вернуться к обучению можно когда угодно']")
 
+    #Напрямую через спан не работает
     CANCEL_BUTTON = (By.XPATH, "//*[contains(@class, 'StopOnboardingModal_content__')]//span[contains(@class, 'vkuiButton__content') and text()='Отмена']")
     BREAK_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Прервать']")
 

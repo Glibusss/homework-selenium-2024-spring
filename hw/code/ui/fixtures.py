@@ -3,16 +3,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from ui.pages.auth_page import AuthPage
 from ui.pages.base_page import BasePage
-# from ui.pages.main_page import MainPage
-# from ui.pages.news_page import NewsPage
-# from ui.pages.cases_page import CasesPage
-# from ui.pages.events_page import EventsPage
-# from ui.pages.upvote_page import UpvotePage
-# from ui.pages.partner_page import PartnerPage
+from ui.pages.commerce_page import CommercePage
 from ui.pages.registration_page import RegistrationPage
 from ui.pages.cabinet_page import CabinetPage
 from ui.pages.audience_page import AudiencePage
-# from ui.pages.campaigns_page import CampaignsPage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.settings_common_page import SettingsCommonPage
 from ui.pages.settings_access_page import SettingsAccessPage
@@ -110,3 +104,8 @@ def studying_page(driver, cabinet_page):
 def settings_notifications_page(driver, cabinet_page):
     driver.get(SettingsNotificationsPage.url)
     return SettingsNotificationsPage(driver=driver)
+
+@pytest.fixture
+def commerce_page(driver, cabinet_page):
+    driver.get(CommercePage.url)
+    return CommercePage(driver=driver)

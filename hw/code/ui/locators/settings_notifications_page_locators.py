@@ -12,6 +12,7 @@ class SettingsNotificationsPageLocators(BasePageLocators):
     def CHECKBOX_NAME(checkbox):
         return (By.XPATH, f"//div[contains(@class, 'Subscriptions_checkboxContent__') and text()='{checkbox}']")
     
+    # Нужен такой сложный селектор, чтобы нормально отслеживать чекбокс
     @staticmethod
     def CHECKBOX_NAME_IS_CHECKED_OR_NOT(checkbox, state):
         return (By.XPATH, f"//label[contains(@class, 'vkuiCheckbox') and .//div [contains(@class, 'Subscriptions_checkboxContent__') and text()='{checkbox}']]//div[contains(@class, 'vkuiCheckbox__icon--{state}')]")
@@ -24,5 +25,5 @@ class SettingsNotificationsPageLocators(BasePageLocators):
 
     SAVE_MODAL = (By.XPATH, "//*[contains(@class, 'Notifications_bottom__')]")
 
-    SAVE_MODAL_CANCEL = (By.XPATH, "//*[contains(@class, 'Notifications_bottom__')]//span[contains(@class, 'vkuiButton__content') and text()='Отменить']")
-    SAVE_MODAL_SAVE = (By.XPATH, "//*[contains(@class, 'Notifications_bottom__')]//span[contains(@class, 'vkuiButton__content') and text()='Сохранить']")
+    SAVE_MODAL_CANCEL = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Отменить']")
+    SAVE_MODAL_SAVE = (By.XPATH, "//span[contains(@class, 'vkuiButton__content') and text()='Сохранить']")
