@@ -1,20 +1,18 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# from ui.pages.auth_page import AuthPage
+from ui.pages.auth_page import AuthPage
 from ui.pages.base_page import BasePage
-# from ui.pages.main_page import MainPage
-# from ui.pages.news_page import NewsPage
-# from ui.pages.cases_page import CasesPage
-# from ui.pages.events_page import EventsPage
-# from ui.pages.upvote_page import UpvotePage
-# from ui.pages.partner_page import PartnerPage
-# from ui.pages.registration_page import RegistrationPage
-# from ui.pages.cabinet_page import CabinetPage
-# from ui.pages.audience_page import AudiencePage
-# from ui.pages.campaigns_page import CampaignsPage
-# from ui.pages.budget_page import BudgetPage
-# from ui.pages.settings_page import SettingsPage
+from ui.pages.commerce_page import CommercePage
+from ui.pages.registration_page import RegistrationPage
+from ui.pages.cabinet_page import CabinetPage
+from ui.pages.audience_page import AudiencePage
+from ui.pages.budget_page import BudgetPage
+from ui.pages.settings_common_page import SettingsCommonPage
+from ui.pages.settings_access_page import SettingsAccessPage
+from ui.pages.settings_notifications_page import SettingsNotificationsPage
+from ui.pages.help_page import HelpPage
+from ui.pages.studying_page import StudyingPage
 import os
 from dotenv import load_dotenv
 
@@ -55,3 +53,59 @@ def base_page(driver):
 def credentials_with_cabinet():
     load_dotenv()
     return os.getenv('LOGIN'), os.getenv('PASSWORD')
+
+@pytest.fixture
+def budget_page(driver, cabinet_page):
+    driver.get(BudgetPage.url)
+    return BudgetPage(driver=driver)
+
+@pytest.fixture
+def auth_page(driver):
+    return AuthPage(driver=driver)
+
+
+@pytest.fixture
+def registration_page(driver, credentials_without_cabinet, auth_page):
+    driver.get(RegistrationPage.url)
+    auth_page.login(*credentials_without_cabinet)
+    return RegistrationPage(driver=driver)
+
+
+@pytest.fixture
+def cabinet_page(driver, credentials_with_cabinet, auth_page):
+    driver.get(RegistrationPage.url)
+    auth_page.login(*credentials_with_cabinet)
+    return CabinetPage(driver=driver)
+
+@pytest.fixture
+def audience_page(driver, cabinet_page):
+    driver.get(AudiencePage.url)
+    return AudiencePage(driver=driver)
+
+@pytest.fixture
+def settings_common_page(driver, cabinet_page):
+    driver.get(SettingsCommonPage.url)
+    return SettingsCommonPage(driver=driver)
+
+@pytest.fixture
+def settings_access_page(driver, cabinet_page):
+    driver.get(SettingsAccessPage.url)
+    return SettingsAccessPage(driver=driver)
+
+@pytest.fixture
+def help_page(driver, cabinet_page):
+    return HelpPage(driver=driver)
+
+@pytest.fixture
+def studying_page(driver, cabinet_page):
+    return StudyingPage(driver=driver)
+
+@pytest.fixture
+def settings_notifications_page(driver, cabinet_page):
+    driver.get(SettingsNotificationsPage.url)
+    return SettingsNotificationsPage(driver=driver)
+
+@pytest.fixture
+def commerce_page(driver, cabinet_page):
+    driver.get(CommercePage.url)
+    return CommercePage(driver=driver)
