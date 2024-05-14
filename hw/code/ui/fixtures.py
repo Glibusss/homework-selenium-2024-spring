@@ -16,6 +16,7 @@ from ui.pages.audience_page import AudiencePage
 from ui.pages.budget_page import BudgetPage
 from ui.pages.settings_common_page import SettingsCommonPage
 from ui.pages.settings_access_page import SettingsAccessPage
+from ui.pages.settings_notifications_page import SettingsNotificationsPage
 from ui.pages.help_page import HelpPage
 from ui.pages.studying_page import StudyingPage
 import os
@@ -104,3 +105,8 @@ def help_page(driver, cabinet_page):
 @pytest.fixture
 def studying_page(driver, cabinet_page):
     return StudyingPage(driver=driver)
+
+@pytest.fixture
+def settings_notifications_page(driver, cabinet_page):
+    driver.get(SettingsNotificationsPage.url)
+    return SettingsNotificationsPage(driver=driver)
