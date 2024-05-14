@@ -4,49 +4,25 @@ from base_case import BaseCase
 
 class TestStudyingPage(BaseCase):
 
-    def test_help_modal_opened(self, studying_page):
+    def test_studying_modal_opened(self, studying_page):
         studying_page.click_studying_cell()
         assert studying_page.modal_became_visible()
-
-    def test_modal_header_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
         assert studying_page.modal_header_became_visible()
-
-    def test_modal_footer_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
         assert studying_page.modal_footer_became_visible()
-
-    def test_modal_content_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
         assert studying_page.modal_content_became_visible()
-
-    def test_close_button_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
         assert studying_page.close_button_became_visible()
 
-    def test_help_modal_closed_by_close_button(self, studying_page):
+    def test_studying_modal_closed_by_close_button(self, studying_page):
         studying_page.click_studying_cell()
         studying_page.click_close_button()
-        assert studying_page.modal_became_invisible()
-
-    def test_help_modal_closed_by_close_button(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_later_button()
         assert studying_page.modal_became_invisible()
 
     def test_methods_modal_header_became_visible(self, studying_page):
         studying_page.click_studying_cell()
         studying_page.click_catalog_cell()
         assert studying_page.method_modal_header_became_visible()
-
-    def test_methods_modal_content_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
         assert studying_page.method_modal_content_became_visible()
-
-    def test_close_button_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
+        assert studying_page.close_button_became_visible()
         assert studying_page.close_button_became_visible()
 
     def test_video_iframe_became_visible(self, studying_page):
@@ -74,48 +50,20 @@ class TestStudyingPage(BaseCase):
         studying_page.click_catalog_with_tips_cell()
         studying_page.click_close_tip()
         assert studying_page.stop_onboarding_modal_became_visible()
-
-    def test_stop_onboarding_modal_buttons_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
-        studying_page.click_catalog_with_tips_cell()
-        studying_page.click_close_tip()
         assert studying_page.stop_onboarding_modal_buttons_became_visible()
-
-    def test_stop_onboarding_modal_header_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
-        studying_page.click_catalog_with_tips_cell()
-        studying_page.click_close_tip()
-        assert studying_page.stop_onboarding_modal_header_became_visible()
-
-    def test_close_button_became_visible(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
-        studying_page.click_catalog_with_tips_cell()
-        studying_page.click_close_tip()
-        assert studying_page.close_button_became_visible()
-
-    def test_stop_onboarding_modal_became_invisible_by_cancel_button(self, studying_page):
+        assert studying_page.stop_onboarding_modal_header_became_visible()   
+        assert studying_page.close_button_became_visible()      
+       
+    def test_stop_onboarding_modal_became_invisible(self, studying_page):
         studying_page.click_studying_cell()
         studying_page.click_catalog_cell()
         studying_page.click_catalog_with_tips_cell()
         studying_page.click_close_tip()
         studying_page.click_cancel_button()
         assert studying_page.stop_onboarding_modal_became_invisible()
-
-    def test_stop_onboarding_modal_became_invisible_by_close_button(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
-        studying_page.click_catalog_with_tips_cell()
         studying_page.click_close_tip()
         studying_page.click_close_button()
         assert studying_page.stop_onboarding_modal_became_invisible()
-
-    def test_stop_onboarding_modal_became_invisible_by_break_button(self, studying_page):
-        studying_page.click_studying_cell()
-        studying_page.click_catalog_cell()
-        studying_page.click_catalog_with_tips_cell()
         studying_page.click_close_tip()
-        studying_page.click_close_button()
+        studying_page.click_break_button()
         assert studying_page.stop_onboarding_modal_became_invisible()
