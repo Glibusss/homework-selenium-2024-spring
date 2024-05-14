@@ -13,7 +13,9 @@ class MainPageLocators:
 
     MONETIZATION_BUTTON = "Монетизация"
 
-    HELP_BUTTON = "Справка"
+    INFORMATION_BUTTON = "Справка"
+
+    HELP_BUTTON = "Помощь"
 
     INSIGHTS_BUTTON = "Полезные материалы"
 
@@ -24,6 +26,8 @@ class MainPageLocators:
     CERTIFICATION_BUTTON = "Сертификация"
 
     DOCUMENTS_BUTTON = "Документы"
+
+    EDUCATION_FOR_BUSINESS = "Обучение для бизнеса"
 
     # main page links dict
 
@@ -37,6 +41,9 @@ class MainPageLocators:
         VIDEO_COURSES_BUTTON: "https://expert.vk.com/catalog/courses/",
         CERTIFICATION_BUTTON: "https://expert.vk.com/certification/",
         DOCUMENTS_BUTTON: "/documents",
+        EDUCATION_FOR_BUSINESS: "https://expert.vk.com/",
+        INFORMATION_BUTTON: "/help",
+        HELP_BUTTON: "/help",
     }
 
     # unique buttons in header
@@ -63,40 +70,10 @@ class MainPageLocators:
     )
 
     @staticmethod
-    def NAV_DROPDOWN_MENU_ITEM(text):
+    def NAV_DROPDOWN_MENU_ITEM(href):
         return (
             By.XPATH,
-            f"//*[contains(@class, 'SubNavigationItem_content__')]/div/div[text()='{text}']",
-        )
-
-    # slides
-
-    CIRCLE_BUTTONS = (
-        By.XPATH,
-        "//*[contains(@class, 'Bullets_bullet__')]",
-    )
-
-    # slides buttons
-
-    FIRST_SLIDE_BUTTON = "Получить бонус"
-
-    SECOND_SLIDE_BUTTON = "Зарегистироваться"
-
-    THIRD_SLIDE_BUTTON = "Зарегистироваться"
-
-    # slide buttons dict
-
-    SLIDES_BUTTONS_LINKS = {
-        FIRST_SLIDE_BUTTON: "/promo/firstbonus",
-        SECOND_SLIDE_BUTTON: "/hq",
-        THIRD_SLIDE_BUTTON: "/hq",
-    }
-
-    @staticmethod
-    def ACTIVE_SLIDE_ITEM(href):
-        return (
-            By.XPATH,
-            f"//*[contains(@class, 'MainSlider_active__')]/a[contains(@href, '{href}')]",
+            f"//*[contains(@class, 'SubNavigationItem_content__') and contains(@href, '{href}')]",
         )
 
     # company cases
@@ -106,31 +83,33 @@ class MainPageLocators:
         "//*[contains(@class, 'styles_all__') and contains(@href, '/cases')]",
     )
 
-    FIRST_CASE_LINK = "/cases/uvelichivaem-kolichestvo-podpischikov-kejs-hoff"
+    CASE_LINK = (
+        By.XPATH,
+        "//*[contains(@class, 'Case_link__')]",
+    )
 
-    SECOND_CASE_LINK = "/cases/prodvigaem-sajt-i-lid-formu-kejs-a101"
+    CASE_TITLE = (
+        By.XPATH,
+        "//*[contains(@class, 'Case_title__')]",
+    )
 
-    THIRD_CASE_LINK = "/cases/uvelichivaem-okhvat-kejs-gazprombank"
-
-    @staticmethod
-    def GET_CASE_ITEM(href):
-        return (
-            By.XPATH,
-            f"//*[contains(@class, 'Case_link__') and contains(@href, '{href}')]",
-        )
+    CASE_NEW_TITLE = (
+        By.XPATH,
+        "//*[contains(@class, 'Summary_title__')]",
+    )
 
     # webinars
 
     WEBINARS_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'GetStarted_wrapper__') and contains(@href, '/news/portret-auditorii-sayta-vk-reklama')]",
+        "//*[contains(@class, 'GetStarted_button__')]",
     )
 
     # news
 
-    WEBINARS_BUTTON = (
+    NEWS_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'News_wrapper__') and contains(@href, '/events')]",
+        "//*[contains(@class, 'News_button__')]",
     )
 
     # footer buttons
