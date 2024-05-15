@@ -76,3 +76,7 @@ class BasePage(object):
             return True
         except TimeoutException:
             return False
+        
+    def hover(self, locator, timeout=None):
+        elem = self.wait(timeout).until(ec.presence_of_element_located(locator))
+        ActionChains(self.driver).move_to_element(elem).perform()
