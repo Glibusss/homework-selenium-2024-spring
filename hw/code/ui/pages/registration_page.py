@@ -9,6 +9,15 @@ class RegistrationPage(BasePage):
     def header_became_visible(self):
         return self.became_visible(self.locators.HEADER)
     
+    def language_switch_became_visible(self):
+        return self.became_visible(self.locators.LANGUAGE_SWITCH)
+    
+    def main_page_title_became_visible(self):
+        return self.became_visible(self.locators.MAIN_PAGE_TITLE)
+    
+    def main_page_subtitle_became_visible(self):
+        return self.became_visible(self.locators.MAIN_PAGE_SUBTITLE)
+
     def create_new_cabinet_button_became_visible(self):
         return self.became_visible(self.locators.CREATE_NEW_CABINET_BUTTON)
     
@@ -24,11 +33,23 @@ class RegistrationPage(BasePage):
     def hover_import_mytarget_cabinet_button_hint(self):
         self.hover(self.locators.IMPORT_MYTARGET_CABINET_BUTTON_HINT)
 
+    def mytarget_hint_became_visible(self):
+        return self.became_visible(self.locators.IMPORT_MYTARGET_CABINET_HINT)
+    
+    def back_button_became_visible(self):
+        return self.became_visible(self.locators.BACK_BUTTON)
+    
+    def create_page_title_became_visible(self, language: str):
+        return self.became_visible(self.locators.CREATE_PAGE_TITLE)
+
     def get_selected_language(self) -> str:
         return self.find(self.locators.SELECTED_LANGUAGE).text
 
     def select_language(self, language: str):
         self.click(self.locators.LANGUAGE_BUTTON(language))
+
+    def account_type_became_visible(self, language: str):
+        return self.find_multiple(self.locators.ACCOUNT_TYPE_LABEL)
 
     def select_country(self, country_name: str):
         self.click(self.locators.COUNTRY_DROPDOWN)

@@ -1,6 +1,76 @@
 from selenium.webdriver.common.by import By
 from ui.locators.base_page_locators import BasePageLocators
 
+page_text = {
+    'Русский': {
+        'MAIN_PAGE_TITLE': 'Добро пожаловать' \
+                           'в VK Рекламу',
+        'MAIN_PAGE_SUBTITLE': 'Перенесите настройки и кампании из существующего рекламного кабинета или создайте новый',
+        'CREATE_CABINET': 'Создать новый кабинет',
+        'IMPORT_MYTARGET': 'Использовать рекламный кабинет myTarget',
+        'BACK_BUTTON': 'Назад',
+        'CREATE_PAGE_TITLE': 'Регистрация кабинета',
+        'ACCOUNT_TYPE': 'Тип аккаунта',
+        'ADVERTISER_NOMINATIVE': 'Рекламодатель',
+        'AGENCY_NOMINATIVE': 'Агентство',
+        'CHOOSE_COUNTRY': 'Выберите страну',
+        'CURRENCY': 'Валюта',
+        'INDIVIDUAL': 'Физическое лицо',
+        'INDIVIDUAL_HINT': '',
+        'LEGAL_ENTITY': 'Юридическое лицо',
+        'INN': 'ИНН',
+        'INN_EXAMPLE': 'Пример: 100303539843',
+        'FULL_NAME': 'ФИО',
+        'ACCEPT_CHECKBOX': 'Создавая кабинет, вы принимаете условия*',
+        'OFFER': 'Оферты',
+        'ORD': 'Соглашение о передаче рекламных данных',
+        'TOS': 'Правила пользования сервисом',
+        'PRIVACY': 'Политику конфиденциальности',
+        'MAILING': 'Даю согласие на получение рассылок информационного и рекламно-информационного содержания',
+        'MAILING_HINT': 'Соглашение регулирует получение уведомлений следующего характера:' \
+                        '– сообщения ВКонтакте'
+                        '– уведомления в разделе «Колокольчик» ВКонтакте'
+                        '– email-рассылки'
+                        '– push-уведомления'
+                        '– звонки'
+                        '– смс-сообщения',
+                    
+    },
+    'English': {
+        'MAIN_PAGE_TITLE': 'Welcome ' \
+                           'to VK Ads',
+        'MAIN_PAGE_SUBTITLE': 'Transfer settings and campaigns from an existing account or create a new one',
+        'CREATE_CABINET': 'Create a new account',
+        'IMPORT_MYTARGET': 'Use myTarget ad account',
+        'BACK_BUTTON': 'Back',
+        'CREATE_PAGE_TITLE': 'Account registration',
+        'ACCOUNT_TYPE': 'Account type',
+        'ADVERTISER_NOMINATIVE': 'Advertiser',
+        'AGENCY_NOMINATIVE': 'Agency',
+        'CHOOSE_COUNTRY': 'Choose a country',
+        'CURRENCY': 'Currency',
+        'INDIVIDUAL': 'Individual',
+        'INDIVIDUAL_HINT': '',
+        'LEGAL_ENTITY': 'Legal entity',
+        'INN': 'TIN',
+        'INN_EXAMPLE': 'Example: 100303539843',
+        'FULL_NAME': 'Full name',
+        'ACCEPT_CHECKBOX': 'By creating an account you accept the terms*',
+        'OFFER': 'Offer',
+        'ORD': 'Advertising data transfer agreement',
+        'TOS': 'Terms of use of the service',
+        'PRIVACY': 'Privacy Policy',
+        'MAILING': 'I agree to receive information and promotional newsletters',
+        'MAILING_HINT': 'The agreement regulates the receipt of notifications such as:'\
+                        '– VK messages'
+                        '– notifications in the "Bell" section of VK'
+                        '– email notifications'
+                        '– push notifications'
+                        '– calls'
+                        '– sms-messages',
+    },
+}
+
 class RegistrationPageLocators(BasePageLocators):
     HEADER = (By.TAG_NAME, "HEADER")
 
@@ -8,9 +78,25 @@ class RegistrationPageLocators(BasePageLocators):
     
     MAIN_PAGE_SUBTITLE = (By.XPATH, "//*[contains(@class, 'registration_panelSubTitle')]")
 
+    LANGUAGE_SWITCH = (By.XPATH, "//*[@class='vkuiSegmentedControl__in' and descendant::h4[text()='Русский']]")
+
     CREATE_NEW_CABINET_BUTTON = (By.ID, "click-createNewButton")
 
     IMPORT_MYTARGET_CABINET_BUTTON = (By.ID, "click-exportMTButton")
+
+    IMPORT_MYTARGET_CABINET_HINT = (By.XPATH, "//*[contains(@class, 'ContextHelp_tooltip')]")
+
+    BACK_BUTTON = (By.XPATH, "//button[@data-testid='back-button']")
+
+    # @staticmethod
+    # def CREATE_PAGE_TITLE(language):
+    #     return By.XPATH, f"//*[contains(@class, 'HeaderNav_headerFormTitle') and contains(., {page_text[language]['CREATE_PAGE_TITLE']})]"
+
+    CREATE_PAGE_TITLE = (By.XPATH, "//*[contains(@class, 'HeaderNav_headerFormTitle')]")
+
+    @staticmethod
+    def ACCOUNT_TYPE_LABEL(language):
+        return By.XPATH, f"//*[text()='{page_text[language]['ACCOUNT_TYPE']}']"
 
     @staticmethod
     def LANGUAGE_BUTTON(language):
@@ -50,8 +136,8 @@ class RegistrationPageLocators(BasePageLocators):
         return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]/descendant::*[preceding-sibling::span[text()='{account_type}']]/*[contains(@class, 'Hint_hintTrigger')]"
 
     @staticmethod
-    def INN_ERROR(inn_name):
-        return By.XPATH, f"//*[@role='alert' and preceding-sibling::h5[text()='{inn_name}']]"
+    def INN_ERROR(language):
+        return By.XPATH, f"//*[@role='alert' and preceding-sibling::h5[text()='{page_text[language]['INN']}']]"
 
     OFFER_ERROR = (
         By.XPATH,

@@ -54,6 +54,11 @@ def credentials_with_cabinet():
     load_dotenv()
     return os.getenv('LOGIN'), os.getenv('PASSWORD')
 
+@pytest.fixture(scope='session')
+def credentials_without_cabinet():
+    load_dotenv()
+    return os.getenv('LOGIN_NO_CABINET'), os.getenv('PASSWORD_NO_CABINET')
+
 @pytest.fixture
 def budget_page(driver, cabinet_page):
     driver.get(BudgetPage.url)
@@ -67,14 +72,14 @@ def auth_page(driver):
 @pytest.fixture
 def registration_page(driver, credentials_without_cabinet, auth_page):
     driver.get(RegistrationPage.url)
-    auth_page.login(*credentials_without_cabinet)
+    auth_page.login_regular(*credentials_without_cabinet)
     return RegistrationPage(driver=driver)
 
 
 @pytest.fixture
 def cabinet_page(driver, credentials_with_cabinet, auth_page):
     driver.get(RegistrationPage.url)
-    auth_page.login(*credentials_with_cabinet)
+    auth_page.login_mail_ru(*credentials_with_cabinet)
     return CabinetPage(driver=driver)
 
 @pytest.fixture
