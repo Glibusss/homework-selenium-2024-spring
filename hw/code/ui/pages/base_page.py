@@ -1,19 +1,22 @@
 import time
-
 import allure
+
 from selenium.common import TimeoutException
-from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
+from ui.locators.base_page_locators import BasePageLocators
 
-class PageNotOpenedExeption(Exception):
+
+class PageNotOpenedException(Exception):
     pass
 
 
 class BasePage(object):
-    url = "https://ads.vk.com/"
+    locators = BasePageLocators()
+    url = 'https://ads.vk.com/'
 
     def is_opened(self, timeout=15):
         started = time.time()
@@ -23,10 +26,16 @@ class BasePage(object):
         raise PageNotOpenedExeption(
             f"{self.url} did not open in {timeout} sec, current url {self.driver.current_url}"
         )
+    def close_cookie_banner(self):
+        try:
+            self.click(self.locators.COOKIE_BUTTON)
+        except TimeoutException:
+            pass
 
     def __init__(self, driver):
         self.driver = driver
         self.is_opened()
+        self.close_cookie_banner()
 
     def wait(self, timeout=None):
         if timeout is None:
@@ -68,3 +77,7 @@ class BasePage(object):
             return True
         except TimeoutException:
             return False
+        
+    def hover(self, locator, timeout=5):
+        elem = self.wait(timeout).until(ec.presence_of_element_located(locator))
+        ActionChains(self.driver).move_to_element(elem).perform()
