@@ -99,10 +99,10 @@ class AudiencePage(BasePage):
     
     def delete_audience(self):
         self.hover(self.locators.CREATED_AUDIENCE_TITLE, timeout=10)
-        self.hover(self.locators.MORE_BUTTON, timeout=5)
-        self.hover(self.locators.DELETE, timeout=5)
-        self.click(self.locators.DELETE, timeout=5)
-        self.click(self.locators.DELETE_MODAL_BUTTON, timeout=5)
+        self.hover(self.locators.MORE_BUTTON)
+        self.hover(self.locators.DELETE)
+        self.click(self.locators.DELETE)
+        self.click(self.locators.DELETE_MODAL_BUTTON)
 
     def created_audience_became_invisible(self):
-        return self.became_invisible(self.locators.CREATED_AUDIENCE_TITLE, timeout=5)
+        return self.became_invisible(self.locators.CREATED_AUDIENCE_TITLE)

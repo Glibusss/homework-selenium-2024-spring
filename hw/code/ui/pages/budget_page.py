@@ -19,6 +19,18 @@ class BudgetPage(BasePage):
 
     def replenishment_modal_page_became_visible(self) -> bool:
         return self.became_visible(self.locators.REPLENISHMENT_MODAL_PAGE)
+    
+    def modal_h2_became_visible(self):
+        return self.became_visible(self.locators.MODAL_H2)
+    
+    def close_modal_page_became_visible(self):
+        return self.became_visible(self.locators.CLOSE_MODAL_PAGE_BUTTON)
+    
+    def submit_button_became_visible(self):
+        return self.became_visible(self.locators.SUBMIT_BUTTON)
+    
+    def inputs_became_visible(self):
+        return self.became_visible(self.locators.AMOUNT_INPUT) and self.became_visible(self.locators.AMOUNT_WITHOUT_VAT_INPUT)
 
     def close_replenishment_modal_page(self):
         self.click(self.locators.CLOSE_MODAL_PAGE_BUTTON)

@@ -26,7 +26,7 @@ class SettingsCommonPageLocators(BasePageLocators):
     INN_INPUT = (By.XPATH, "//*[@data-testid='general-ord-inn']")
     INN_ERROR = (
         By.XPATH,
-        "//div[contains(@class, 'vkuiFormItem') and child::h2/span[text()='ИНН']]/span[@role='alert']/div"
+        "//*[contains(@class, 'vkuiFormItem') and child::h2/span[text()='ИНН']]/*[@role='alert']/div"
     )
 
     LOGOUT_OTHER_DEVICES_BUTTON = (
