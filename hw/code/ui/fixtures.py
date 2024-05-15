@@ -44,6 +44,7 @@ def base_page(driver):
 
 @pytest.fixture
 def main_page(driver):
+    driver.get(MainPage.url)
     return MainPage(driver=driver)
 
 

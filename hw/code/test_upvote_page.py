@@ -21,6 +21,7 @@ class TestUpvotePage(BaseCase):
         upvote_page.click_search_field()
         upvote_page.search_idea(id)
         upvote_page.click_comment_button()
+        time.sleep(1)
         comments_count_1 = upvote_page.get_idea_comments_count()
         comments_count_2 = upvote_page.get_idea_comments_count_from_button()
         assert int(comments_count_1) == int(comments_count_2)
@@ -35,7 +36,6 @@ class TestUpvotePage(BaseCase):
             assert True
         for title in all_titles:
             assert text in title.lower()
-
 
     def test_check_copy_link_button(self, upvote_page):
         link_1 = upvote_page.get_first_idea_link_from_title()
