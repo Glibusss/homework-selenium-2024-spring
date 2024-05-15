@@ -51,10 +51,10 @@ class UpvotePage(BasePage):
         self.click(self.locators.CLOSE_IDEA_BUTTON)
 
     def modal_window_is_visible(self) -> bool:
-        return self.is_visible(self.locators.CLOSE_IDEA_BUTTON)
+        return self.became_visible(self.locators.CLOSE_IDEA_BUTTON)
 
     def modal_window_is_invisible(self) -> bool:
-        return self.is_invisible(self.locators.CLOSE_IDEA_BUTTON)
+        return self.became_invisible(self.locators.CLOSE_IDEA_BUTTON)
 
     def get_first_idea_theme(self) -> str:
         return self.find(self.locators.IDEA_THEME).text

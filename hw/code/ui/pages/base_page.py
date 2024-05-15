@@ -5,7 +5,7 @@ from selenium.common import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 
 
 class PageNotOpenedExeption(Exception):
@@ -34,19 +34,19 @@ class BasePage(object):
         return WebDriverWait(self.driver, timeout=timeout)
 
     def find(self, locator, timeout=None):
-        return self.wait(timeout).until(EC.presence_of_element_located(locator))
+        return self.wait(timeout).until(ec.presence_of_element_located(locator))
 
     def find_all(self, locator, timeout=None):
-        return self.wait(timeout).until(EC.presence_of_all_elements_located(locator))
+        return self.wait(timeout).until(ec.presence_of_all_elements_located(locator))
 
     @allure.step("Click")
     def click(self, locator, timeout=None) -> WebElement:
-        elem = self.wait(timeout).until(EC.element_to_be_clickable(locator))
+        elem = self.wait(timeout).until(ec.element_to_be_clickable(locator))
         elem.click()
         return elem
 
     def scroll_and_click(self, locator, timeout=None) -> WebElement:
-        elem = self.wait(timeout).until(EC.presence_of_element_located(locator))
+        elem = self.wait(timeout).until(ec.presence_of_element_located(locator))
         ActionChains(self.driver).move_to_element(elem).click(elem).perform()
         return elem
 
@@ -55,16 +55,16 @@ class BasePage(object):
         assert len(handles) > 1
         self.driver.switch_to.window(handles[1])
 
-    def is_visible(self, locator, timeout=None):
+    def became_visible(self, locator, timeout=None):
         try:
-            self.wait(timeout).until(EC.visibility_of_element_located(locator))
+            self.wait(timeout).until(ec.visibility_of_element_located(locator))
             return True
         except TimeoutException:
             return False
 
-    def is_invisible(self, locator, timeout=None):
+    def became_invisible(self, locator, timeout=None):
         try:
-            self.wait(timeout).until(EC.invisibility_of_element_located(locator))
+            self.wait(timeout).until(ec.invisibility_of_element_located(locator))
             return True
         except TimeoutException:
             return False
