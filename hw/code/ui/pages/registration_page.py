@@ -6,8 +6,23 @@ class RegistrationPage(BasePage):
     locators = RegistrationPageLocators()
     url = 'https://ads.vk.com/hq/registration'
 
+    def header_became_visible(self):
+        return self.became_visible(self.locators.HEADER)
+    
+    def create_new_cabinet_button_became_visible(self):
+        return self.became_visible(self.locators.CREATE_NEW_CABINET_BUTTON)
+    
+    def import_mytarget_cabinet_button_became_visible(self):
+        return self.became_visible(self.locators.IMPORT_MYTARGET_CABINET_BUTTON)
+
     def click_create_new_cabinet_button(self):
         self.click(self.locators.CREATE_NEW_CABINET_BUTTON)
+
+    def click_import_mytarget_cabinet_button(self):
+        self.click(self.locators.IMPORT_MYTARGET_CABINET_BUTTON)
+
+    def hover_import_mytarget_cabinet_button_hint(self):
+        self.hover(self.locators.IMPORT_MYTARGET_CABINET_BUTTON_HINT)
 
     def get_selected_language(self) -> str:
         return self.find(self.locators.SELECTED_LANGUAGE).text
