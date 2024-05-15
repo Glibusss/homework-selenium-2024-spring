@@ -16,10 +16,16 @@ page_text = {
         'AGENCY_NOMINATIVE': 'Агентство',
         'AGENCY_DATIVE': 'Агентству',
         'CHOOSE_COUNTRY': 'Выберите страну',
+        'RUSSIA': 'Россия',
+        'ARMENIA': 'Армения',
         'CURRENCY': 'Валюта',
+        'RUBLE': 'Российский рубль (RUB)',
+        'DOLLAR': 'Доллар США (USD)',
+        'EURO': 'Евро (EUR)',
         'INDIVIDUAL': 'Физическое лицо',
-        'INDIVIDUAL_HINT': '',
+        'INDIVIDUAL_HINT': 'Не требуется заключение договора. Доступные методы оплаты - банковская карта, электронные деньги, платеж со счета телефона.',
         'LEGAL_ENTITY': 'Юридическое лицо',
+        'LEGAL_ENTITY_HINT': 'Потребуется предоставить реквизиты юридического лица. В конце каждого месяца клиенту предоставляется бухгалтерская отчётность. Доступные методы оплаты - банковский перевод для юридических лиц.',
         'INN': 'ИНН',
         'INN_EXAMPLE': 'Пример: 100303539843',
         'FULL_NAME': 'ФИО',
@@ -95,10 +101,20 @@ page_text = {
         'AGENCY_NOMINATIVE': 'Agency',
         'AGENCY_DATIVE': 'Agency',
         'CHOOSE_COUNTRY': 'Choose a country',
+        'RUSSIA': 'Russian Federation',
+        'ARMENIA': 'Armenia',
         'CURRENCY': 'Currency',
+        'RUBLE': 'Russian ruble (RUB)',
+        'DOLLAR': 'U.S. dollar (USD)',
+        'EURO': 'Euro (EUR)',
         'INDIVIDUAL': 'Individual',
-        'INDIVIDUAL_HINT': '',
+        'INDIVIDUAL_HINT': 'You can easily open an individual account by accepting the T&Cs online.'
+                            'Available payment methods: credit card, payment systems such as PayPal, etc.'
+                            'Note: the account type cannot be changed after the account has been created.',
         'LEGAL_ENTITY': 'Legal entity',
+        'LEGAL_ENTITY_HINT': 'This account type is mostly used for businesses with a legal entity.' 
+                             'Available payment methods: credit card, payment systems such as PayPal, etc.'
+                             'Note: the account type cannot be changed once the account has been created.',
         'INN': 'TIN',
         'INN_EXAMPLE': 'Example: 100303539843',
         'FULL_NAME': 'Full name',
@@ -108,7 +124,7 @@ page_text = {
         'TOS': 'Terms of use of the service',
         'PRIVACY': 'Privacy Policy',
         'MAILING': 'I agree to receive information and promotional newsletters',
-        'MAILING_HINT': 'The agreement regulates the receipt of notifications such as:'\
+        'MAILING_HINT': 'The agreement regulates the receipt of notifications such as:'
                         '– VK messages'
                         '– notifications in the "Bell" section of VK'
                         '– email notifications'
@@ -179,11 +195,10 @@ class RegistrationPageLocators(BasePageLocators):
 
     BACK_BUTTON = (By.XPATH, "//button[@data-testid='back-button']")
 
-    # @staticmethod
-    # def CREATE_PAGE_TITLE(language):
-    #     return By.XPATH, f"//*[contains(@class, 'HeaderNav_headerFormTitle') and contains(., {page_text[language]['CREATE_PAGE_TITLE']})]"
-
     CREATE_PAGE_TITLE = (By.XPATH, "//*[contains(@class, 'HeaderNav_headerFormTitle')]")
+
+    # Выбираем нажимаемый элемент с радиобаттоном
+    ACCOUNT_TYPE_BUTTON_ELEM = (By.XPATH, "//*[contains(@class, 'vkuiRadio') and contains(@class, 'vkuiTappable') and child::input[starts-with(@data-testid, 'cabinet-')]]")
 
     @staticmethod
     def ACCOUNT_TYPE_LABEL(language):
@@ -199,11 +214,15 @@ class RegistrationPageLocators(BasePageLocators):
 
     COUNTRY_DROPDOWN = (By.XPATH, f"//*[@data-testid='country']")
 
+    COUNTRY_DROPDOWN_LIST = (By.XPATH, f"//*[contains(@class, 'vkuiCustomSelect--pop-down') and following-sibling::*[@data-testid='country']]")
+
     @staticmethod
     def COUNTRY_DROPDOWN_ITEM(country_name):
         return By.XPATH, f"//*[contains(@class, 'vkuiCustomSelectOption') and text()='{country_name}']"
 
     CURRENCY_DROPDOWN = (By.XPATH, f"//*[@data-testid='currency']")
+
+    CURRENCY_DROPDOWN_LIST = (By.XPATH, f"//*[contains(@class, 'vkuiCustomSelect--pop-down') and following-sibling::*[@data-testid='currency']]")
 
     @staticmethod
     def CURRENCY_DROPDOWN_ITEM(currency_item):
@@ -221,10 +240,16 @@ class RegistrationPageLocators(BasePageLocators):
     @staticmethod
     def ACCOUNT_TYPE_BUTTON(account_type):
         return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']"
-    
+        
     @staticmethod
     def ACCOUNT_TYPE_HINT(account_type):
         return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]/descendant::*[preceding-sibling::span[text()='{account_type}']]/*[contains(@class, 'Hint_hintTrigger')]"
+    
+    ACCOUNT_TYPE_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer')]")
+
+    ACCOUNT_TYPE_HINT_WINDOW_TITLE = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer')]/descendant::div[contains(@class, 'UserView_title')]")
+
+    ACCOUNT_TYPE_HINT_WINDOW_TEXT = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer')]/descendant::div[contains(@class, 'UserView_description')]")
 
     @staticmethod
     def INN_ERROR(language):
@@ -265,9 +290,9 @@ class RegistrationPageLocators(BasePageLocators):
     def ACCOUNT_TYPE_SELECTOR_BY_VALUE(value):
         return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/*[@value='{value}']"
     
-    SELECTED_ACCOUNT_TYPE = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControlOption--checked')]/descendant::input")
+    SWITCH_SELECTED_ACCOUNT_TYPE = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControlOption--checked')]/descendant::input")
 
-    SELECTED_ACCOUNT_LABEL = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControlOption--checked')]/descendant::h4")
+    SWITCH_SELECTED_ACCOUNT_LABEL = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControlOption--checked')]/descendant::h4")
 
     IMPORT_BENEFIT_ITEM = (By.XPATH, "//*[contains(@class, 'ImportPanel_grantCell_')]")
 

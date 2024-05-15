@@ -39,21 +39,57 @@ class RegistrationPage(BasePage):
     def back_button_became_visible(self):
         return self.became_visible(self.locators.BACK_BUTTON)
     
+    def click_back_button(self):
+        self.click(self.locators.BACK_BUTTON)
+    
     def create_page_title_became_visible(self, language: str):
         return self.became_visible(self.locators.CREATE_PAGE_TITLE)
 
     def get_selected_language(self) -> str:
         return self.find(self.locators.SELECTED_LANGUAGE).text
-
+    
     def select_language(self, language: str):
         self.click(self.locators.LANGUAGE_BUTTON(language))
 
     def account_type_label_became_visible(self, language: str):
-        return self.find_multiple(self.locators.ACCOUNT_TYPE_LABEL(language))
+        return len(self.find_multiple(self.locators.ACCOUNT_TYPE_LABEL(language))) == 2
+    
+    def account_type_buttons_became_visible(self):
+        return len(self.find_multiple(self.locators.ACCOUNT_TYPE_BUTTON_ELEM)) == 2
+    
+    def hover_account_type_hint(self, account_type: str):
+        self.hover(self.locators.ACCOUNT_TYPE_HINT(account_type))
+
+    def account_type_hint_became_visible(self):
+        return self.became_visible(self.locators.ACCOUNT_TYPE_HINT_WINDOW)
+    
+    def get_account_type_hint(self):
+        return (
+            self.find(self.locators.ACCOUNT_TYPE_HINT_WINDOW_TITLE).text,
+            self.find(self.locators.ACCOUNT_TYPE_HINT_WINDOW_TEXT).text,
+        )
+
+    def country_selector_became_visible(self):
+        return self.became_visible(self.locators.COUNTRY_DROPDOWN)
+
+    def click_country_selector(self):
+        self.click(self.locators.COUNTRY_DROPDOWN)
+
+    def country_list_became_visible(self):
+        return self.became_visible(self.locators.COUNTRY_DROPDOWN_LIST)
 
     def select_country(self, country_name: str):
         self.click(self.locators.COUNTRY_DROPDOWN)
         self.click(self.locators.COUNTRY_DROPDOWN_ITEM(country_name))
+
+    def currency_selector_became_visible(self):
+        return self.became_visible(self.locators.CURRENCY_DROPDOWN)
+
+    def click_currency_selector(self):
+        self.click(self.locators.CURRENCY_DROPDOWN)
+
+    def currency_list_became_visible(self):
+        return self.became_visible(self.locators.CURRENCY_DROPDOWN_LIST)
 
     def currency_dropdown_contain_items(self, item_names: list):
         self.click(self.locators.CURRENCY_DROPDOWN)
@@ -96,7 +132,7 @@ class RegistrationPage(BasePage):
         return self.became_visible(self.locators.ACCOUNT_TYPE_SWITCH)
 
     def get_selected_account_switch(self) -> str:
-        return self.find(self.locators.SELECTED_ACCOUNT_TYPE).get_attribute('value')
+        return self.find(self.locators.SWITCH_SELECTED_ACCOUNT_TYPE).get_attribute('value')
     
     def switch_account_type(self, account_type: str):
         self.scroll_and_click(self.locators.ACCOUNT_TYPE_SELECTOR_BY_TEXT(account_type))

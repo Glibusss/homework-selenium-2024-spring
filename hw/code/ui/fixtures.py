@@ -57,7 +57,7 @@ def credentials_with_cabinet():
 @pytest.fixture(scope='session')
 def credentials_without_cabinet():
     load_dotenv()
-    return os.getenv('LOGIN_NO_CABINET'), os.getenv('PASSWORD_NO_CABINET')
+    return os.getenv('NEW_LOGIN'), os.getenv('NEW_PASSWORD')
 
 @pytest.fixture
 def budget_page(driver, cabinet_page):
