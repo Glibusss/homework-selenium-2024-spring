@@ -14,7 +14,7 @@ class SettingsCommonPage(BasePage):
     ERROR_INVALID_INN = 'Некорректный ИНН'
 
     def inputs_became_visible(self):
-        return self.became_visible(self.locators.PHONE_NUMBER_INPUT) and self.became_visible(self.locators.FULL_NAME_INPUT)
+        return self.became_visible(self.locators.PHONE_NUMBER_INPUT) and self.became_visible(self.locators.FULL_NAME_INPUT) and self.became_visible(self.locators.INN_INPUT)
     
     def buttons_became_visible(self):
         return self.became_visible(self.locators.ADD_EMAIL_BUTTON) and self.became_visible(self.locators.DELETE_CABINET_BUTTON) and self.became_visible(self.locators.LOGOUT_OTHER_DEVICES_BUTTON)
