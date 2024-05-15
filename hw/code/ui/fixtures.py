@@ -72,7 +72,7 @@ def auth_page(driver):
 @pytest.fixture
 def registration_page(driver, credentials_without_cabinet, auth_page):
     driver.get(RegistrationPage.url)
-    auth_page.login_regular(*credentials_without_cabinet)
+    auth_page.login_mail_ru(*credentials_without_cabinet)
     return RegistrationPage(driver=driver)
 
 

@@ -12,7 +12,9 @@ page_text = {
         'CREATE_PAGE_TITLE': 'Регистрация кабинета',
         'ACCOUNT_TYPE': 'Тип аккаунта',
         'ADVERTISER_NOMINATIVE': 'Рекламодатель',
+        'ADVERTISER_DATIVE': 'Рекламодателю',
         'AGENCY_NOMINATIVE': 'Агентство',
+        'AGENCY_DATIVE': 'Агентству',
         'CHOOSE_COUNTRY': 'Выберите страну',
         'CURRENCY': 'Валюта',
         'INDIVIDUAL': 'Физическое лицо',
@@ -34,7 +36,50 @@ page_text = {
                         '– push-уведомления'
                         '– звонки'
                         '– смс-сообщения',
-                    
+        'advert': [
+            {
+                'title': 'Настройки аккаунта',
+                'desc': 'Будут использованы настройки кабинета и реквизиты',
+            },
+            {
+                'title': 'Мобильные приложения',
+                'desc': 'Все мобильные приложения будут привязаны к новому кабинету',
+            },
+            {
+                'title': 'Аудитории',
+                'desc': 'Сможете использовать аудитории myTarget в кабинете VK Рекламы',
+            },
+            {
+                'title': 'Кампании',
+                'desc': 'Сможете копировать нужные кампании из myTarget в новый кабинет',
+            },
+            {
+                'title': 'Товарные фиды',
+                'desc': 'Cможете скопировать нужные товарные фиды в новый кабинет',
+            },
+        ],
+        'agency': [
+            {
+                'title': 'Клиенты',
+                'desc': 'Вы сможете работать с уже созданными клиентами и создавать новых',
+            },
+            {
+                'title': 'Статистика',
+                'desc': 'Вся статистика и все отчёты перенесутся из старого кабинета',
+            },
+            {
+                'title': 'Настройки аккаунта',
+                'desc': 'Будут использованы настройки кабинета и реквизиты',
+            },
+            {
+                'title': 'Бюджет',
+                'desc': 'Перенесётся бюджет из исходного кабинета',
+            },
+            {
+                'title': 'Старый кабинет myTarget',
+                'desc': 'Можно будет по-прежнему заходить в свой старый кабинет',
+            },
+        ],            
     },
     'English': {
         'MAIN_PAGE_TITLE': 'Welcome ' \
@@ -46,7 +91,9 @@ page_text = {
         'CREATE_PAGE_TITLE': 'Account registration',
         'ACCOUNT_TYPE': 'Account type',
         'ADVERTISER_NOMINATIVE': 'Advertiser',
+        'ADVERTISER_DATIVE': 'Advertiser',
         'AGENCY_NOMINATIVE': 'Agency',
+        'AGENCY_DATIVE': 'Agency',
         'CHOOSE_COUNTRY': 'Choose a country',
         'CURRENCY': 'Currency',
         'INDIVIDUAL': 'Individual',
@@ -68,6 +115,50 @@ page_text = {
                         '– push notifications'
                         '– calls'
                         '– sms-messages',
+        'advert': [
+            {
+                'title': 'Account settings',
+                'desc': 'Account settings and details will be used',
+            },
+            {
+                'title': 'Mobile applications',
+                'desc': 'All mobile applications will be linked to the new account',
+            },
+            {
+                'title': 'Audiences',
+                'desc': 'You will be able to use myTarget audiences in your VK Advertising account',
+            },
+            {
+                'title': 'Campaigns',
+                'desc': 'You will be able to copy the necessary campaigns from myTarget to a new account',
+            },
+            {
+                'title': 'Product feeds',
+                'desc': 'You will be able to copy the necessary product feeds to the new account',
+            },
+        ],
+        'agency': [
+            {
+                'title': 'Clients',
+                'desc': 'You will be able to work with existing clients and create new ones',
+            },
+            {
+                'title': 'Statistics',
+                'desc': 'All statistics and all reports will be transferred from the old account',
+            },
+            {
+                'title': 'Account settings',
+                'desc': 'Account settings and details will be used',
+            },
+            {
+                'title': 'Budget',
+                'desc': 'The budget from the original office will be transferred',
+            },
+            {
+                'title': 'Old myTarget account',
+                'desc': 'You still will be able to log into your old account',
+            },
+        ],
     },
 }
 
@@ -78,7 +169,7 @@ class RegistrationPageLocators(BasePageLocators):
     
     MAIN_PAGE_SUBTITLE = (By.XPATH, "//*[contains(@class, 'registration_panelSubTitle')]")
 
-    LANGUAGE_SWITCH = (By.XPATH, "//*[@class='vkuiSegmentedControl__in' and descendant::h4[text()='Русский']]")
+    LANGUAGE_SWITCH = (By.XPATH, "//*[contains(@class, 'HeaderNav_headerLanguageSelector')]")
 
     CREATE_NEW_CABINET_BUTTON = (By.ID, "click-createNewButton")
 
@@ -157,9 +248,35 @@ class RegistrationPageLocators(BasePageLocators):
     PRIVACY_POLICY_LINK = (By.XPATH, "//a[contains(@href, 'privacy')]")
 
     @staticmethod
-    def MAILING_CHECKBOX(agreement_span):
-        return By.XPATH, f"//*[contains(@class, 'vkuiCheckbox__input') and following-sibling::*[descendant::span[contains(., '{agreement_span}')]]]"
+    def MAILING_CHECKBOX(language):
+        return By.XPATH, f"//*[contains(@class, 'vkuiCheckbox__input') and following-sibling::*[descendant::span[contains(., '{page_text[language]['MAILING']}')]]]"
 
     @staticmethod
-    def MAILING_CHECKBOX_HINT(agreement_span): 
-        return By.XPATH, f"//*[contains(@class, 'Hint_hintTrigger') and preceding-sibling::span[contains(., '{agreement_span}')]]"
+    def MAILING_CHECKBOX_HINT(language): 
+        return By.XPATH, f"//*[contains(@class, 'Hint_hintTrigger') and preceding-sibling::span[contains(., '{page_text[language]['MAILING']}')]]"
+    
+    ACCOUNT_TYPE_SWITCH = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControl__in')]")
+
+    @staticmethod
+    def ACCOUNT_TYPE_SELECTOR_BY_TEXT(account_type):
+        return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/*[following-sibling::h4[text()='{account_type}']]"
+    
+    @staticmethod
+    def ACCOUNT_TYPE_SELECTOR_BY_VALUE(value):
+        return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/*[@value='{value}']"
+    
+    SELECTED_ACCOUNT_TYPE = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControlOption--checked')]/descendant::input")
+
+    SELECTED_ACCOUNT_LABEL = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControlOption--checked')]/descendant::h4")
+
+    IMPORT_BENEFIT_ITEM = (By.XPATH, "//*[contains(@class, 'ImportPanel_grantCell_')]")
+
+    IMPORT_BENEFIT_ICON = (By.XPATH, "//*[contains(@class, 'ImportPanel_grantCell')]/descendant::*[contains(@class, 'vkuiIcon')]")
+
+    IMPORT_BENEFIT_ITEM_TITLE = (By.XPATH, "//*[contains(@class, 'ImportPanel_grantCellTitle')]")
+
+    IMPORT_BENEFIT_ITEM_DESC = (By.XPATH, "//*[contains(@class, 'ImportPanel_grantCellDesc')]")
+
+    IMPORT_CONTINUE_BUTTON = (By.XPATH, "//*[@data-testid='import-continue']")
+
+    IMPORT_CONTINUE_DESC = (By.XPATH, "//*[contains(@class, 'ImportPanel_actionDesc')]")

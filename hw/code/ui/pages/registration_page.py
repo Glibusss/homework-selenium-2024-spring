@@ -48,8 +48,8 @@ class RegistrationPage(BasePage):
     def select_language(self, language: str):
         self.click(self.locators.LANGUAGE_BUTTON(language))
 
-    def account_type_became_visible(self, language: str):
-        return self.find_multiple(self.locators.ACCOUNT_TYPE_LABEL)
+    def account_type_label_became_visible(self, language: str):
+        return self.find_multiple(self.locators.ACCOUNT_TYPE_LABEL(language))
 
     def select_country(self, country_name: str):
         self.click(self.locators.COUNTRY_DROPDOWN)
@@ -91,6 +91,34 @@ class RegistrationPage(BasePage):
 
     def select_account_type(self, account_type: str):
         self.scroll_and_click(self.locators.ACCOUNT_TYPE_BUTTON(account_type))
+
+    def account_type_switch_became_visible(self):
+        return self.became_visible(self.locators.ACCOUNT_TYPE_SWITCH)
+
+    def get_selected_account_switch(self) -> str:
+        return self.find(self.locators.SELECTED_ACCOUNT_TYPE).get_attribute('value')
+    
+    def switch_account_type(self, account_type: str):
+        self.scroll_and_click(self.locators.ACCOUNT_TYPE_SELECTOR_BY_TEXT(account_type))
+
+    def switch_account_type_by_value(self, value: str):
+        self.scroll_and_click(self.locators.ACCOUNT_TYPE_SELECTOR_BY_VALUE(value))
+    
+    def get_account_type_benefits(self):
+        return list(zip(
+            self.find_multiple(self.locators.IMPORT_BENEFIT_ICON),
+            [item.text for item in self.find_multiple(self.locators.IMPORT_BENEFIT_ITEM_TITLE)],
+            [item.text for item in self.find_multiple(self.locators.IMPORT_BENEFIT_ITEM_DESC)]
+        )) 
+
+    def import_continue_button_became_visible(self):
+        return self.became_visible(self.locators.IMPORT_CONTINUE_BUTTON)
+    
+    def click_import_continue_button(self):
+        self.click(self.locators.IMPORT_CONTINUE_BUTTON)
+
+    def import_continue_note_became_visible(self):
+        return self.became_visible(self.locators.IMPORT_CONTINUE_DESC)
 
     def physical_type_became_invisible(self) -> bool:
         return self.became_invisible(self.locators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))

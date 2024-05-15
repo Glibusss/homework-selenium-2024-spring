@@ -17,7 +17,7 @@ class BaseCase:
             timeout = 5
 
         try:
-            WebDriverWait(self.driver, timeout).until(EC.url_matches(url))
+            WebDriverWait(self.driver, timeout).until(EC.url_contains(url))
             return True
         except:
             raise PageNotOpenedException(
