@@ -10,6 +10,3 @@ class HelpPageLocators(BasePageLocators):
     @staticmethod
     def TIP_NAME(tip_name):
         return (By.XPATH, f"//*[contains(@class, 'vkuiTypography') and text()='{tip_name}']")
-
-
-

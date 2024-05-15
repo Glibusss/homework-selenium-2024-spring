@@ -38,3 +38,4 @@ class SettingsCommonPageLocators(BasePageLocators):
 
     DELETE_CABINET_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Удалить кабинет']")
     DELETE_CABINET_MODAL_PAGE = (By.XPATH, "//*[contains(@class, 'DeleteAccountConfirmModal_')]")
+    

@@ -22,3 +22,4 @@ class BaseCase:
         except:
             raise PageNotOpenedException(
                 f'{url} did not open in {timeout} sec, current url {self.driver.current_url}')
+        

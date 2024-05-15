@@ -16,3 +16,4 @@ class CabinetPageLocators(BasePageLocators):
     USER_MENU = (By.XPATH, "//*[contains(@class, 'userMenu_menu__')]")
 
     LOGOUT_BUTTON = (By.XPATH, "//*[contains(@class, 'userMenu_logoutButton__')]")
+    

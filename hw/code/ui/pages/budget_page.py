@@ -62,3 +62,4 @@ class BudgetPage(BasePage):
 
     def vkpay_iframe_became_visible(self) -> bool:
         return self.became_visible(self.locators.VKPAY_IFRAME)
+    

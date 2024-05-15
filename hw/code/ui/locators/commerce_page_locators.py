@@ -44,4 +44,3 @@ class CommercePageLocators(BasePageLocators):
     DOWNLOAD_BUTTON = (By.XPATH, "//*[contains(@class,'FileTemplate_button__') and @href='https://target.my.com/documents/vkads/catalog_products.csv']")
 
     DROPZONE = (By.XPATH, "//*[contains(@class, 'FeedFileSelector_fileSelectorDescription__')]")
-

@@ -48,3 +48,4 @@ class RegistrationPageLocators(BasePageLocators):
     @staticmethod
     def ACCOUNT_TYPE_BUTTON(account_type):
         return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']"
+    

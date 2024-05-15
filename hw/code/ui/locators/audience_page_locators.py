@@ -53,3 +53,4 @@ class AudiencePageLocators(BasePageLocators):
 
     DELETE = (By.XPATH, "//*[contains(@class, 'vkui--vkBase')]//*[text()='Удалить']")
     DELETE_MODAL_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Удалить']")
+    

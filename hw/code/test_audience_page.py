@@ -64,3 +64,4 @@ class TestAudiencePage(BaseCase):
         assert audience_page.get_created_audience_title() == CUSTOM_AUDIENCE_NAME
         audience_page.delete_audience()
         assert audience_page.created_audience_became_invisible()
+        

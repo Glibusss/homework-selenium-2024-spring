@@ -61,3 +61,4 @@ class RegistrationPage(BasePage):
 
     def physical_type_became_visible(self) -> bool:
         return self.became_visible(self.locators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
+    

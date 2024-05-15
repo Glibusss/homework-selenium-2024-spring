@@ -11,4 +11,3 @@ class SettingsAccessPageLocators(BasePageLocators):
     ADD_BUTTON = (By.XPATH, "//*[@data-testid='add-user']")
 
     MODAL = (By.XPATH, "//*[contains(@class, 'vkuiModalPage')]")
-

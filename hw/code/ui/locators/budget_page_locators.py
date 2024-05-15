@@ -18,3 +18,4 @@ class BudgetPageLocators(BasePageLocators):
     SUBMIT_BUTTON = (By.XPATH, "//*[contains(@class, 'CreateInvoiceModal_button__')]")
 
     VKPAY_IFRAME = (By.XPATH, "//iframe[contains(@class, 'CreateInvoiceModal_iframe')]")
+    
