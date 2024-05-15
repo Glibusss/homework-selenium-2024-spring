@@ -14,7 +14,7 @@ class CommercePage(BasePage):
         return self.became_visible(self.locators.SIDEBAR)
     
     def sidebar_became_invisible(self):
-        return self.became_invisible(self.locators.SIDEBAR, timeout=1)
+        return self.became_invisible(self.locators.SIDEBAR)
     
     def new_catalog_h2_became_visible(self):
         return self.became_visible(self.locators.NEW_CATALOG_H2)
@@ -58,7 +58,7 @@ class CommercePage(BasePage):
         return self.became_visible(self.locators.CATEGORY_SELECT) and self.became_visible(self.locators.DOWNLOAD_BUTTON) and self.became_visible(self.locators.DROPZONE) and self.became_visible(self.locators.CHECKBOX_UTM_SIGN)
     
     def click_create_button(self):
-        self.click(self.locators.CREATE_BUTTON, timeout=1)
+        self.click(self.locators.CREATE_BUTTON)
 
     def click_feed_tabs(self):
         self.click(self.locators.TABS_NAME(self.TABS_LIST[0]))
@@ -73,5 +73,5 @@ class CommercePage(BasePage):
         self.click(self.locators.CANCEL_BUTTON)
 
     def click_cross_button(self):
-        self.click(self.locators.CROSS_BUTTON, timeout=1)
+        self.click(self.locators.CROSS_BUTTON)
     
