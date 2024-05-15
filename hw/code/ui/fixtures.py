@@ -49,4 +49,5 @@ def main_page(driver):
 
 @pytest.fixture
 def upvote_page(driver):
+    driver.get(UpvotePage.url)
     return UpvotePage(driver=driver)
