@@ -3,7 +3,6 @@ from base_case import BaseCase
 
 
 class TestCommercePage(BaseCase):
-
     ERRORS_FEED_LIST = ['Необходимо указать протокол http(s)', 'Невалидный url', 'Неверный формат файла', 'Не удалось выполнить запрос по HTTP']
     INPUTS_FEED_LIST = ['h', 'http://', 'https://nota-tabula.ru', 'https://nota-tabula.rur']
 
@@ -54,4 +53,3 @@ class TestCommercePage(BaseCase):
         commerce_page.click_create_button()
         commerce_page.click_manual_tabs()
         assert commerce_page.manual_became_visible()
-
