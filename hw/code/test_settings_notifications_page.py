@@ -48,3 +48,4 @@ class TestSettingsNotificationsPage(BaseCase):
         else:
             assert settings_notifications_page.checkbox_checked()
 
+
