@@ -6,7 +6,9 @@ class BudgetPageLocators(BasePageLocators):
     REPLENISH_BUDGET_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Пополнить счёт']")
     REPLENISHMENT_MODAL_PAGE = (By.ID, "_modal_17")
 
-    CLOSE_MODAL_PAGE_BUTTON = (By.XPATH, "//*[@aria-label='Закрыть']")
+    CLOSE_MODAL_PAGE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiModalDismissButton')]")
+
+    MODAL_H2 = (By.XPATH, "//*[contains(@class, 'vkuiTitle--level-3') and text()='Пополнение счёта']")
 
     AMOUNT_INPUT = (By.NAME, "amount")
     AMOUNT_WITHOUT_VAT_INPUT = (By.NAME, "amountWithoutVat")

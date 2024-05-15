@@ -3,15 +3,13 @@ from ui.locators.base_page_locators import BasePageLocators
 
 
 class StudyingPageLocators(BasePageLocators):
-    STUDY_CELL = (By.XPATH, "//span[text()='Обучение']")
+    STUDY_CELL = (By.XPATH, "//*[text()='Обучение']")
     
-    #Studying modal
-
     CHOOSE_STUDYING_MODAL= (By.XPATH, "//*[contains(@class, 'vkuiModalPage')]")
     MODAL_OVERLAY = (By.XPATH, "//*[contains(@class, 'ModalRoot_overlay__')]")
 
-    STUDYING_MODAL_H2 = (By.XPATH, "//h2[contains(@class, 'vkuiTitle--level-2') and text()='С чего начнём обучение?']")
-    STUDYING_MODAL_H4 = (By.XPATH, "//h4[contains(@class, 'vkuiHeadline--level-2') and text()='Выберите, что будете рекламировать']")
+    STUDYING_MODAL_H2 = (By.XPATH, "//*[contains(@class, 'vkuiTitle--level-2') and text()='С чего начнём обучение?']")
+    STUDYING_MODAL_H4 = (By.XPATH, "//*[contains(@class, 'vkuiHeadline--level-2') and text()='Выберите, что будете рекламировать']")
 
     @staticmethod
     def SOURCE_ITEM(item_name):
@@ -22,21 +20,13 @@ class StudyingPageLocators(BasePageLocators):
 
     CLOSE_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiModalDismissButton')]")
 
-    # Studying method modal
-
-    STUDYING_METHOD_MODAL_H2 = (By.XPATH, "//h2[contains(@class, 'vkuiTitle--level-2') and text()='Как хотите учиться?']")
-
-    #Experts
+    STUDYING_METHOD_MODAL_H2 = (By.XPATH, "//*[contains(@class, 'vkuiTitle--level-2') and text()='Как хотите учиться?']")
 
     IFRAME = (By.XPATH, "//iframe[contains(@class, 'VideoOnboardingModal_frame__')]")
-
-    #Tips
 
     TIP = (By.XPATH, "//*[contains(@class, 'PopoverContent_root__')]")
     SIDEBAR = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_')]")
     TIP_CLOSE = (By.XPATH, "//*[contains(@class, 'RichTooltop_closeBtn__')]")
-
-    #Tip close modal
 
     TIP_CLOSE_MODAL_H2 = (By.XPATH, "//h2[contains(@class, 'vkuiTitle--level-2') and text()='Прервать обучение?']")
     TIP_CLOSE_MODAL_H4 = (By.XPATH, "//h5[text()='Вернуться к обучению можно когда угодно']")
