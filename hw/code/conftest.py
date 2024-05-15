@@ -8,7 +8,6 @@ def pytest_addoption(parser):
     parser.addoption('--selenoid', action='store_true')
     parser.addoption('--vnc', action='store_true')
 
-
 @pytest.fixture(scope='session')
 def config(request):
     browser = request.config.getoption('--browser')
@@ -32,4 +31,3 @@ def config(request):
         'selenoid': selenoid,
         'vnc': vnc,
     }
-
