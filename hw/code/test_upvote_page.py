@@ -17,7 +17,7 @@ class TestUpvotePage(BaseCase):
         upvote_page.click_search_field()
         upvote_page.search_idea(id)
         time.sleep(0.5)
-        return id == upvote_page.get_first_idea_id()
+        assert id == upvote_page.get_first_idea_id()
 
     def test_comments(self, upvote_page):
         id = "48"
