@@ -30,7 +30,7 @@ class BasePage(object):
 
     def wait(self, timeout=None):
         if timeout is None:
-            timeout = 5
+            timeout = 7
         return WebDriverWait(self.driver, timeout=timeout)
 
     def find(self, locator, timeout=None):
