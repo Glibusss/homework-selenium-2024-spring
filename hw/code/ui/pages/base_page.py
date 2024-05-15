@@ -1,6 +1,7 @@
 import time
 
 import allure
+from selenium.common import TimeoutException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
@@ -35,6 +36,9 @@ class BasePage(object):
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
+    def find_all(self, locator, timeout=None):
+        return self.wait(timeout).until(EC.presence_of_all_elements_located(locator))
+
     @allure.step("Click")
     def click(self, locator, timeout=None) -> WebElement:
         elem = self.wait(timeout).until(EC.element_to_be_clickable(locator))
@@ -50,3 +54,17 @@ class BasePage(object):
         handles = self.driver.window_handles
         assert len(handles) > 1
         self.driver.switch_to.window(handles[1])
+
+    def is_visible(self, locator, timeout=None):
+        try:
+            self.wait(timeout).until(EC.visibility_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False
+
+    def is_invisible(self, locator, timeout=None):
+        try:
+            self.wait(timeout).until(EC.invisibility_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False

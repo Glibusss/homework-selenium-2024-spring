@@ -4,6 +4,7 @@ import time
 
 
 class TestMainPage(BaseCase):
+    pass
     def test_go_to_main_page_nav(self, main_page):
         main_page.click_vk_ads_logo()
         assert self.is_opened("https://ads.vk.com/")

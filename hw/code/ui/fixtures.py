@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from ui.pages.base_page import BasePage
 from ui.pages.main_page import MainPage
+from ui.pages.upvote_page import UpvotePage
 
 
 @pytest.fixture()
@@ -44,3 +45,8 @@ def base_page(driver):
 @pytest.fixture
 def main_page(driver):
     return MainPage(driver=driver)
+
+
+@pytest.fixture
+def upvote_page(driver):
+    return UpvotePage(driver=driver)
