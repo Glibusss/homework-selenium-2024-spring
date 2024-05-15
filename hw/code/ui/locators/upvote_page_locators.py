@@ -38,18 +38,21 @@ class UpvotePageLocators:
 
     IDEA_DATE_AND_ID = (By.XPATH, "//*[contains(@class, 'vkuiSimpleCell__text')]")
 
-    IDEA_THEME = (By.XPATH, "//*[contains(@class, 'Tag_tag__')]//span")
-    
+    IDEA_THEME = (
+        By.XPATH,
+        "//*[contains(@class, 'Tag_tag__')]//*[contains(@class, 'vkuiText')]",
+    )
+
     IDEA_THEME_CLASSNAME_IN_CARD = "vkuiText"
-    
+
     IDEA_STATUS = (
         By.XPATH,
-        "//*[contains(@class, 'Status_wrap__')]//span",
+        "//*[contains(@class, 'Status_wrap__')]//*[contains(@class, 'Status_text__')]",
     )
 
     IDEA_COMMENTS_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'ButtonComment_button__')]//span[contains(@class, 'vkuiButton__content')]",
+        "//*[contains(@class, 'ButtonComment_button__')]//*[contains(@class, 'vkuiButton__content')]",
     )
 
     @staticmethod
@@ -61,7 +64,7 @@ class UpvotePageLocators:
 
     COMMENT_CELL = (
         By.XPATH,
-        "//*[contains(@class, 'Comment_commentsWrap__')]/div[contains(@class, 'vkuiSimpleCell')]",
+        "//*[contains(@class, 'Comment_commentsWrap__')]//*[contains(@class, 'Comment_cell__')]",
     )
 
     IDEA_LINK = (
@@ -69,4 +72,4 @@ class UpvotePageLocators:
         "//*[contains(@class, 'Idea_title__')]",
     )
 
-    LINK_COPY_BUTTON = (By.XPATH, "//button[contains(@class, 'vkuiIconButton')]")
+    LINK_COPY_BUTTON = (By.XPATH, "//*[contains(@class, 'Idea_copyLinkBtn__')]")

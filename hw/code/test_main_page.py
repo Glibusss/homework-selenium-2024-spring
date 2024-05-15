@@ -112,3 +112,4 @@ class TestMainPage(BaseCase):
         main_page.click_footer_item("Монетизация")
         main_page.go_to_new_tab()
         assert self.is_opened("https://ads.vk.com/partner")
+    pass

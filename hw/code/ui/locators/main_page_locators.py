@@ -52,7 +52,7 @@ class MainPageLocators:
 
     NAV_CABINET_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'NavigationVKAds_right__')]/a[contains(@class, 'ButtonCabinet_primary__')]",
+        "//*[contains(@class, 'NavigationVKAds_right__')]//*[contains(@class, 'ButtonCabinet_primary__')]",
     )
 
     @staticmethod
@@ -116,12 +116,12 @@ class MainPageLocators:
 
     FOOTER_CABINET_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'Footer_leftContent__')]/a[contains(@class, 'ButtonCabinet_primary__')]",
+        "//*[contains(@class, 'Footer_leftContent__')]//*[contains(@class, 'ButtonCabinet_primary__')]",
     )
 
     @staticmethod
     def FOOTER_SECTIONS_ITEM(href):
         return (
             By.XPATH,
-            f"//*[contains(@class, 'Footer_item__')]/a[contains(@href, '{href}')]",
+            f"//*[contains(@class, 'Footer_item__')]//*[contains(@href, '{href}')]",
         )

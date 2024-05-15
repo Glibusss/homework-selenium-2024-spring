@@ -23,6 +23,7 @@ class TestUpvotePage(BaseCase):
         id = "48"
         upvote_page.click_search_field()
         upvote_page.search_idea(id)
+        time.sleep(0.5)
         upvote_page.click_comment_button()
         comments_count_1 = upvote_page.get_idea_comments_count()
         comments_count_2 = upvote_page.get_idea_comments_count_from_button()
