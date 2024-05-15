@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
+from ui.locators.base_page_locators import BasePageLocators
 
 
-class UpvotePageLocators:
+class UpvotePageLocators(BasePageLocators):
     IDEAS_SEARCH_INPUT = (
         By.XPATH,
         "//*[contains(@class, 'vkuiSearch__input') and contains(@placeholder, 'Поиск по ID или заголовку')]",

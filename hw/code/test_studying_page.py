@@ -3,7 +3,6 @@ from base_case import BaseCase
 
 
 class TestStudyingPage(BaseCase):
-
     def test_is_studying_modal_opened(self, studying_page):
         studying_page.click_studying_cell()
         assert studying_page.modal_became_visible()
@@ -51,9 +50,9 @@ class TestStudyingPage(BaseCase):
         studying_page.click_close_tip()
         assert studying_page.stop_onboarding_modal_became_visible()
         assert studying_page.stop_onboarding_modal_buttons_became_visible()
-        assert studying_page.stop_onboarding_modal_header_became_visible()   
-        assert studying_page.close_button_became_visible()      
-       
+        assert studying_page.stop_onboarding_modal_header_became_visible()
+        assert studying_page.close_button_became_visible()
+
     def test_is_stop_onboarding_modal_became_invisible(self, studying_page):
         studying_page.click_studying_cell()
         studying_page.click_catalog_cell()
@@ -67,4 +66,4 @@ class TestStudyingPage(BaseCase):
         studying_page.click_close_tip()
         studying_page.click_break_button()
         assert studying_page.stop_onboarding_modal_became_invisible()
-
+        

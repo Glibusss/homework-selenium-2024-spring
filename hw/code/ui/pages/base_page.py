@@ -16,16 +16,17 @@ class PageNotOpenedException(Exception):
 
 class BasePage(object):
     locators = BasePageLocators()
-    url = 'https://ads.vk.com/'
+    url = "https://ads.vk.com/"
 
     def is_opened(self, timeout=15):
         started = time.time()
         while time.time() - started < timeout:
             if self.driver.current_url == self.url:
                 return True
-        raise PageNotOpenedExeption(
+        raise PageNotOpenedException(
             f"{self.url} did not open in {timeout} sec, current url {self.driver.current_url}"
         )
+
     def close_cookie_banner(self):
         try:
             self.click(self.locators.COOKIE_BUTTON)
@@ -77,7 +78,7 @@ class BasePage(object):
             return True
         except TimeoutException:
             return False
-        
+
     def hover(self, locator, timeout=5):
         elem = self.wait(timeout).until(ec.presence_of_element_located(locator))
         ActionChains(self.driver).move_to_element(elem).perform()

@@ -2,9 +2,11 @@ import pytest
 from datetime import datetime
 from base_case import BaseCase
 
-CUSTOM_AUDIENCE_NAME = 'Cool Audience'
-SOURCE_NAME = 'Ключевые фразы'
-KEY_PHRASES = ['buiseness', 'tasks']
+CUSTOM_AUDIENCE_NAME = "Cool Audience"
+SOURCE_NAME = "Ключевые фразы"
+KEY_PHRASES = ["buiseness", "tasks"]
+
+
 class TestAudiencePage(BaseCase):
     def test_is_create_audience_modal_page_opened(self, audience_page):
         audience_page.click_create_audience_button()
@@ -64,4 +66,3 @@ class TestAudiencePage(BaseCase):
         assert audience_page.get_created_audience_title() == CUSTOM_AUDIENCE_NAME
         audience_page.delete_audience()
         assert audience_page.created_audience_became_invisible()
-        

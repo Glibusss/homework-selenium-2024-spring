@@ -50,12 +50,8 @@ class TestUpvotePage(BaseCase):
         upvote_page.open_themes_filter()
         upvote_page.set_filter("Форум идей")
         card_themes = upvote_page.get_all_idea_themes()
-        contains_theme = True
         for card in card_themes:
-            if theme not in card:
-                contains_theme = False
-                break
-        assert contains_theme
+            assert theme in card
 
     def test_search_by_status(self, upvote_page):
         status = "Реализована"
@@ -63,9 +59,5 @@ class TestUpvotePage(BaseCase):
         upvote_page.open_statuses_filter()
         upvote_page.set_filter("Реализована")
         card_statuses = upvote_page.get_all_idea_statuses()
-        contains_status = True
         for el in card_statuses:
-            if status not in el:
-                contains_status = False
-                break
-        assert contains_status
+            assert status in el

@@ -3,7 +3,6 @@ from base_case import BaseCase
 
 
 class TestSettingsNotificationsPage(BaseCase):
-
     def test_is_h2_became_visible(self, settings_notifications_page):
         assert settings_notifications_page.h2_became_visible()
         assert settings_notifications_page.checkbox_became_visible()
@@ -25,7 +24,7 @@ class TestSettingsNotificationsPage(BaseCase):
         if checked:
             assert settings_notifications_page.checkbox_not_checked()
         else:
-            assert settings_notifications_page.checkbox_checked()      
+            assert settings_notifications_page.checkbox_checked()
 
     def test_is_on_cancel_click_checkbox_returned(self, settings_notifications_page):
         checked = settings_notifications_page.checkbox_checked()
@@ -42,10 +41,8 @@ class TestSettingsNotificationsPage(BaseCase):
         print(checked)
         settings_notifications_page.click_checkbox()
         settings_notifications_page.click_save()
-        
+
         if checked:
             assert settings_notifications_page.checkbox_not_checked()
         else:
             assert settings_notifications_page.checkbox_checked()
-
-
