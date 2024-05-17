@@ -5,7 +5,11 @@ from selenium.webdriver.chrome.options import Options
 from ui.pages.auth_page import AuthPage
 from ui.pages.base_page import BasePage
 from ui.pages.commerce_page import CommercePage
-from ui.pages.registration_page import RegistrationPage
+from ui.pages.registration_main_page import RegistrationMainPage
+from ui.pages.registration_create_cabinet_page import RegistrationCreateCabinetPage
+from ui.pages.registration_import_mytarget_page import RegistrationImportMytargetPage
+from ui.pages.header_before import HeaderBefore
+from ui.pages.header_after import HeaderAfter
 from ui.pages.cabinet_page import CabinetPage
 from ui.pages.audience_page import AudiencePage
 from ui.pages.budget_page import BudgetPage
@@ -68,6 +72,11 @@ def credentials_with_cabinet():
     load_dotenv()
     return os.getenv('LOGIN'), os.getenv('PASSWORD')
 
+@pytest.fixture(scope='session')
+def credentials_without_cabinet():
+    load_dotenv()
+    return os.getenv('NEW_LOGIN'), os.getenv('NEW_PASSWORD')
+
 @pytest.fixture
 def budget_page(driver, cabinet_page):
     driver.get(BudgetPage.url)
@@ -77,17 +86,38 @@ def budget_page(driver, cabinet_page):
 def auth_page(driver):
     return AuthPage(driver=driver)
 
+
 @pytest.fixture
-def registration_page(driver, credentials_without_cabinet, auth_page):
-    driver.get(RegistrationPage.url)
+def registration_main_page(driver, credentials_without_cabinet, auth_page):
+    driver.get(RegistrationMainPage.url)
     auth_page.login(*credentials_without_cabinet)
-    return RegistrationPage(driver=driver)
+    return RegistrationMainPage(driver=driver)
+
+@pytest.fixture
+def registration_create_cabinet_page(driver, registration_main_page):
+    driver.get(RegistrationCreateCabinetPage.url)
+    return RegistrationCreateCabinetPage(driver=driver)
+
+@pytest.fixture
+def registration_import_mytarget_page(driver, registration_main_page):
+    driver.get(RegistrationImportMytargetPage.url)
+    return RegistrationImportMytargetPage(driver=driver)
 
 @pytest.fixture
 def cabinet_page(driver, credentials_with_cabinet, auth_page):
-    driver.get(RegistrationPage.url)
+    driver.get(RegistrationMainPage.url)
     auth_page.login(*credentials_with_cabinet)
     return CabinetPage(driver=driver)
+
+@pytest.fixture
+def header_before(driver, registration_main_page):
+    driver.get(HeaderBefore.url)
+    return HeaderBefore(driver=driver)
+
+@pytest.fixture
+def header_after(driver, cabinet_page):
+    driver.get(HeaderAfter.url)
+    return HeaderAfter(driver=driver)
 
 @pytest.fixture
 def audience_page(driver, cabinet_page):
