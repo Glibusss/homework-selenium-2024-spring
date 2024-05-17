@@ -22,14 +22,19 @@ page_text = {
         'RUBLE': 'Российский рубль (RUB)',
         'DOLLAR': 'Доллар США (USD)',
         'EURO': 'Евро (EUR)',
+        'FIELD_REQUIRED': 'Обязательное поле',
+        'EMAIL_INCORRECT': 'Некорректный email адрес',
         'INDIVIDUAL': 'Физическое лицо',
         'INDIVIDUAL_HINT': 'Не требуется заключение договора. Доступные методы оплаты - банковская карта, электронные деньги, платеж со счета телефона.',
+        'ROW_INDIVIDUAL_WARNING': 'Создание рекламного кабинета для физических лиц доступно только при выборе России.',
         'LEGAL_ENTITY': 'Юридическое лицо',
         'LEGAL_ENTITY_HINT': 'Потребуется предоставить реквизиты юридического лица. В конце каждого месяца клиенту предоставляется бухгалтерская отчётность. Доступные методы оплаты - банковский перевод для юридических лиц.',
         'INN': 'ИНН',
         'INN_EXAMPLE': 'Пример: 100303539843',
+        'INN_SHORT': 'Минимальная длина 12',
+        'INN_LONG': 'Максимальная длина 12 символов',
         'FULL_NAME': 'ФИО',
-        'ACCEPT_CHECKBOX': 'Создавая кабинет, вы принимаете условия*',
+        'ACCEPT_CHECKBOX': 'Создавая кабинет, вы принимаете условия',
         'OFFER': 'Оферты',
         'ORD': 'Соглашение о передаче рекламных данных',
         'TOS': 'Правила пользования сервисом',
@@ -107,18 +112,23 @@ page_text = {
         'RUBLE': 'Russian ruble (RUB)',
         'DOLLAR': 'U.S. dollar (USD)',
         'EURO': 'Euro (EUR)',
+        'FIELD_REQUIRED': 'Required field',
+        'EMAIL_INCORRECT': 'Invalid email address',
         'INDIVIDUAL': 'Individual',
         'INDIVIDUAL_HINT': 'You can easily open an individual account by accepting the T&Cs online.'
                             'Available payment methods: credit card, payment systems such as PayPal, etc.'
                             'Note: the account type cannot be changed after the account has been created.',
+        'ROW_INDIVIDUAL_WARNING': 'Creating an advertising account for individuals is available only when choosing Russia.',
         'LEGAL_ENTITY': 'Legal entity',
         'LEGAL_ENTITY_HINT': 'This account type is mostly used for businesses with a legal entity.' 
                              'Available payment methods: credit card, payment systems such as PayPal, etc.'
                              'Note: the account type cannot be changed once the account has been created.',
         'INN': 'TIN',
         'INN_EXAMPLE': 'Example: 100303539843',
+        'INN_SHORT': 'Min length 12',
+        'INN_LONG': 'Maximum length of 12 characters',
         'FULL_NAME': 'Full name',
-        'ACCEPT_CHECKBOX': 'By creating an account you accept the terms*',
+        'ACCEPT_CHECKBOX': 'By creating an account you accept the terms',
         'OFFER': 'Offer',
         'ORD': 'Advertising data transfer agreement',
         'TOS': 'Terms of use of the service',
@@ -181,6 +191,12 @@ page_text = {
 class RegistrationPageLocators(BasePageLocators):
     HEADER = (By.TAG_NAME, "HEADER")
 
+    @staticmethod
+    def TEXT(text):
+        return By.XPATH, f"//*[text()='{text}']"
+
+    REGISTRATION_IMAGE = (By.XPATH, "//*[contains(@class, 'registration_img')]")
+
     MAIN_PAGE_TITLE = (By.XPATH, "//*[contains(@class, 'registration_panelTitle')]")
     
     MAIN_PAGE_SUBTITLE = (By.XPATH, "//*[contains(@class, 'registration_panelSubTitle')]")
@@ -197,8 +213,11 @@ class RegistrationPageLocators(BasePageLocators):
 
     CREATE_PAGE_TITLE = (By.XPATH, "//*[contains(@class, 'HeaderNav_headerFormTitle')]")
 
-    # Выбираем нажимаемый элемент с радиобаттоном
+    # Выбираем нажимаемый элемент с радиобаттоном, у выборов типа кабинета в data-testid есть общая строка
     ACCOUNT_TYPE_BUTTON_ELEM = (By.XPATH, "//*[contains(@class, 'vkuiRadio') and contains(@class, 'vkuiTappable') and child::input[starts-with(@data-testid, 'cabinet-')]]")
+
+    # Выбираем нажимаемый элемент с радиобаттоном, у выбора типа лица в data-testid этой общей строки нет, и больше радиобаттонов на странице нет
+    ENTITY_TYPE_BUTTON_ELEM = (By.XPATH, "//*[contains(@class, 'vkuiRadio') and contains(@class, 'vkuiTappable') and child::input[not(starts-with(@data-testid, 'cabinet-'))]]")
 
     @staticmethod
     def ACCOUNT_TYPE_LABEL(language):
@@ -232,10 +251,16 @@ class RegistrationPageLocators(BasePageLocators):
 
     INN_INPUT = (By.NAME, "inn")
 
+    NAME_INPUT = (By.NAME, "name")
+
     EMAIL_ERROR = (
         By.XPATH,
         "//*[@role='alert' and preceding-sibling::h5[text()='Email*']]"
     )
+
+    ROW_INDIVIDUAL_WARNING = (By.XPATH, "//*[contains(@class, 'Warning_container')]")
+
+    ROW_INDIVIDUAL_WARNING_TEXT = (By.XPATH, "//*[contains(@class, 'Warning_inner')]")
 
     @staticmethod
     def ACCOUNT_TYPE_BUTTON(account_type):
@@ -245,11 +270,12 @@ class RegistrationPageLocators(BasePageLocators):
     def ACCOUNT_TYPE_HINT(account_type):
         return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]/descendant::*[preceding-sibling::span[text()='{account_type}']]/*[contains(@class, 'Hint_hintTrigger')]"
     
-    ACCOUNT_TYPE_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer')]")
+    # Существует другой Tooltip_tooltipContainer (у чекбокса согласия на рассылку)
+    ACCOUNT_TYPE_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]")
 
-    ACCOUNT_TYPE_HINT_WINDOW_TITLE = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer')]/descendant::div[contains(@class, 'UserView_title')]")
+    ACCOUNT_TYPE_HINT_WINDOW_TITLE = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]/descendant::div[contains(@class, 'UserView_title')]")
 
-    ACCOUNT_TYPE_HINT_WINDOW_TEXT = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer')]/descendant::div[contains(@class, 'UserView_description')]")
+    ACCOUNT_TYPE_HINT_WINDOW_TEXT = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]/descendant::div[contains(@class, 'UserView_description')]")
 
     @staticmethod
     def INN_ERROR(language):
@@ -264,7 +290,12 @@ class RegistrationPageLocators(BasePageLocators):
 
     OFFER_CHECKBOX = (By.NAME, "offer")
 
-    OFFER_TERMS_LINK = (By.XPATH, "//a[contains(@href, 'offer_fl')]")
+    # Нужен такой сложный селектор, чтобы нормально отслеживать чекбокс
+    @staticmethod
+    def CHECKBOX_IS_CHECKED_OR_NOT(checkbox, state):
+        return (By.XPATH, f"//label[contains(@class, 'vkuiCheckbox') and .//*[text()='{checkbox}']]//div[contains(@class, 'vkuiCheckbox__icon--{state}')]")
+
+    OFFER_TERMS_LINK = (By.XPATH, "//a[contains(@href, 'documents/offer')]")
 
     ORD_DOCS_LINK = (By.XPATH, "//a[contains(@href, 'ord_clients')]")
 
@@ -273,12 +304,16 @@ class RegistrationPageLocators(BasePageLocators):
     PRIVACY_POLICY_LINK = (By.XPATH, "//a[contains(@href, 'privacy')]")
 
     @staticmethod
-    def MAILING_CHECKBOX(language):
+    def MAILING_CHECKBOX(language): 
         return By.XPATH, f"//*[contains(@class, 'vkuiCheckbox__input') and following-sibling::*[descendant::span[contains(., '{page_text[language]['MAILING']}')]]]"
 
     @staticmethod
     def MAILING_CHECKBOX_HINT(language): 
         return By.XPATH, f"//*[contains(@class, 'Hint_hintTrigger') and preceding-sibling::span[contains(., '{page_text[language]['MAILING']}')]]"
+    
+    CREATE_CABINET_BUTTON = (By.XPATH, "//*[@data-testid='create-button']")
+    
+    MAILING_CHECKBOX_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'registration_hint_')]")
     
     ACCOUNT_TYPE_SWITCH = (By.XPATH, "//*[contains(@class, 'ImportPanel_panelSubTitle')]/descendant::*[contains(@class, 'vkuiSegmentedControl__in')]")
 
