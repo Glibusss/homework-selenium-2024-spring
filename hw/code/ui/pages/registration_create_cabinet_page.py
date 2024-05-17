@@ -1,13 +1,10 @@
 from ui.pages.base_page import BasePage
-from ui.locators.registration_page_locators import RegistrationPageLocators
+from ui.locators.registration_create_cabinet_page_locators import RegistrationCreateCabinetPageLocators
 
 
-class RegistrationPage(BasePage):
-    locators = RegistrationPageLocators()
-    url = 'https://ads.vk.com/hq/registration'
-
-    def text_became_visible(self, text: str):
-        return self.became_visible(self.locators.TEXT(text))
+class RegistrationCreateCabinetPage(BasePage):
+    locators = RegistrationCreateCabinetPageLocators()
+    url = 'https://ads.vk.com/hq/registration/new'
 
     def header_became_visible(self):
         return self.became_visible(self.locators.HEADER)
@@ -20,31 +17,7 @@ class RegistrationPage(BasePage):
     
     def language_switch_became_visible(self):
         return self.became_visible(self.locators.LANGUAGE_SWITCH)
-    
-    def main_page_title_became_visible(self):
-        return self.became_visible(self.locators.MAIN_PAGE_TITLE)
-    
-    def main_page_subtitle_became_visible(self):
-        return self.became_visible(self.locators.MAIN_PAGE_SUBTITLE)
 
-    def create_new_cabinet_button_became_visible(self):
-        return self.became_visible(self.locators.CREATE_NEW_CABINET_BUTTON)
-    
-    def import_mytarget_cabinet_button_became_visible(self):
-        return self.became_visible(self.locators.IMPORT_MYTARGET_CABINET_BUTTON)
-
-    def click_create_new_cabinet_button(self):
-        self.click(self.locators.CREATE_NEW_CABINET_BUTTON)
-
-    def click_import_mytarget_cabinet_button(self):
-        self.click(self.locators.IMPORT_MYTARGET_CABINET_BUTTON)
-
-    def hover_import_mytarget_cabinet_button_hint(self):
-        self.hover(self.locators.IMPORT_MYTARGET_CABINET_BUTTON_HINT)
-
-    def mytarget_hint_became_visible(self):
-        return self.became_visible(self.locators.IMPORT_MYTARGET_CABINET_HINT)
-    
     def back_button_became_visible(self):
         return self.became_visible(self.locators.BACK_BUTTON)
     
@@ -220,40 +193,3 @@ class RegistrationPage(BasePage):
     
     def click_create_cabinet_button(self):
         self.scroll_and_click(self.locators.CREATE_CABINET_BUTTON)
-
-    def select_account_type(self, account_type: str):
-        self.scroll_and_click(self.locators.ACCOUNT_TYPE_BUTTON(account_type))
-
-    def account_type_switch_became_visible(self):
-        return self.became_visible(self.locators.ACCOUNT_TYPE_SWITCH)
-
-    def get_selected_account_switch(self) -> str:
-        return self.find(self.locators.SWITCH_SELECTED_ACCOUNT_TYPE).get_attribute('value')
-    
-    def switch_account_type(self, account_type: str):
-        self.scroll_and_click(self.locators.ACCOUNT_TYPE_SELECTOR_BY_TEXT(account_type))
-
-    def switch_account_type_by_value(self, value: str):
-        self.scroll_and_click(self.locators.ACCOUNT_TYPE_SELECTOR_BY_VALUE(value))
-    
-    def get_account_type_benefits(self):
-        return list(zip(
-            self.find_multiple(self.locators.IMPORT_BENEFIT_ICON),
-            [item.text for item in self.find_multiple(self.locators.IMPORT_BENEFIT_ITEM_TITLE)],
-            [item.text for item in self.find_multiple(self.locators.IMPORT_BENEFIT_ITEM_DESC)]
-        )) 
-
-    def import_continue_button_became_visible(self):
-        return self.became_visible(self.locators.IMPORT_CONTINUE_BUTTON)
-    
-    def click_import_continue_button(self):
-        self.click(self.locators.IMPORT_CONTINUE_BUTTON)
-
-    def import_continue_note_became_visible(self):
-        return self.became_visible(self.locators.IMPORT_CONTINUE_DESC)
-
-    def physical_type_became_invisible(self) -> bool:
-        return self.became_invisible(self.locators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
-
-    def physical_type_became_visible(self) -> bool:
-        return self.became_visible(self.locators.ACCOUNT_TYPE_BUTTON('Физическое лицо'))
