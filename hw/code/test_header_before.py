@@ -1,6 +1,3 @@
-import pytest
-import time
-from selenium.common.exceptions import TimeoutException
 from base_case import BaseCase
 from ui.locators.registration_main_page_locators import page_text
 

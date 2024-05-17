@@ -51,4 +51,4 @@ class HeaderBefore(BasePage):
         self.click(self.locators.VK_ID_BUTTON)
     
     def vk_id_modal_became_visible(self):
-        return self.became_visible(self.locators.VK_ID_MODAL)
+        return self.became_visible(self.locators.VK_ID_POPUP)
