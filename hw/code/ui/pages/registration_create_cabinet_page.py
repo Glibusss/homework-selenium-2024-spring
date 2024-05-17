@@ -45,6 +45,9 @@ class RegistrationCreateCabinetPage(BasePage):
     def entity_type_button_count(self):
         return len(self.find_all(self.locators.ENTITY_TYPE_BUTTON_ELEM))
     
+    def select_account_type(self, account_type: str):
+        self.scroll_and_click(self.locators.ACCOUNT_TYPE_BUTTON(account_type))
+    
     def row_individual_warning_became_visible(self):
         return self.became_visible(self.locators.ROW_INDIVIDUAL_WARNING)
     
@@ -94,8 +97,8 @@ class RegistrationCreateCabinetPage(BasePage):
     def click_submit_button(self):
         self.scroll_and_click(self.locators.SUBMIT_BUTTON)
 
-    def get_email_error(self) -> str:
-        return self.find(self.locators.EMAIL_ERROR).text
+    def get_email_error(self, timeout: int=None) -> str:
+        return self.find(self.locators.EMAIL_ERROR, timeout).text
 
     def get_inn_error(self, language: str, timeout: int=None) -> str:
         return self.find(self.locators.INN_ERROR(language), timeout).text

@@ -46,6 +46,7 @@ class TestHeader(BaseCase):
 
     def test_click_notification_settings(self, header_after):
         header_after.click_notifications()
+        header_after.click_notification_settings()
         assert header_after.notifications_settings_popup_became_visible()
 
     def test_vk_id_popup(self, header_after):
