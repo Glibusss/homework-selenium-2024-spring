@@ -1,5 +1,4 @@
 from base_case import BaseCase
-from ui.locators.registration_main_page_locators import page_text
 
 class TestHeader(BaseCase):
     def test_header_render(self, header_before):
@@ -16,9 +15,9 @@ class TestHeader(BaseCase):
         header_before.click_account_selector()
         assert header_before.account_selector_dropdown_became_visible()
 
-    def test_vk_id_modal(self, header_before):
+    def test_vk_id_popup(self, header_before):
         header_before.click_vk_id()
-        assert header_before.vk_id_modal_became_visible()
+        assert header_before.vk_id_popup_became_visible()
 
     def test_cabinet_dropdown_render(self, header_before):
         header_before.click_account_selector()

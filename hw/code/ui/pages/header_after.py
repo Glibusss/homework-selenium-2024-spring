@@ -3,9 +3,9 @@ from ui.locators.header_locators import HeaderLocators
 
 
 # url различается, т. к. домашняя страница у аккаунта с кабинетом и набор кнопок в хедере разные
-class HeaderBefore(BasePage):
+class HeaderAfter(BasePage):
     locators = HeaderLocators()
-    url = 'https://ads.vk.com/hq/registration'
+    url = 'https://ads.vk.com/hq/overview'
 
     def header_became_visible(self):
         return self.became_visible(self.locators.HEADER)
@@ -43,7 +43,49 @@ class HeaderBefore(BasePage):
     
     def click_all_accounts_link(self):
         self.click(self.locators.ALL_ACCOUNTS_LINK)
+
+    def balance_became_visible(self):
+        return self.became_visible(self.locators.BALANCE)
     
+    def click_balance(self):
+        self.click(self.locators.BALANCE)
+
+    def balance_modal_became_visible(self):
+        return self.became_visible(self.locators.BALANCE_MODAL)
+
+    def balance_modal_close_became_visible(self):
+        return self.became_visible(self.locators.BALANCE_MODAL_CLOSE)
+    
+    def click_balance_modal_close(self):
+        self.click(self.locators.BALANCE_MODAL_CLOSE)
+    
+    def balance_modal_became_invisible(self):
+        return self.became_invisible(self.locators.BALANCE_MODAL)
+    
+    def notifications_became_visible(self):
+        return self.became_visible(self.locators.NOTIFICATIONS)
+    
+    def click_notifications(self):
+        self.click(self.locators.NOTIFICATIONS)
+
+    def notifications_popup_became_visible(self):
+        return self.became_visible(self.locators.NOTIFICATIONS_POPUP)
+    
+    def notifications_popup_became_invisible(self):
+        return self.became_invisible(self.locators.NOTIFICATIONS_POPUP)
+    
+    def notifications_settings_became_visible(self):
+        return self.became_visible(self.locators.NOTIFICATIONS_SETTINGS)
+    
+    def notifications_settings_became_invisible(self):
+        return self.became_invisible(self.locators.NOTIFICATIONS_SETTINGS)
+    
+    def click_notification_settings(self):
+        self.click(self.locators.NOTIFICATIONS_SETTINGS)
+
+    def notifications_settings_popup_became_visible(self):
+        return self.became_visible(self.locators.NOTIFICATIONS_SETTING_POPUP)
+
     def vk_id_became_visible(self):
         return self.became_visible(self.locators.VK_ID_BUTTON)
     

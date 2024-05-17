@@ -22,6 +22,20 @@ class HeaderLocators(BasePageLocators):
 
     ALL_ACCOUNTS_LINK = (By.XPATH, "//*[contains(@class, 'AccountSwitch_allCabinetsLink')]")
 
+    BALANCE = (By.XPATH, "//*[contains(@class, 'balance_balanceWithAction')]")
+
+    BALANCE_MODAL = (By.XPATH, "//*[contains(@class, 'CreateInvoiceModal_modal')]")
+
+    BALANCE_MODAL_CLOSE = (By.XPATH, "//*[contains(@class, 'CreateInvoiceModal_modal')]/descendant::*[contains(@class, 'vkuiModalDismissButton')]")
+
+    NOTIFICATIONS = (By.XPATH, "//*[contains(@class, 'header_bellNotifications')]")
+
+    NOTIFICATIONS_POPUP = (By.XPATH, "//*[contains(@class, 'BellNotificationsContent_card')]")
+
+    NOTIFICATIONS_SETTINGS = (By.XPATH, "//*[contains(@class, 'BellNotificationsContent_openSettingsButton')]")
+
+    NOTIFICATIONS_SETTING_POPUP = (By.XPATH, "//*[contains(@class, 'BellNotificationsContent_settingsButton')]")
+
     VK_ID_BUTTON = (By.XPATH, "//*[contains(@class, 'userMenu_avatar')]")
 
-    VK_ID_MODAL = (By.XPATH, "//*[contains(@class, 'userMenu_menu')]")
+    VK_ID_POPUP = (By.XPATH, "//*[contains(@class, 'userMenu_menu')]")

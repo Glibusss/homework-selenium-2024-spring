@@ -8,6 +8,7 @@ from ui.pages.registration_main_page import RegistrationMainPage
 from ui.pages.registration_create_cabinet_page import RegistrationCreateCabinetPage
 from ui.pages.registration_import_mytarget_page import RegistrationImportMytargetPage
 from ui.pages.header_before import HeaderBefore
+from ui.pages.header_after import HeaderAfter
 from ui.pages.cabinet_page import CabinetPage
 from ui.pages.audience_page import AudiencePage
 from ui.pages.budget_page import BudgetPage
@@ -89,22 +90,20 @@ def registration_import_mytarget_page(driver, registration_main_page):
     return RegistrationImportMytargetPage(driver=driver)
 
 @pytest.fixture
-def header_before(driver, credentials_without_cabinet, auth_page):
+def header_before(driver, registration_main_page):
     driver.get(HeaderBefore.url)
-    auth_page.login_mail_ru(*credentials_without_cabinet)
     return HeaderBefore(driver=driver)
-
-@pytest.fixture
-def header_after(driver, cabinet_page):
-    driver.get(CabinetPage.url)
-    auth_page.login_mail_ru(*credentials_with_cabinet)
-    return CabinetPage(driver=driver)
 
 @pytest.fixture
 def cabinet_page(driver, credentials_with_cabinet, auth_page):
     driver.get(RegistrationMainPage.url)
     auth_page.login_mail_ru(*credentials_with_cabinet)
     return CabinetPage(driver=driver)
+
+@pytest.fixture
+def header_after(driver, cabinet_page):
+    driver.get(HeaderAfter.url)
+    return HeaderAfter(driver=driver)
 
 @pytest.fixture
 def audience_page(driver, cabinet_page):
