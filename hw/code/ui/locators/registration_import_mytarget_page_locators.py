@@ -4,6 +4,8 @@ from ui.locators.base_page_locators import BasePageLocators
 page_text = {
     'Русский': {
         'BACK_BUTTON': 'Назад',
+        'IMPORT_PAGE_TITLE': 'Импорт рекламного кабинета myTarget',
+        'IMPORT_PAGE_SUBTITLE': 'Далее потребуется войти в рекламный кабинет myTarget и предоставить VK Рекламе доступ к нему:',
         'ACCOUNT_TYPE': 'Тип аккаунта',
         'ADVERTISER_DATIVE': 'Рекламодателю',
         'AGENCY_DATIVE': 'Агентству',
@@ -50,10 +52,14 @@ page_text = {
                 'title': 'Старый кабинет myTarget',
                 'desc': 'Можно будет по-прежнему заходить в свой старый кабинет',
             },
-        ],            
+        ],
+        'CONTINUE': 'Продолжить',
+        'CONTINUE_DESC': 'На следующем шаге нужно будет войти в кабинет myTarget и дать нужные разрешения VK Рекламе',            
     },
     'English': {
         'BACK_BUTTON': 'Back',
+        'IMPORT_PAGE_TITLE': 'Import of myTarget ad account',
+        'IMPORT_PAGE_SUBTITLE': 'Next, you will need to log in to myTarget account and grant VK Ads access to it:',
         'ACCOUNT_TYPE': 'Account type',
         'ADVERTISER_DATIVE': 'Advertiser',
         'AGENCY_DATIVE': 'Agency',
@@ -101,6 +107,8 @@ page_text = {
                 'desc': 'You still will be able to log into your old account',
             },
         ],
+        'CONTINUE': 'Continue',
+        'CONTINUE_DESC': 'In the next step, you will need to enter the myTarget account and give the necessary permissions to VK Advertising',    
     },
 }
 

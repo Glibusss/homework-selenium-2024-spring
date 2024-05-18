@@ -6,6 +6,9 @@ class RegistrationCreateCabinetPage(BasePage):
     locators = RegistrationCreateCabinetPageLocators()
     url = 'https://ads.vk.com/hq/registration/new'
 
+    def text_became_visible(self, text: str):
+        return self.became_visible(self.locators.TEXT(text))
+
     def header_became_visible(self):
         return self.became_visible(self.locators.HEADER)
     
@@ -14,6 +17,9 @@ class RegistrationCreateCabinetPage(BasePage):
     
     def click_image(self):
         self.click(self.locators.REGISTRATION_IMAGE)
+
+    def hover_image(self):
+        self.hover(self.locators.REGISTRATION_IMAGE)
     
     def language_switch_became_visible(self):
         return self.became_visible(self.locators.LANGUAGE_SWITCH)

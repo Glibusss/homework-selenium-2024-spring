@@ -33,13 +33,13 @@ page_text = {
         'TOS': 'Правила пользования сервисом',
         'PRIVACY': 'Политику конфиденциальности',
         'MAILING': 'Даю согласие на получение рассылок информационного и рекламно-информационного содержания',
-        'MAILING_HINT': 'Соглашение регулирует получение уведомлений следующего характера:' \
-                        '– сообщения ВКонтакте'
-                        '– уведомления в разделе «Колокольчик» ВКонтакте'
-                        '– email-рассылки'
-                        '– push-уведомления'
-                        '– звонки'
-                        '– смс-сообщения',         
+        'MAILING_HINT': 'Соглашение регулирует получение уведомлений следующего характера:\n\n'
+                        '– сообщения ВКонтакте\n'
+                        '– уведомления в разделе «Колокольчик» ВКонтакте\n'
+                        '– email-рассылки\n'
+                        '– push-уведомления\n'
+                        '– звонки\n'
+                        '– смс-сообщения',
     },
     'English': {
         'BACK_BUTTON': 'Back',
@@ -57,13 +57,13 @@ page_text = {
         'FIELD_REQUIRED': 'Required field',
         'EMAIL_INCORRECT': 'Invalid email address',
         'INDIVIDUAL': 'Individual',
-        'INDIVIDUAL_HINT': 'You can easily open an individual account by accepting the T&Cs online.'
-                            'Available payment methods: credit card, payment systems such as PayPal, etc.'
+        'INDIVIDUAL_HINT': 'You can easily open an individual account by accepting the T&Cs online.\n\n'
+                            'Available payment methods: credit card, payment systems such as PayPal, etc.\n\n'
                             'Note: the account type cannot be changed after the account has been created.',
         'ROW_INDIVIDUAL_WARNING': 'Creating an advertising account for individuals is available only when choosing Russia.',
         'LEGAL_ENTITY': 'Legal entity',
-        'LEGAL_ENTITY_HINT': 'This account type is mostly used for businesses with a legal entity.' 
-                             'Available payment methods: credit card, payment systems such as PayPal, etc.'
+        'LEGAL_ENTITY_HINT': 'This account type is mostly used for businesses with a legal entity.\n\n' 
+                             'Available payment methods: credit card, payment systems such as PayPal, etc.\n\n'
                              'Note: the account type cannot be changed once the account has been created.',
         'INN': 'TIN',
         'INN_EXAMPLE': 'Example: 100303539843',
@@ -76,17 +76,21 @@ page_text = {
         'TOS': 'Terms of use of the service',
         'PRIVACY': 'Privacy Policy',
         'MAILING': 'I agree to receive information and promotional newsletters',
-        'MAILING_HINT': 'The agreement regulates the receipt of notifications such as:'
-                        '– VK messages'
-                        '– notifications in the "Bell" section of VK'
-                        '– email notifications'
-                        '– push notifications'
-                        '– calls'
+        'MAILING_HINT': 'The agreement regulates the receipt of notifications such as:\n\n'
+                        '– VK messages\n'
+                        '– notifications in the "Bell" section of VK\n'
+                        '– email notifications\n'
+                        '– push notifications\n'
+                        '– calls\n'
                         '– sms-messages',
     },
 }
 
 class RegistrationCreateCabinetPageLocators(BasePageLocators):
+    @staticmethod
+    def TEXT(text):
+        return By.XPATH, f"//*[text()='{text}']"
+
     HEADER = (By.TAG_NAME, "HEADER")
 
     REGISTRATION_IMAGE = (By.XPATH, "//*[contains(@class, 'registration_img')]")
@@ -97,7 +101,7 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
 
     @staticmethod
     def LANGUAGE_BUTTON(language):
-        return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/h4[text()='{language}']"
+        return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/*[text()='{language}']"
 
     SELECTED_LANGUAGE = (By.XPATH, "//*[contains(@class, 'vkuiSegmentedControlOption--checked')]/h4")
 
@@ -137,7 +141,7 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
 
     EMAIL_ERROR = (
         By.XPATH,
-        "//*[@role='alert' and preceding-sibling::h5[text()='Email*']]"
+        "//*[@role='alert' and preceding-sibling::*[text()='Email*']]"
     )
 
     ROW_INDIVIDUAL_WARNING = (By.XPATH, "//*[contains(@class, 'Warning_container')]")
@@ -146,26 +150,27 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
 
     @staticmethod
     def ACCOUNT_TYPE_BUTTON(account_type):
-        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']"
-        
+        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//*[text()='{account_type}']"
+
+    # Есть ещё один Hint_hintTrigger вне выбора типа аккаунта    
     @staticmethod
     def ACCOUNT_TYPE_HINT(account_type):
-        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]/descendant::*[preceding-sibling::span[text()='{account_type}']]/*[contains(@class, 'Hint_hintTrigger')]"
+        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]/descendant::*[preceding-sibling::*[text()='{account_type}']]/*[contains(@class, 'Hint_hintTrigger')]"
     
     # Существует другой Tooltip_tooltipContainer (у чекбокса согласия на рассылку)
     ACCOUNT_TYPE_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]")
 
-    ACCOUNT_TYPE_HINT_WINDOW_TITLE = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]/descendant::div[contains(@class, 'UserView_title')]")
+    ACCOUNT_TYPE_HINT_WINDOW_TITLE = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]/descendant::*[contains(@class, 'UserView_title')]")
 
-    ACCOUNT_TYPE_HINT_WINDOW_TEXT = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]/descendant::div[contains(@class, 'UserView_description')]")
+    ACCOUNT_TYPE_HINT_WINDOW_TEXT = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'ContextHelp_tooltip_')]/descendant::*[contains(@class, 'UserView_description')]")
 
     @staticmethod
     def INN_ERROR(language):
-        return By.XPATH, f"//*[@role='alert' and preceding-sibling::h5[text()='{page_text[language]['INN']}']]"
+        return By.XPATH, f"//*[@role='alert' and preceding-sibling::*[text()='{page_text[language]['INN']}']]"
 
     OFFER_ERROR = (
         By.XPATH,
-        "//*[@role='alert' and preceding-sibling::div[contains(@class, 'registration_offerDesc__')]]"
+        "//*[@role='alert' and preceding-sibling::*[contains(@class, 'registration_offerDesc__')]]"
     )
 
     SUBMIT_BUTTON = (By.XPATH, f"//*[@data-testid='create-button']")
@@ -175,7 +180,7 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
     # Нужен такой сложный селектор, чтобы нормально отслеживать чекбокс
     @staticmethod
     def CHECKBOX_IS_CHECKED_OR_NOT(checkbox, state):
-        return (By.XPATH, f"//label[contains(@class, 'vkuiCheckbox') and .//*[text()='{checkbox}']]//div[contains(@class, 'vkuiCheckbox__icon--{state}')]")
+        return (By.XPATH, f"//label[contains(@class, 'vkuiCheckbox') and .//*[text()='{checkbox}']]//*[contains(@class, 'vkuiCheckbox__icon--{state}')]")
 
     OFFER_TERMS_LINK = (By.XPATH, "//a[contains(@href, 'documents/offer')]")
 
@@ -187,11 +192,11 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
 
     @staticmethod
     def MAILING_CHECKBOX(language): 
-        return By.XPATH, f"//*[contains(@class, 'vkuiCheckbox__input') and following-sibling::*[descendant::span[contains(., '{page_text[language]['MAILING']}')]]]"
+        return By.XPATH, f"//*[contains(@class, 'vkuiCheckbox__input') and following-sibling::*[descendant::*[contains(., '{page_text[language]['MAILING']}')]]]"
 
     @staticmethod
     def MAILING_CHECKBOX_HINT(language): 
-        return By.XPATH, f"//*[contains(@class, 'Hint_hintTrigger') and preceding-sibling::span[contains(., '{page_text[language]['MAILING']}')]]"
+        return By.XPATH, f"//*[contains(@class, 'Hint_hintTrigger') and preceding-sibling::*[contains(., '{page_text[language]['MAILING']}')]]"
     
     CREATE_CABINET_BUTTON = (By.XPATH, "//*[@data-testid='create-button']")
     
