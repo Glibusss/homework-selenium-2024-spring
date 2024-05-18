@@ -6,6 +6,9 @@ class RegistrationImportMytargetPage(BasePage):
     locators = RegistrationImportMytargetPageLocators()
     url = 'https://ads.vk.com/hq/registration/import/target'
 
+    def text_became_visible(self, text: str):
+        return self.became_visible(self.locators.TEXT(text))
+
     def header_became_visible(self):
         return self.became_visible(self.locators.HEADER)
     

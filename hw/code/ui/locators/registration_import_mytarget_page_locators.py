@@ -122,6 +122,10 @@ class RegistrationImportMytargetPageLocators(BasePageLocators):
     BACK_BUTTON = (By.XPATH, "//button[@data-testid='back-button']")
 
     @staticmethod
+    def TEXT(text):
+        return By.XPATH, f"//*[text()='{text}']"
+
+    @staticmethod
     def LANGUAGE_BUTTON(language):
         return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/h4[text()='{language}']"
 
