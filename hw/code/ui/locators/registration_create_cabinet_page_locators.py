@@ -58,11 +58,11 @@ page_text = {
         'EMAIL_INCORRECT': 'Invalid email address',
         'INDIVIDUAL': 'Individual',
         'INDIVIDUAL_HINT': 'You can easily open an individual account by accepting the T&Cs online.\n\n'
-                            'Available payment methods: credit card, payment systems such as PayPal, etc.\n\n'
-                            'Note: the account type cannot be changed after the account has been created.',
+                           'Available payment methods: credit card, payment systems such as PayPal, etc.\n\n'
+                           'Note: the account type cannot be changed after the account has been created.',
         'ROW_INDIVIDUAL_WARNING': 'Creating an advertising account for individuals is available only when choosing Russia.',
         'LEGAL_ENTITY': 'Legal entity',
-        'LEGAL_ENTITY_HINT': 'This account type is mostly used for businesses with a legal entity.\n\n' 
+        'LEGAL_ENTITY_HINT': 'This account type is mostly used for businesses with a legal entity. \n\n'
                              'Available payment methods: credit card, payment systems such as PayPal, etc.\n\n'
                              'Note: the account type cannot be changed once the account has been created.',
         'INN': 'TIN',

@@ -166,10 +166,11 @@ class TestRegistrationNewCabinetPage(BaseCase):
         registration_create_cabinet_page.enter_inn('test')
         assert registration_create_cabinet_page.get_entered_inn() == ''
 
-    def test_inn_bug(self, registration_create_cabinet_page):
+    def test_inn_bug(self, registration_create_cabinet_page, registration_main_page):
         registration_create_cabinet_page.enter_name('Test')
         registration_create_cabinet_page.click_currency_selector()
         registration_create_cabinet_page.click_back_button()
+        registration_main_page.click_create_new_cabinet_button()
         assert registration_create_cabinet_page.get_entered_inn() == 'Test'
 
     def test_10_char_inn(self, registration_create_cabinet_page):
@@ -296,6 +297,7 @@ class TestRegistrationNewCabinetPage(BaseCase):
         assert registration_create_cabinet_page.get_email_error()
         assert registration_create_cabinet_page.get_offer_error()
 
+    # Перед реализацией придётся сделать фикстуру для регистрации дополнительного кабинета
     # def test_advertiser_success(self, registration_create_cabinet_page):
 
     # def test_agency_success(self, registration_create_cabinet_page):

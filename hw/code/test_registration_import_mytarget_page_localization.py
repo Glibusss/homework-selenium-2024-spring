@@ -1,7 +1,7 @@
 from base_case import BaseCase
 from ui.locators.registration_import_mytarget_page_locators import page_text
 
-class TestRegistrationImportMytargetPage(BaseCase):
+class TestRegistrationImportMytargetPageLocalization(BaseCase):
     def test_import_page_russian(self, registration_import_mytarget_page):
         assert registration_import_mytarget_page.text_became_visible('Русский')
         assert registration_import_mytarget_page.text_became_visible('English')
