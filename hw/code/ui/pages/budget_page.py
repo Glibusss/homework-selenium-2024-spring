@@ -17,10 +17,10 @@ class BudgetPage(BasePage):
     def click_replenish_budget_button(self):
         self.click(self.locators.REPLENISH_BUDGET_BUTTON)
 
-    def replenishment_modal_page_became_visible(self) -> bool:
+    def has_replenishment_modal_page_title(self) -> bool:
         return self.became_visible(self.locators.REPLENISHMENT_MODAL_PAGE)
     
-    def modal_h2_became_visible(self):
+    def modal_has_h2_content_title(self):
         return self.became_visible(self.locators.MODAL_H2)
     
     def close_modal_page_became_visible(self):

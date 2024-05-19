@@ -10,25 +10,25 @@ class SettingsNotificationsPage(BasePage):
     H2_LIST = ['Способы получения', 'Основные', 'Новости и акции']
     CHECKBOX_LIST = ['Финансы', 'Модерация', 'Рекламные кампании', 'Правила для объявлений', 'Изменения в API', 'Новости', 'Мероприятия', 'Акции, спецпредложения и прочие']
 
-    def h2_became_visible(self):
+    def has_h2_content_title(self):
         for h in self.H2_LIST:
             if not self.became_visible(self.locators.H2_NAME(h)):
                 return False
         return True
 
-    def checkbox_became_visible(self):
+    def has_checkbox_content(self):
         for h in self.CHECKBOX_LIST:
             if not self.became_visible(self.locators.CHECKBOX_NAME(h)):
                 return False
         return True
 
-    def switch_email_became_visible(self):
+    def has_switch_email_content(self):
         return self.became_visible(self.locators.SWITCH_EMAIL_SIGN) and self.became_visible(self.locators.SWITCH_EMAIL_INPUT)
     
-    def telegram_became_visible(self):
+    def has_telegram_cell_content(self):
         return self.became_visible(self.locators.TELEGRAM_SIGN) and self.became_visible(self.locators.TELEGRAM_BUTTON)
 
-    def save_modal_became_visible(self):
+    def has_save_modal_content(self):
         return self.became_visible(self.locators.SAVE_MODAL) and self.became_visible(self.locators.SAVE_MODAL_CANCEL) and self.became_visible(self.locators.SAVE_MODAL_SAVE)
     
     def click_switch(self):

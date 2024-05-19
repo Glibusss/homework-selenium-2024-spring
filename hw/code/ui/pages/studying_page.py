@@ -19,13 +19,13 @@ class StudyingPage(BasePage):
     def modal_became_invisible(self):
         return self.became_invisible(self.locators.CHOOSE_STUDYING_MODAL)
     
-    def modal_header_became_visible(self):
+    def has_modal_header_content(self):
         return self.became_visible(self.locators.STUDYING_MODAL_H2) and self.became_visible(self.locators.STUDYING_MODAL_H4)
     
-    def modal_footer_became_visible(self):
+    def has_modal_footer_content(self):
         return self.became_visible(self.locators.STUDYING_MODAL_FOOTER_SIGN) and self.became_visible(self.locators.LATER_BUTTON)
     
-    def modal_content_became_visible(self):
+    def has_choose_modal_content(self):
         for p in self.PR_OBJECTS_LIST:
             if not self.became_visible(self.locators.SOURCE_ITEM(p)):
                 return False
@@ -34,10 +34,10 @@ class StudyingPage(BasePage):
     def close_button_became_visible(self):
         return self.became_visible(self.locators.CLOSE_BUTTON)
     
-    def method_modal_header_became_visible(self):
+    def has_method_modal_header_content(self):
         return self.became_visible(self.locators.STUDYING_METHOD_MODAL_H2)
     
-    def method_modal_content_became_visible(self):
+    def has_method_modal_content(self):
         for p in self.PR_METHODS_LIST:
             if not self.became_visible(self.locators.SOURCE_ITEM(p)):
                 return False
@@ -52,7 +52,7 @@ class StudyingPage(BasePage):
     def stop_onboarding_modal_became_visible(self):
         return self.became_visible(self.locators.STOP_ONBOARDING_MODAL)
     
-    def stop_onboarding_modal_header_became_visible(self):
+    def has_stop_onboarding_modal_header_content(self):
         return self.became_visible(self.locators.TIP_CLOSE_MODAL_H2) and self.became_visible(self.locators.TIP_CLOSE_MODAL_H4)
     
     def stop_onboarding_modal_buttons_became_visible(self):

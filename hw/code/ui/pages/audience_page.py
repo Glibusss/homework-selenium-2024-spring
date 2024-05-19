@@ -18,15 +18,15 @@ class AudiencePage(BasePage):
         self.click(self.locators.CREATE_AUDIENCE_BUTTON)
 
     def create_audience_modal_page_became_visible(self) -> bool:
-        return self.became_visible(self.locators.CREATE_AUDIENCE_MODAL_PAGE, timeout=1)
+        return self.became_visible(self.locators.CREATE_AUDIENCE_MODAL_PAGE)
     
     def create_audience_modal_page_became_invisible(self) -> bool:
-        return self.became_invisible(self.locators.CREATE_AUDIENCE_MODAL_PAGE, timeout=1)
+        return self.became_invisible(self.locators.CREATE_AUDIENCE_MODAL_PAGE)
     
     def audience_name_input_became_visible(self):
         return self.became_visible(self.locators.AUDIENCE_NAME_INPUT)
 
-    def sidebar_sign_became_visible(self):
+    def has_sidebar_sign_content(self):
         return self.became_visible(self.locators.SIDEBAR_SIGN) and self.became_visible(self.locators.SIDEBAR_SIGN_HINTS)
 
     def add_source_button_became_visible(self):
@@ -87,7 +87,7 @@ class AudiencePage(BasePage):
 
     def click_modal_page_submit_button(self):
         try:
-            self.click(self.locators.MODAL_PAGE_SUBMIT_BUTTON, timeout=5)
+            self.click(self.locators.MODAL_PAGE_SUBMIT_BUTTON)
         except TimeoutException:
             pass
 

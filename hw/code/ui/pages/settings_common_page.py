@@ -13,16 +13,18 @@ class SettingsCommonPage(BasePage):
     ERROR_TOO_SHORT_INN = 'Длина ИНН должна быть 12 символов'
     ERROR_INVALID_INN = 'Некорректный ИНН'
 
+    FULL_NAME = 'Coolbro G M'
+
     def inputs_became_visible(self):
         return self.became_visible(self.locators.PHONE_NUMBER_INPUT) and self.became_visible(self.locators.FULL_NAME_INPUT) and self.became_visible(self.locators.INN_INPUT)
     
-    def buttons_became_visible(self):
+    def has_buttons_content(self):
         return self.became_visible(self.locators.ADD_EMAIL_BUTTON) and self.became_visible(self.locators.DELETE_CABINET_BUTTON) and self.became_visible(self.locators.LOGOUT_OTHER_DEVICES_BUTTON)
 
-    def enter_full_name(self, full_name: str):
+    def enter_full_name(self):
         full_name_input = self.find(self.locators.FULL_NAME_INPUT)
         full_name_input.clear()
-        full_name_input.send_keys(full_name)
+        full_name_input.send_keys(self.FULL_NAME)
 
     def get_full_name_field_value(self) -> str:
         return self.find(self.locators.FULL_NAME_INPUT).get_attribute('value')

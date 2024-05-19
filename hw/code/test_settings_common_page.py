@@ -3,15 +3,13 @@ from base_case import BaseCase
 
 
 class TestSettingsCommonPage(BaseCase):
-    FULL_NAME = 'Coolbro G M'
-    INN = '123456789098'
 
-    def test_is_page_became_visible(self, settings_common_page):
+    def test_is_common_settings_page_opened(self, settings_common_page):
         assert settings_common_page.inputs_became_visible()
-        assert settings_common_page.buttons_became_visible()
+        assert settings_common_page.has_buttons_content()
 
     def test_is_save_and_cancel_buttons_became_visible(self, settings_common_page):
-        settings_common_page.enter_full_name(self.FULL_NAME)
+        settings_common_page.enter_full_name()
         assert settings_common_page.save_and_cancel_buttons_became_visible()
 
     def test_is_error_invalid_phone_number(self, settings_common_page):
@@ -60,8 +58,7 @@ class TestSettingsCommonPage(BaseCase):
         assert settings_common_page.delete_cabinet_modal_page_became_visible()
 
     def test_cancel_changes(self, settings_common_page):
-        settings_common_page.enter_full_name(self.FULL_NAME)
-        time.sleep(1)
+        settings_common_page.enter_full_name()
         settings_common_page.click_cancel_button()
         assert settings_common_page.get_full_name_field_value() == ''
         

@@ -19,7 +19,7 @@ class SettingsAccessPage(BasePage):
     def add_button_became_visible(self):
         return self.became_visible(self.locators.ADD_BUTTON)
     
-    def header_and_sign_became_visible(self):
+    def has_header_and_sign_content(self):
         return self.became_visible(self.locators.ACCESS_EMPTY_HEADER) and self.became_visible(self.locators.ACCESS_EMPTY_SIGN) and self.became_visible(self.locators.ACCESS_EMPTY_MORE_LINK)
     
     def redirected(self):
