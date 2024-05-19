@@ -12,16 +12,16 @@ class UpvotePage(BasePage):
         self.scroll_and_click(self.locators.IDEAS_SEARCH_INPUT)
 
     def search_idea(self, text: str):
-        input = self.find(self.locators.IDEAS_SEARCH_INPUT, timeout=10)
+        input = self.find(self.locators.IDEAS_SEARCH_INPUT)
         input.clear()
         input.send_keys(text)
         input.send_keys(Keys.ENTER)
 
     def click_comment_button(self):
-        self.scroll_and_click(self.locators.IDEA_COMMENTS_BUTTON, timeout=10)
+        self.scroll_and_click(self.locators.IDEA_COMMENTS_BUTTON)
 
     def get_idea_comments_count(self) -> int:
-        return len(self.find_all(self.locators.COMMENT_CELL, timeout=10))
+        return len(self.find_all(self.locators.COMMENT_CELL))
 
     def get_idea_comments_count_from_button(self) -> str:
         return self.find(self.locators.IDEA_COMMENTS_BUTTON).text
@@ -73,7 +73,7 @@ class UpvotePage(BasePage):
 
     def get_all_idea_statuses(self):
         statuses = list()
-        for status in self.find_all(self.locators.IDEA_STATUS, timeout=10):
+        for status in self.find_all(self.locators.IDEA_STATUS):
             statuses.append(status.text)
         return statuses
 
@@ -90,7 +90,7 @@ class UpvotePage(BasePage):
 
     def get_all_idea_titles(self):
         titles = list()
-        for el in self.find_all(self.locators.IDEA_TITLE, timeout=10):
+        for el in self.find_all(self.locators.IDEA_TITLE):
             titles.append(el.text)
         return titles
 

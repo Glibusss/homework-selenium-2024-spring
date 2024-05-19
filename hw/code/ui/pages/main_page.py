@@ -16,7 +16,7 @@ class MainPage(BasePage):
         self.click(self.locators.NAV_CABINET_BUTTON)
 
     def open_education_dropdown(self):
-        self.click(self.locators.NAV_EDUCATION_DROPDOWN_MENU_BUTTON)
+        self.click(self.locators.NAV_EDUCATION_DROPDOWN_MENU_BUTTON, timeout=1)
 
     def click_dropdown_item(self, item_name: str):
         self.click(

@@ -14,26 +14,22 @@ class TestMainPage(BaseCase):
 
     def test_go_to_insights_nav(self, main_page):
         main_page.open_education_dropdown()
-        time.sleep(0.5)
         main_page.click_dropdown_item("Полезные материалы")
         assert self.is_opened("https://ads.vk.com/insights")
 
     def test_go_to_events_nav(self, main_page):
         main_page.open_education_dropdown()
-        time.sleep(0.5)
         main_page.click_dropdown_item("Мероприятия")
         assert self.is_opened("https://ads.vk.com/events")
 
     def test_go_to_videocourses_nav(self, main_page):
         main_page.open_education_dropdown()
-        time.sleep(0.5)
         main_page.click_dropdown_item("Видеокурсы")
         main_page.go_to_new_tab()
         assert self.is_opened("https://expert.vk.com/catalog/courses/")
 
     def test_go_to_certification_nav(self, main_page):
         main_page.open_education_dropdown()
-        time.sleep(0.5)
         main_page.click_dropdown_item("Сертификация")
         main_page.go_to_new_tab()
         assert self.is_opened("https://expert.vk.com/certification/")

@@ -14,14 +14,15 @@ class TestUpvotePage(BaseCase):
         id = "48"
         upvote_page.click_search_field()
         upvote_page.search_idea(id)
+        time.sleep(1)
         assert id == upvote_page.get_first_idea_id()
 
     def test_comments(self, upvote_page):
         id = "48"
         upvote_page.click_search_field()
         upvote_page.search_idea(id)
-        upvote_page.click_comment_button()
         time.sleep(1)
+        upvote_page.click_comment_button()
         comments_count_1 = upvote_page.get_idea_comments_count()
         comments_count_2 = upvote_page.get_idea_comments_count_from_button()
         assert int(comments_count_1) == int(comments_count_2)
