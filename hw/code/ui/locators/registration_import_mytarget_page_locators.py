@@ -160,3 +160,4 @@ class RegistrationImportMytargetPageLocators(BasePageLocators):
     IMPORT_CONTINUE_BUTTON = (By.XPATH, "//*[@data-testid='import-continue']")
 
     IMPORT_CONTINUE_DESC = (By.XPATH, "//*[contains(@class, 'ImportPanel_actionDesc')]")
+    

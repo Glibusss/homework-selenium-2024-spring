@@ -201,3 +201,4 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
     CREATE_CABINET_BUTTON = (By.XPATH, "//*[@data-testid='create-button']")
     
     MAILING_CHECKBOX_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'registration_hint_')]")
+    

@@ -27,3 +27,4 @@ class SettingsNotificationsPageLocators(BasePageLocators):
 
     SAVE_MODAL_CANCEL = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Отменить']")
     SAVE_MODAL_SAVE = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Сохранить']")
+    

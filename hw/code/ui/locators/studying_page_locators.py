@@ -36,3 +36,4 @@ class StudyingPageLocators(BasePageLocators):
     BREAK_BUTTON = (By.XPATH, "//*[contains(@class, 'vkuiButton__content') and text()='Прервать']")
 
     STOP_ONBOARDING_MODAL= (By.XPATH, "//*[contains(@class, 'StopOnboardingModal_content__')]")
+    
