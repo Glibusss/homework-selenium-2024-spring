@@ -96,3 +96,4 @@ class UpvotePage(BasePage):
 
     def set_filter(self, new_filter: str):
         self.click(self.locators.DROPDOWN_MENU_ITEM(new_filter))
+

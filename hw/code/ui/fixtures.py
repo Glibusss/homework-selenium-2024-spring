@@ -151,3 +151,4 @@ def settings_notifications_page(driver, cabinet_page):
 def commerce_page(driver, cabinet_page):
     driver.get(CommercePage.url)
     return CommercePage(driver=driver)
+

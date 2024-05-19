@@ -27,12 +27,6 @@ class TestHeader(BaseCase):
         header_after.click_balance_modal_close()
         assert header_after.balance_modal_became_invisible()
 
-    # ModalRoot не даёт кликнуть хедер, наверняка ещё как-то можно
-    # def test_balance_modal_click_away(self, header_after):
-    #     header_after.click_balance()
-    #     header_after.click_header()
-    #     assert header_after.balance_modal_became_invisible()
-
     def test_notification_popup_appears(self, header_after):
         header_after.click_notifications()
         assert header_after.notifications_popup_became_visible()
@@ -69,3 +63,4 @@ class TestHeader(BaseCase):
         assert header_after.all_accounts_link_became_visible() 
         header_after.click_all_accounts_link()
         assert self.is_opened('https://ads.vk.com/hq/settings/access')  
+

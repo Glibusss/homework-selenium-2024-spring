@@ -48,3 +48,4 @@ class SettingsNotificationsPage(BasePage):
     
     def checkbox_checked(self):
         return self.became_visible(self.locators.CHECKBOX_NAME_IS_CHECKED_OR_NOT(self.CHECKBOX_LIST[2], 'on'))    
+
