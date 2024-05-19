@@ -8,16 +8,15 @@ class AuthPage(BasePage):
 
     def login(self, login, password):
         self.click(self.locators.MAIL_RU_AUTH_BUTTON)
-        time.sleep(1)
 
-        login_input = self.find(self.locators.MAIL_RU_LOGIN)
+        login_input = self.find_interactable(self.locators.MAIL_RU_LOGIN)
         login_input.clear()
         login_input.send_keys(login)
 
+        self.find_interactable(self.locators.MAIL_RU_LOGIN)
         self.click(self.locators.MAIL_RU_NEXT_BUTTON)
-        time.sleep(1)
 
-        password_input = self.find(self.locators.MAIL_RU_PASSWORD)
+        password_input = self.find_interactable(self.locators.MAIL_RU_PASSWORD)
         password_input.clear()
         password_input.send_keys(password)
 
