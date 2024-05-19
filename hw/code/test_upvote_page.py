@@ -21,7 +21,6 @@ class TestUpvotePage(BaseCase):
         id = "48"
         upvote_page.click_search_field()
         upvote_page.search_idea(id)
-        time.sleep(1)
         upvote_page.click_comment_button()
         comments_count_1 = upvote_page.get_idea_comments_count()
         comments_count_2 = upvote_page.get_idea_comments_count_from_button()
@@ -50,6 +49,7 @@ class TestUpvotePage(BaseCase):
         upvote_page.click_cancel_filter_button()
         upvote_page.open_themes_filter()
         upvote_page.set_filter("Форум идей")
+        time.sleep(1)
         card_themes = upvote_page.get_all_idea_themes()
         for card in card_themes:
             assert theme in card
@@ -59,6 +59,7 @@ class TestUpvotePage(BaseCase):
         upvote_page.click_cancel_filter_button()
         upvote_page.open_statuses_filter()
         upvote_page.set_filter("Реализована")
+        time.sleep(1)
         card_statuses = upvote_page.get_all_idea_statuses()
         for el in card_statuses:
             assert status in el

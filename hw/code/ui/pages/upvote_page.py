@@ -19,6 +19,7 @@ class UpvotePage(BasePage):
 
     def click_comment_button(self):
         self.scroll_and_click(self.locators.IDEA_COMMENTS_BUTTON)
+        self.find(self.locators.COMMENT_CELL)
 
     def get_idea_comments_count(self) -> int:
         return len(self.find_all(self.locators.COMMENT_CELL))
@@ -96,4 +97,3 @@ class UpvotePage(BasePage):
 
     def set_filter(self, new_filter: str):
         self.click(self.locators.DROPDOWN_MENU_ITEM(new_filter))
-
