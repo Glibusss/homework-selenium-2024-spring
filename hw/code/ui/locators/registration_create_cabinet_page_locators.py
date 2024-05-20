@@ -167,3 +167,4 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'registration_hint_')]",
     )
+    
