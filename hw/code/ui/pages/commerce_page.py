@@ -116,4 +116,4 @@ class CommercePage(BasePage):
 
     def click_cross_button(self):
         self.click(self.locators.CROSS_BUTTON)
-        
+

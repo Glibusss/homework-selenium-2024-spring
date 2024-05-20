@@ -32,4 +32,4 @@ def config(request):
         "selenoid": selenoid,
         "vnc": vnc,
     }
-    
+

@@ -21,4 +21,4 @@ class TestRegistrationImportMytargetPageLocalization(BaseCase):
         registration_import_mytarget_page.select_language("Русский")
         registration_import_mytarget_page.click_back_button()
         assert registration_import_mytarget_page.get_selected_language() == "Русский"
-        
+

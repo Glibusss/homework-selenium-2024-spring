@@ -124,4 +124,4 @@ class AudiencePage(BasePage):
 
     def created_audience_became_invisible(self):
         return self.became_invisible(self.locators.CREATED_AUDIENCE_TITLE)
-    
+

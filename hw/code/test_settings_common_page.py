@@ -88,4 +88,4 @@ class TestSettingsCommonPage(BaseCase):
         settings_common_page.enter_full_name()
         settings_common_page.click_cancel_button()
         assert settings_common_page.get_full_name_field_value() == ""
-        
+

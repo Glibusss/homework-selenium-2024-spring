@@ -281,4 +281,4 @@ class TestRegistrationNewCabinetPage(BaseCase):
         registration_create_cabinet_page.click_create_cabinet_button()
         assert registration_create_cabinet_page.get_email_error()
         assert registration_create_cabinet_page.get_offer_error()
-        
+

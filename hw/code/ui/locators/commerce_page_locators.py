@@ -63,4 +63,4 @@ class CommercePageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'FeedFileSelector_fileSelectorDescription__')]",
     )
-    
+

@@ -67,4 +67,4 @@ class TestBudgetPage(BaseCase):
         budget_page.enter_amount(budget_page.MIN_AMOUNT)
         budget_page.click_submit_button()
         assert budget_page.vkpay_iframe_became_visible()
-        
+

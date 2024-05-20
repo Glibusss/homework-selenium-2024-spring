@@ -47,4 +47,4 @@ class TestCommercePage(BaseCase):
         commerce_page.click_create_button()
         commerce_page.click_manual_tabs()
         assert commerce_page.manual_became_visible()
-        
+

@@ -209,4 +209,4 @@ class RegistrationImportMytargetPage(BasePage):
 
     def import_continue_note_became_visible(self):
         return self.became_visible(self.locators.IMPORT_CONTINUE_DESC)
-    
+

@@ -53,4 +53,4 @@ class SettingsCommonPageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'DeleteAccountConfirmModal_')]",
     )
-    
+

@@ -74,4 +74,4 @@ class UpvotePageLocators(BasePageLocators):
     )
 
     LINK_COPY_BUTTON = (By.XPATH, "//*[contains(@class, 'Idea_copyLinkBtn__')]")
-    
+

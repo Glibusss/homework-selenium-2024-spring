@@ -16,4 +16,4 @@ class TestSettingsAccessPage(BaseCase):
         settings_access_page.click_more_link()
         settings_access_page.go_to_new_tab()
         assert self.is_opened("https://ads.vk.com/help/articles/additionalaccounts")
-        
+

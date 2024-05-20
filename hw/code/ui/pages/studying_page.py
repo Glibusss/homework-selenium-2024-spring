@@ -113,4 +113,4 @@ class StudyingPage(BasePage):
 
     def click_later_button(self):
         self.click(self.locators.LATER_BUTTON)
-        
+

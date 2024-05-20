@@ -21,4 +21,4 @@ class AuthPage(BasePage):
         password_input.send_keys(password)
 
         self.click(self.locators.MAIL_RU_SUBMIT_BUTTON)
-        
+

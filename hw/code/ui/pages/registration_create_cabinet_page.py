@@ -461,4 +461,4 @@ class RegistrationCreateCabinetPage(BasePage):
 
     def click_create_cabinet_button(self):
         self.scroll_and_click(self.locators.CREATE_CABINET_BUTTON)
-        
+

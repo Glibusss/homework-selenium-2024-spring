@@ -36,4 +36,4 @@ class TestHelpPage(BaseCase):
         help_page.click_forum_tip()
         help_page.go_to_new_tab()
         assert self.is_opened("https://ads.vk.com/upvote")
-        
+

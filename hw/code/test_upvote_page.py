@@ -71,4 +71,4 @@ class TestUpvotePage(BaseCase):
         card_statuses = upvote_page.get_all_idea_statuses()
         for el in card_statuses:
             assert status in el
-            
+

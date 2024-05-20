@@ -31,4 +31,4 @@ class CabinetPage(BasePage):
 
     def click_logout_button(self):
         self.click(self.locators.LOGOUT_BUTTON)
-        
+

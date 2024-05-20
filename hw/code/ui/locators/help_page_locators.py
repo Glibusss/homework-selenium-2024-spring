@@ -16,4 +16,4 @@ class HelpPageLocators(BasePageLocators):
             By.XPATH,
             f"//*[contains(@class, 'vkuiTypography') and text()='{tip_name}']",
         )
-    
+

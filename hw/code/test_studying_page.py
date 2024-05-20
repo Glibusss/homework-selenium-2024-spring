@@ -69,4 +69,4 @@ class TestStudyingPage(BaseCase):
         studying_page.click_close_tip()
         studying_page.click_break_button()
         assert studying_page.stop_onboarding_modal_became_invisible()
-        
+
