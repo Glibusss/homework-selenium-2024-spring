@@ -2,7 +2,6 @@ import pytest
 import time
 from selenium.common.exceptions import TimeoutException
 from base_case import BaseCase
-from ui.locators.registration_create_cabinet_page_locators import page_text
 
 class TestRegistrationNewCabinetPage(BaseCase):
     def test_create_page_rendering(self, registration_create_cabinet_page):
@@ -25,9 +24,8 @@ class TestRegistrationNewCabinetPage(BaseCase):
         assert registration_create_cabinet_page.ord_link_became_visible()
         assert registration_create_cabinet_page.tos_link_became_visible()
         assert registration_create_cabinet_page.privacy_policy_link_became_visible()
-        # Валится, хотя ручной текст локатора работает
-        # assert registration_create_cabinet_page.mailing_checkbox_became_visible(current_language)
-        # assert registration_create_cabinet_page.mailing_hint_became_visible(current_language)
+        assert registration_create_cabinet_page.mailing_checkbox_became_visible(current_language)
+        assert registration_create_cabinet_page.mailing_hint_became_visible(current_language)
         assert registration_create_cabinet_page.create_cabinet_button_became_visible()
     
     def test_create_page_back_button(self, registration_create_cabinet_page):
@@ -44,18 +42,13 @@ class TestRegistrationNewCabinetPage(BaseCase):
 
     def test_russia_currencies(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['RUSSIA'])
-        assert registration_create_cabinet_page.currency_dropdown_contain_items([
-            page_text[current_language]['RUBLE']
-        ])
+        registration_create_cabinet_page.select_russia(current_language)
+        assert registration_create_cabinet_page.check_russia_currency_options(current_language)
 
     def test_row_currencies(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['ARMENIA'])
-        assert registration_create_cabinet_page.currency_dropdown_contain_items([
-            page_text[current_language]['DOLLAR'],
-            page_text[current_language]['EURO']
-        ])   
+        registration_create_cabinet_page.select_row_country(current_language)
+        assert registration_create_cabinet_page.check_row_currency_options(current_language)
 
     def test_correct_email_1(self, registration_create_cabinet_page):
         registration_create_cabinet_page.enter_email('test@email.com')
@@ -100,37 +93,33 @@ class TestRegistrationNewCabinetPage(BaseCase):
 
     def test_advertiser_entity_types(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['ADVERTISER_NOMINATIVE'])
-        assert registration_create_cabinet_page.entity_type_button_count() == 2
+        registration_create_cabinet_page.select_advertiser_account(current_language)
+        assert registration_create_cabinet_page.entity_type_button_count() == registration_create_cabinet_page.ADVERTISER_ENTITY_TYPE_COUNT
 
     def test_agency_entity_types(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['AGENCY_NOMINATIVE'])
+        registration_create_cabinet_page.select_agency_account(current_language)
+        # Перерендер занимает какое-то время, без слипа список кнопок не успевает обновиться
         time.sleep(1)
-        assert registration_create_cabinet_page.entity_type_button_count() == 1
+        assert registration_create_cabinet_page.entity_type_button_count() == registration_create_cabinet_page.AGENCY_ENTITY_TYPE_COUNT
 
     def test_individual_inputs(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['LEGAL_ENTITY'])
-        time.sleep(1)
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['INDIVIDUAL'])
+        registration_create_cabinet_page.select_legal_entity_account(current_language)
+        registration_create_cabinet_page.select_individual_account(current_language)
         assert registration_create_cabinet_page.inn_input_became_visible()
         assert registration_create_cabinet_page.name_input_became_visible()
 
     def test_row_individual_entity(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['ARMENIA'])
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['INDIVIDUAL'])
+        registration_create_cabinet_page.select_row_country(current_language)
+        registration_create_cabinet_page.select_individual_account(current_language)
         assert registration_create_cabinet_page.row_individual_warning_became_visible()
         assert registration_create_cabinet_page.inn_input_became_visible()
 
     def test_create_page_individual_hint(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.hover_account_type_hint(page_text[current_language]['INDIVIDUAL'])
-        assert registration_create_cabinet_page.account_type_hint_became_visible()
-        title, text = registration_create_cabinet_page.get_account_type_hint()
-        assert title == page_text[current_language]['INDIVIDUAL']
-        assert text == page_text[current_language]['INDIVIDUAL_HINT']
+        assert registration_create_cabinet_page.check_individual_hint_content(current_language)
 
     def test_correct_inn(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
@@ -187,60 +176,56 @@ class TestRegistrationNewCabinetPage(BaseCase):
 
     def test_legal_entity_no_inputs(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['LEGAL_ENTITY'])
+        registration_create_cabinet_page.select_legal_entity_account(current_language)
         assert not registration_create_cabinet_page.inn_input_became_visible()
         assert not registration_create_cabinet_page.name_input_became_visible()
 
     def test_create_page_legal_entity_hint(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.hover_account_type_hint(page_text[current_language]['LEGAL_ENTITY'])
-        assert registration_create_cabinet_page.account_type_hint_became_visible()
-        title, text = registration_create_cabinet_page.get_account_type_hint()
-        assert title == page_text[current_language]['LEGAL_ENTITY']
-        assert text == page_text[current_language]['LEGAL_ENTITY_HINT']
+        assert registration_create_cabinet_page.check_legal_entity_hint_content(current_language)
 
     def test_uncheck_offer_checkbox(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
         registration_create_cabinet_page.click_offer_checkbox()
-        assert registration_create_cabinet_page.checkbox_unchecked(page_text[current_language]['ACCEPT_CHECKBOX'])
+        assert registration_create_cabinet_page.offer_checkbox_unchecked(current_language)
 
     def test_check_offer_checkbox(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
         registration_create_cabinet_page.click_offer_checkbox()
         registration_create_cabinet_page.click_offer_checkbox()
-        assert registration_create_cabinet_page.checkbox_checked(page_text[current_language]['ACCEPT_CHECKBOX'])
+        assert registration_create_cabinet_page.offer_checkbox_checked(current_language)
 
     def test_individual_russia_offer(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['RUSSIA'])
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['INDIVIDUAL'])
+        registration_create_cabinet_page.select_russia(current_language)
+        registration_create_cabinet_page.select_individual_account(current_language)
         registration_create_cabinet_page.click_offer_link()
         assert self.is_opened('ads.vk.com/documents/offer_fl_vk')
 
     def test_individual_row_offer(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['ARMENIA'])
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['INDIVIDUAL'])
+        registration_create_cabinet_page.select_row_country(current_language)
+        registration_create_cabinet_page.select_individual_account(current_language)
         registration_create_cabinet_page.click_offer_link()
         assert self.is_opened('ads.vk.com/documents/offer_fl_vk')
 
     def test_legal_entity_russia_offer(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['RUSSIA'])
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['LEGAL_ENTITY'])
+        registration_create_cabinet_page.select_russia(current_language)
+        registration_create_cabinet_page.select_legal_entity_account(current_language)
         registration_create_cabinet_page.click_offer_link()
         assert self.is_opened('ads.vk.com/documents/offer_adv_vk')
 
     def test_legal_entity_row_offer(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_country(page_text[current_language]['ARMENIA'])
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['LEGAL_ENTITY'])
+        registration_create_cabinet_page.select_row_country(current_language)
+        registration_create_cabinet_page.select_legal_entity_account(current_language)
         registration_create_cabinet_page.click_offer_link()
         assert self.is_opened('ads.vk.com/documents/offer_adv_vk')
 
     def test_agency_offer(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
-        registration_create_cabinet_page.select_account_type(page_text[current_language]['AGENCY_NOMINATIVE'])
+        registration_create_cabinet_page.select_agency_account(current_language)
         registration_create_cabinet_page.click_offer_link()
         assert self.is_opened('ads.vk.com/documents/offer_agency_vk')
 
@@ -259,13 +244,13 @@ class TestRegistrationNewCabinetPage(BaseCase):
     def test_uncheck_mailing_checkbox(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
         registration_create_cabinet_page.click_mailing_checkbox(current_language)
-        assert registration_create_cabinet_page.checkbox_unchecked(page_text[current_language]['MAILING'])
+        assert registration_create_cabinet_page.mailing_checkbox_unchecked(current_language)
 
     def test_check_mailing_checkbox(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
         registration_create_cabinet_page.click_mailing_checkbox(current_language)
         registration_create_cabinet_page.click_mailing_checkbox(current_language)
-        assert registration_create_cabinet_page.checkbox_checked(page_text[current_language]['MAILING'])
+        assert registration_create_cabinet_page.mailing_checkbox_checked(current_language)
 
     def test_mailing_hint(self, registration_create_cabinet_page):
         current_language = registration_create_cabinet_page.get_selected_language()
@@ -291,7 +276,7 @@ class TestRegistrationNewCabinetPage(BaseCase):
         registration_create_cabinet_page.enter_email('test')
         current_language = registration_create_cabinet_page.get_selected_language()
         # Клик по странице при вводе в текстовое поле вызывает проверку и останавливает обработку события, надо кликнуть ещё раз
-        while not registration_create_cabinet_page.checkbox_unchecked(page_text[current_language]['ACCEPT_CHECKBOX']):
+        while not registration_create_cabinet_page.offer_checkbox_unchecked(current_language):
             registration_create_cabinet_page.click_offer_checkbox()
         registration_create_cabinet_page.click_create_cabinet_button()
         assert registration_create_cabinet_page.get_email_error()
