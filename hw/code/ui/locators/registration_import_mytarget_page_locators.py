@@ -50,3 +50,4 @@ class RegistrationImportMytargetPageLocators(BasePageLocators):
 
     IMPORT_CONTINUE_DESC = (By.XPATH, "//*[contains(@class, 'ImportPanel_actionDesc')]")
     
+    

@@ -117,3 +117,4 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
     
     MAILING_CHECKBOX_HINT_WINDOW = (By.XPATH, "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'registration_hint_')]")
     
+    

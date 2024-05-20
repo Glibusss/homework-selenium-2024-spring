@@ -64,3 +64,4 @@ class TestUpvotePage(BaseCase):
         for el in card_statuses:
             assert status in el
     
+    
