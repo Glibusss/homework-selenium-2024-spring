@@ -132,7 +132,6 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
 
     OFFER_CHECKBOX = (By.NAME, "offer")
 
-    # Нужен такой сложный селектор, чтобы нормально отслеживать чекбокс
     @staticmethod
     def CHECKBOX_IS_CHECKED_OR_NOT(checkbox, state):
         return (

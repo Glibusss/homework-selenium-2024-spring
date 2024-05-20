@@ -68,3 +68,4 @@ class TestAudiencePage(BaseCase):
         )
         audience_page.delete_audience()
         assert audience_page.created_audience_became_invisible()
+        

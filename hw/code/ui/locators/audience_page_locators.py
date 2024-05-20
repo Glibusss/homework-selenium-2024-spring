@@ -80,3 +80,4 @@ class AudiencePageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'vkuiButton__content') and text()='Удалить']",
     )
+    

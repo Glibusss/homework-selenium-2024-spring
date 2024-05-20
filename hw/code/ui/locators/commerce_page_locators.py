@@ -32,7 +32,6 @@ class CommercePageLocators(BasePageLocators):
     FEED_OR_COMMUNITY_INPUT = (By.XPATH, "//input[@data-testid='catalogUrl-input']")
     PERIOD_SELECT = (By.XPATH, "//input[@data-testid='catalogPeriod-select']")
 
-    # Такой сложный нужен для эффективного контроля чекбокса
     CHECKBOX_UTM_SIGN = (
         By.XPATH,
         "//*[contains(@class, 'vkuiCheckbox')]//*[contains(@class, 'vkuiCheckbox__titleBefore') and text()='Автоматически удалять UTM-метки']",
@@ -44,7 +43,6 @@ class CommercePageLocators(BasePageLocators):
 
     SELLER_INPUT = (By.XPATH, "//*[@data-testid='catalogUrl-input']")
 
-    # У инпута нет data-testid.
     API_SELLER_INPUT = (
         By.XPATH,
         "//*[contains(@class, 'vkuiFormItem') and .//*[contains(@class, 'FormItem_topText__') and text()='API key']]//input",
@@ -65,3 +63,4 @@ class CommercePageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'FeedFileSelector_fileSelectorDescription__')]",
     )
+    

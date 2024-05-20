@@ -78,5 +78,5 @@ class TestRegistrationImportMytargetPage(BaseCase):
 
     def test_continue_import(self, registration_import_mytarget_page):
         registration_import_mytarget_page.click_import_continue_button()
-        # Почему-то крайне долго отрабатывает, несмотря на моментальный переход, но не таймаутит
         assert self.is_opened(url="target.my.com")
+        

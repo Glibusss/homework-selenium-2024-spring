@@ -28,3 +28,4 @@ class SettingsAccessPage(BasePage):
 
     def redirected(self):
         return self.is_opened("https://ads.vk.com/help/articles/additionalaccounts")
+    

@@ -95,3 +95,4 @@ class SettingsCommonPage(BasePage):
 
     def click_cancel_button(self):
         self.click(self.locators.CANCEL_BUTTON)
+        

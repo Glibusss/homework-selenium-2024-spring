@@ -22,3 +22,4 @@ class TestRegistrationMainPage(BaseCase):
     def test_import_mytarget_cabinet_button(self, registration_main_page):
         registration_main_page.click_import_mytarget_cabinet_button()
         assert self.is_opened("https://ads.vk.com/hq/registration/import/target")
+        

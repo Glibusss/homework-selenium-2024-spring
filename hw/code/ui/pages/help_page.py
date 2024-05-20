@@ -38,3 +38,4 @@ class HelpPage(BasePage):
 
     def iframe_became_visible(self):
         return self.became_visible(self.locators.IFRAME)
+    

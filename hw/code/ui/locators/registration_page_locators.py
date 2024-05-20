@@ -57,3 +57,4 @@ class RegistrationPageLocators(BasePageLocators):
             By.XPATH,
             f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']",
         )
+    

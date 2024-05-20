@@ -40,3 +40,4 @@ class RegistrationMainPageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'vkuiSegmentedControlOption--checked')]/h4",
     )
+    

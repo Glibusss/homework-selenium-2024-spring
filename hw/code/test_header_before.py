@@ -36,3 +36,4 @@ class TestHeader(BaseCase):
         assert header_before.all_accounts_link_became_visible()
         header_before.click_all_accounts_link()
         assert self.is_opened("https://ads.vk.com/hq/registration")
+        

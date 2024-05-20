@@ -45,3 +45,4 @@ class SettingsNotificationsPageLocators(BasePageLocators):
 
     SAVE_MODAL_CANCEL = (By.XPATH, "//*[@data-testid='settings-cancel']")
     SAVE_MODAL_SAVE = (By.XPATH, "//*[@data-testid='settings-save']")
+    

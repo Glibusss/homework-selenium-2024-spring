@@ -63,3 +63,4 @@ class StudyingPageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'StopOnboardingModal_content__')]",
     )
+    

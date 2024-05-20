@@ -94,3 +94,4 @@ class HeaderAfter(BasePage):
 
     def vk_id_popup_became_visible(self):
         return self.became_visible(self.locators.VK_ID_POPUP)
+    
