@@ -11,6 +11,10 @@ class AudiencePage(BasePage):
 
     ERROR_TOO_LONG_AUDIENCE_NAME = 'Максимальная длина 255 символов'
     MAX_LENGTH_OF_AUDIENCE_NAME = 255
+    
+    SOURCE_NAME = "Ключевые фразы"
+    CUSTOM_AUDIENCE_NAME = "Cool Audience"
+    KEY_PHRASES = ["buiseness", "tasks"]
 
     SOURCE_TYPE_LIST = ['Существующая аудитория', 'Список пользователей', 'Ключевые фразы', 'События в рекламной кампании', 'События в мобильном приложении', 'События в лид-форме', 'События на сайте', 'Подписчики сообществ', 'Музыканты']
 

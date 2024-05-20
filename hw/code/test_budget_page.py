@@ -2,6 +2,7 @@ import time
 import pytest
 from base_case import BaseCase
 
+
 class TestBudgetPage(BaseCase):
     
     def test_is_opened_replenishment_modal_page(self, budget_page):
@@ -66,4 +67,4 @@ class TestBudgetPage(BaseCase):
         budget_page.enter_amount(budget_page.MIN_AMOUNT)
         budget_page.click_submit_button()
         assert budget_page.vkpay_iframe_became_visible()
-
+        

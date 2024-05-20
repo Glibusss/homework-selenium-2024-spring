@@ -1,5 +1,6 @@
 from base_case import BaseCase
 
+
 class TestHeader(BaseCase):
     def test_header_render(self, header_before):
         assert header_before.header_became_visible()
@@ -35,4 +36,4 @@ class TestHeader(BaseCase):
         assert header_before.all_accounts_link_became_visible() 
         header_before.click_all_accounts_link()
         assert self.is_opened('https://ads.vk.com/hq/registration')  
-
+        
