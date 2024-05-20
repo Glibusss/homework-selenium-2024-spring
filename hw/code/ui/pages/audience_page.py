@@ -6,42 +6,56 @@ from datetime import datetime
 
 
 class AudiencePage(BasePage):
-    url = 'https://ads.vk.com/hq/audience'
+    url = "https://ads.vk.com/hq/audience"
     locators = AudiencePageLocators()
 
-    ERROR_TOO_LONG_AUDIENCE_NAME = 'Максимальная длина 255 символов'
+    ERROR_TOO_LONG_AUDIENCE_NAME = "Максимальная длина 255 символов"
     MAX_LENGTH_OF_AUDIENCE_NAME = 255
-    
+
     SOURCE_NAME = "Ключевые фразы"
     CUSTOM_AUDIENCE_NAME = "Cool Audience"
     KEY_PHRASES = ["buiseness", "tasks"]
 
-    SOURCE_TYPE_LIST = ['Существующая аудитория', 'Список пользователей', 'Ключевые фразы', 'События в рекламной кампании', 'События в мобильном приложении', 'События в лид-форме', 'События на сайте', 'Подписчики сообществ', 'Музыканты']
+    SOURCE_TYPE_LIST = [
+        "Существующая аудитория",
+        "Список пользователей",
+        "Ключевые фразы",
+        "События в рекламной кампании",
+        "События в мобильном приложении",
+        "События в лид-форме",
+        "События на сайте",
+        "Подписчики сообществ",
+        "Музыканты",
+    ]
 
     def click_create_audience_button(self):
         self.click(self.locators.CREATE_AUDIENCE_BUTTON)
 
     def create_audience_modal_page_became_visible(self) -> bool:
         return self.became_visible(self.locators.CREATE_AUDIENCE_MODAL_PAGE)
-    
+
     def create_audience_modal_page_became_invisible(self) -> bool:
         return self.became_invisible(self.locators.CREATE_AUDIENCE_MODAL_PAGE)
-    
+
     def audience_name_input_became_visible(self):
         return self.became_visible(self.locators.AUDIENCE_NAME_INPUT)
 
     def has_sidebar_sign_content(self):
-        return self.became_visible(self.locators.SIDEBAR_SIGN) and self.became_visible(self.locators.SIDEBAR_SIGN_HINTS)
+        return self.became_visible(self.locators.SIDEBAR_SIGN) and self.became_visible(
+            self.locators.SIDEBAR_SIGN_HINTS
+        )
 
     def add_source_button_became_visible(self):
         return self.became_visible(self.locators.ADD_SOURCE_BUTTON)
-    
+
     def footer_buttons_became_visible(self):
-        return self.became_visible(self.locators.CANCEL_BUTTON) and self.became_visible(self.locators.SUBMIT_BUTTON)
-    
+        return self.became_visible(self.locators.CANCEL_BUTTON) and self.became_visible(
+            self.locators.SUBMIT_BUTTON
+        )
+
     def cross_button_became_visible(self):
         return self.became_visible(self.locators.CROSS_BUTTON)
-    
+
     def click_cross_button(self):
         self.click(self.locators.CROSS_BUTTON, timeout=1)
 
@@ -62,22 +76,22 @@ class AudiencePage(BasePage):
 
     def add_source_modal_page_became_visible(self) -> bool:
         return self.became_visible(self.locators.ADD_SOURCE_MODAL_PAGE)
-    
+
     def source_items_became_visible(self):
         for s in self.SOURCE_TYPE_LIST:
             if not self.became_visible(self.locators.SOURCE_ITEM(s)):
                 return False
         return True
-    
+
     def key_phrases_sidebar_became_visible(self):
         return self.became_visible(self.locators.KEY_PHRASES_MODAL_PAGE)
-    
+
     def key_phrases_textarea_became_visible(self):
         return self.became_visible(self.locators.KEY_PHRASES_INPUT)
-    
+
     def minus_key_phrases_textarea_became_visible(self):
         return self.became_visible(self.locators.MINUS_PHRASES_INPUT)
-    
+
     def period_input_became_visible(self):
         return self.became_visible(self.locators.PERIOD_INPUT)
 
@@ -87,7 +101,7 @@ class AudiencePage(BasePage):
     def enter_key_phrases(self, key_phrases: list):
         key_phrases_input = self.find(self.locators.KEY_PHRASES_INPUT)
         key_phrases_input.clear()
-        key_phrases_input.send_keys(' '.join(key_phrases))
+        key_phrases_input.send_keys(" ".join(key_phrases))
 
     def click_modal_page_submit_button(self):
         try:
@@ -100,7 +114,7 @@ class AudiencePage(BasePage):
 
     def get_created_audience_title(self) -> str:
         return self.find(self.locators.CREATED_AUDIENCE_TITLE, timeout=10).text
-    
+
     def delete_audience(self):
         self.hover(self.locators.CREATED_AUDIENCE_TITLE, timeout=10)
         self.hover(self.locators.MORE_BUTTON)
@@ -110,4 +124,3 @@ class AudiencePage(BasePage):
 
     def created_audience_became_invisible(self):
         return self.became_invisible(self.locators.CREATED_AUDIENCE_TITLE)
-    

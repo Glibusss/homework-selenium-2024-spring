@@ -7,15 +7,24 @@ class RegistrationPageLocators(BasePageLocators):
 
     @staticmethod
     def LANGUAGE_BUTTON(language):
-        return By.XPATH, f"//*[contains(@class, 'vkuiSegmentedControlOption')]/h4[text()='{language}']"
+        return (
+            By.XPATH,
+            f"//*[contains(@class, 'vkuiSegmentedControlOption')]/h4[text()='{language}']",
+        )
 
-    SELECTED_LANGUAGE = (By.XPATH, "//*[contains(@class, 'vkuiSegmentedControlOption--checked')]/h4")
+    SELECTED_LANGUAGE = (
+        By.XPATH,
+        "//*[contains(@class, 'vkuiSegmentedControlOption--checked')]/h4",
+    )
 
     COUNTRY_DROPDOWN = (By.XPATH, f"//*[@data-testid='country']")
 
     @staticmethod
     def COUNTRY_DROPDOWN_ITEM(country_name):
-        return By.XPATH, f"//*[contains(@class, 'vkuiCustomSelectOption') and text()='{country_name}']"
+        return (
+            By.XPATH,
+            f"//*[contains(@class, 'vkuiCustomSelectOption') and text()='{country_name}']",
+        )
 
     CURRENCY_DROPDOWN = (By.XPATH, f"//*[@data-testid='currency']")
 
@@ -28,17 +37,14 @@ class RegistrationPageLocators(BasePageLocators):
 
     EMAIL_ERROR = (
         By.XPATH,
-        "//*[@role='alert' and preceding-sibling::h5[text()='Email*']]"
+        "//*[@role='alert' and preceding-sibling::h5[text()='Email*']]",
     )
 
-    INN_ERROR = (
-        By.XPATH,
-        "//*[@role='alert' and preceding-sibling::h5[text()='ИНН']]"
-    )
+    INN_ERROR = (By.XPATH, "//*[@role='alert' and preceding-sibling::h5[text()='ИНН']]")
 
     OFFER_ERROR = (
         By.XPATH,
-        "//*[@role='alert' and preceding-sibling::div[contains(@class, 'registration_offerDesc__')]]"
+        "//*[@role='alert' and preceding-sibling::div[contains(@class, 'registration_offerDesc__')]]",
     )
 
     SUBMIT_BUTTON = (By.XPATH, f"//*[@data-testid='create-button']")
@@ -47,5 +53,7 @@ class RegistrationPageLocators(BasePageLocators):
 
     @staticmethod
     def ACCOUNT_TYPE_BUTTON(account_type):
-        return By.XPATH, f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']"
-    
+        return (
+            By.XPATH,
+            f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']",
+        )

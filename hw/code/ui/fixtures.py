@@ -24,27 +24,28 @@ from ui.pages.upvote_page import UpvotePage
 import os
 from dotenv import load_dotenv
 
+
 @pytest.fixture()
 def driver(config):
-    browser = config['browser']
-    url = config['url']
-    selenoid = config['selenoid']
-    vnc = config['vnc']
+    browser = config["browser"]
+    url = config["url"]
+    selenoid = config["selenoid"]
+    vnc = config["vnc"]
     options = Options()
     if selenoid:
         capabilities = {
-            'browserName': 'chrome',
-            'version': '118.0',
+            "browserName": "chrome",
+            "version": "118.0",
         }
         if vnc:
-            capabilities['enableVNC'] = True
+            capabilities["enableVNC"] = True
         driver = webdriver.Remote(
-            'http://127.0.0.1:4444/wd/hub',
+            "http://127.0.0.1:4444/wd/hub",
             options=options,
         )
-    elif browser == 'chrome':
+    elif browser == "chrome":
         driver = webdriver.Chrome()
-    elif browser == 'firefox':
+    elif browser == "firefox":
         driver = webdriver.Firefox()
     else:
         raise RuntimeError(f'Unsupported browser: "{browser}"')
@@ -53,34 +54,41 @@ def driver(config):
     yield driver
     driver.quit()
 
+
 @pytest.fixture
 def base_page(driver):
     return BasePage(driver=driver)
+
 
 @pytest.fixture
 def main_page(driver):
     driver.get(MainPage.url)
     return MainPage(driver=driver)
 
+
 @pytest.fixture
 def upvote_page(driver):
     driver.get(UpvotePage.url)
     return UpvotePage(driver=driver)
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def credentials_with_cabinet():
     load_dotenv()
-    return os.getenv('LOGIN'), os.getenv('PASSWORD')
+    return os.getenv("LOGIN"), os.getenv("PASSWORD")
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def credentials_without_cabinet():
     load_dotenv()
-    return os.getenv('NEW_LOGIN'), os.getenv('NEW_PASSWORD')
+    return os.getenv("NEW_LOGIN"), os.getenv("NEW_PASSWORD")
+
 
 @pytest.fixture
 def budget_page(driver, cabinet_page):
     driver.get(BudgetPage.url)
     return BudgetPage(driver=driver)
+
 
 @pytest.fixture
 def auth_page(driver):
@@ -93,15 +101,18 @@ def registration_main_page(driver, credentials_without_cabinet, auth_page):
     auth_page.login(*credentials_without_cabinet)
     return RegistrationMainPage(driver=driver)
 
+
 @pytest.fixture
 def registration_create_cabinet_page(driver, registration_main_page):
     driver.get(RegistrationCreateCabinetPage.url)
     return RegistrationCreateCabinetPage(driver=driver)
 
+
 @pytest.fixture
 def registration_import_mytarget_page(driver, registration_main_page):
     driver.get(RegistrationImportMytargetPage.url)
     return RegistrationImportMytargetPage(driver=driver)
+
 
 @pytest.fixture
 def cabinet_page(driver, credentials_with_cabinet, auth_page):
@@ -109,46 +120,54 @@ def cabinet_page(driver, credentials_with_cabinet, auth_page):
     auth_page.login(*credentials_with_cabinet)
     return CabinetPage(driver=driver)
 
+
 @pytest.fixture
 def header_before(driver, registration_main_page):
     driver.get(HeaderBefore.url)
     return HeaderBefore(driver=driver)
+
 
 @pytest.fixture
 def header_after(driver, cabinet_page):
     driver.get(HeaderAfter.url)
     return HeaderAfter(driver=driver)
 
+
 @pytest.fixture
 def audience_page(driver, cabinet_page):
     driver.get(AudiencePage.url)
     return AudiencePage(driver=driver)
+
 
 @pytest.fixture
 def settings_common_page(driver, cabinet_page):
     driver.get(SettingsCommonPage.url)
     return SettingsCommonPage(driver=driver)
 
+
 @pytest.fixture
 def settings_access_page(driver, cabinet_page):
     driver.get(SettingsAccessPage.url)
     return SettingsAccessPage(driver=driver)
 
+
 @pytest.fixture
 def help_page(driver, cabinet_page):
     return HelpPage(driver=driver)
 
+
 @pytest.fixture
 def studying_page(driver, cabinet_page):
     return StudyingPage(driver=driver)
+
 
 @pytest.fixture
 def settings_notifications_page(driver, cabinet_page):
     driver.get(SettingsNotificationsPage.url)
     return SettingsNotificationsPage(driver=driver)
 
+
 @pytest.fixture
 def commerce_page(driver, cabinet_page):
     driver.get(CommercePage.url)
     return CommercePage(driver=driver)
-

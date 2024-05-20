@@ -45,7 +45,7 @@ class BasePage(object):
 
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(ec.presence_of_element_located(locator))
-    
+
     def find_interactable(self, locator, timeout=None):
         return self.wait(timeout).until(ec.element_to_be_clickable(locator))
 
@@ -85,4 +85,3 @@ class BasePage(object):
     def hover(self, locator, timeout=5):
         elem = self.wait(timeout).until(ec.presence_of_element_located(locator))
         ActionChains(self.driver).move_to_element(elem).perform()
-    

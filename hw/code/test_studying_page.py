@@ -3,7 +3,7 @@ from base_case import BaseCase
 
 
 class TestStudyingPage(BaseCase):
-    
+
     def test_is_studying_modal_opened(self, studying_page):
         studying_page.click_studying_cell()
         assert studying_page.modal_became_visible()
@@ -36,7 +36,9 @@ class TestStudyingPage(BaseCase):
         studying_page.click_catalog_cell()
         studying_page.click_course_cell()
         studying_page.go_to_new_tab()
-        assert self.is_opened('https://expert.vk.com/courses/kak-prodvigat-malyi-biznes-v-vk-reklame')
+        assert self.is_opened(
+            "https://expert.vk.com/courses/kak-prodvigat-malyi-biznes-v-vk-reklame"
+        )
 
     def test_is_tip_became_visible(self, studying_page):
         studying_page.click_studying_cell()
@@ -67,4 +69,3 @@ class TestStudyingPage(BaseCase):
         studying_page.click_close_tip()
         studying_page.click_break_button()
         assert studying_page.stop_onboarding_modal_became_invisible()
-        

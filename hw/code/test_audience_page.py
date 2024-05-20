@@ -4,7 +4,7 @@ from base_case import BaseCase
 
 
 class TestAudiencePage(BaseCase):
-    
+
     def test_is_create_audience_modal_page_opened(self, audience_page):
         audience_page.click_create_audience_button()
         assert audience_page.create_audience_modal_page_became_visible()
@@ -24,7 +24,9 @@ class TestAudiencePage(BaseCase):
 
     def test_error_long_audience_name(self, audience_page):
         audience_page.click_create_audience_button()
-        audience_page.enter_audience_name('a' * (audience_page.MAX_LENGTH_OF_AUDIENCE_NAME + 1))
+        audience_page.enter_audience_name(
+            "a" * (audience_page.MAX_LENGTH_OF_AUDIENCE_NAME + 1)
+        )
         assert audience_page.get_error() == audience_page.ERROR_TOO_LONG_AUDIENCE_NAME
 
     def test_is_add_source_modal_page_became_visible(self, audience_page):
@@ -60,7 +62,9 @@ class TestAudiencePage(BaseCase):
         audience_page.click_modal_page_submit_button()
         audience_page.enter_audience_name(audience_page.CUSTOM_AUDIENCE_NAME)
         audience_page.click_modal_page_submit_button()
-        assert audience_page.get_created_audience_title() == audience_page.CUSTOM_AUDIENCE_NAME
+        assert (
+            audience_page.get_created_audience_title()
+            == audience_page.CUSTOM_AUDIENCE_NAME
+        )
         audience_page.delete_audience()
         assert audience_page.created_audience_became_invisible()
-        

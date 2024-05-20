@@ -126,4 +126,3 @@ class MainPageLocators(BasePageLocators):
             By.XPATH,
             f"//*[contains(@class, 'Footer_item__')]//*[contains(@href, '{href}')]",
         )
-    

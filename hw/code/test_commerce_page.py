@@ -36,15 +36,14 @@ class TestCommercePage(BaseCase):
         commerce_page.click_create_button()
         commerce_page.click_marketplace_tabs()
         assert commerce_page.has_marketplace_tabs_content()
-        
+
     def test_has_input_error_marketplace_content(self, commerce_page):
         commerce_page.click_create_button()
         commerce_page.click_marketplace_tabs()
-        for i in range(0,3):
+        for i in range(0, 3):
             assert commerce_page.has_input_error_marketplace_content()
 
     def test_has_manual_tabs_content(self, commerce_page):
         commerce_page.click_create_button()
         commerce_page.click_manual_tabs()
         assert commerce_page.manual_became_visible()
-        

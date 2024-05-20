@@ -1,5 +1,6 @@
 from base_case import BaseCase
 
+
 class TestRegistrationMainPage(BaseCase):
     def test_main_page_rendering(self, registration_main_page):
         assert registration_main_page.header_became_visible()
@@ -16,9 +17,8 @@ class TestRegistrationMainPage(BaseCase):
 
     def test_create_new_cabinet_button(self, registration_main_page):
         registration_main_page.click_create_new_cabinet_button()
-        assert self.is_opened('https://ads.vk.com/hq/registration/new')
+        assert self.is_opened("https://ads.vk.com/hq/registration/new")
 
     def test_import_mytarget_cabinet_button(self, registration_main_page):
         registration_main_page.click_import_mytarget_cabinet_button()
-        assert self.is_opened('https://ads.vk.com/hq/registration/import/target')
-        
+        assert self.is_opened("https://ads.vk.com/hq/registration/import/target")

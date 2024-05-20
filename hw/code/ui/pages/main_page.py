@@ -57,4 +57,3 @@ class MainPage(BasePage):
         self.scroll_and_click(
             self.locators.FOOTER_SECTIONS_ITEM(self.locators.MAIN_PAGE_LINKS[item_name])
         )
-

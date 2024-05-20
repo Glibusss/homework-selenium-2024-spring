@@ -7,7 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BaseCase:
-    @pytest.fixture(scope='function', autouse=True)
+    @pytest.fixture(scope="function", autouse=True)
     def setup(self, driver, config, request: FixtureRequest):
         self.driver = driver
         self.config = config
@@ -21,5 +21,5 @@ class BaseCase:
             return True
         except:
             raise PageNotOpenedException(
-                f'{url} did not open in {timeout} sec, current url {self.driver.current_url}')
-        
+                f"{url} did not open in {timeout} sec, current url {self.driver.current_url}"
+            )
