@@ -8,3 +8,4 @@ class AuthPageLocators(BasePageLocators):
     MAIL_RU_PASSWORD = (By.NAME, "password")
     MAIL_RU_NEXT_BUTTON = (By.XPATH, "//*[@data-test-id='next-button']")
     MAIL_RU_SUBMIT_BUTTON = (By.XPATH, "//*[@data-test-id='submit-button']")
+

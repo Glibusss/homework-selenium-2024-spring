@@ -9,10 +9,17 @@ class CabinetPageLocators(BasePageLocators):
 
     BALANCE_BUTTON = (By.XPATH, "//*[contains(@class, 'balance_balance__')]")
 
-    NOTIFICATIONS_BUTTON = (By.XPATH, "//*[contains(@class, 'BellNotifications_buttonWrapper__')]")
-    NOTIFICATIONS_MODAL_PAGE = (By.XPATH, "//*[contains(@class, 'BellNotificationsContent_card__')]")
+    NOTIFICATIONS_BUTTON = (
+        By.XPATH,
+        "//*[contains(@class, 'BellNotifications_buttonWrapper__')]",
+    )
+    NOTIFICATIONS_MODAL_PAGE = (
+        By.XPATH,
+        "//*[contains(@class, 'BellNotificationsContent_card__')]",
+    )
 
     USER_AVATAR = (By.XPATH, "//*[contains(@class, 'userMenu_avatar__')]")
     USER_MENU = (By.XPATH, "//*[contains(@class, 'userMenu_menu__')]")
 
     LOGOUT_BUTTON = (By.XPATH, "//*[contains(@class, 'userMenu_logoutButton__')]")
+

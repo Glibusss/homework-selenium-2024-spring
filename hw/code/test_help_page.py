@@ -7,7 +7,7 @@ class TestHelpPage(BaseCase):
     def test_is_help_tooltip_opened(self, help_page):
         help_page.click_help_cell()
         assert help_page.tooltip_became_visible()
-        assert help_page.cells_became_visible()
+        assert help_page.tips_with_content_became_visible()
 
     def test_is_help_tooltip_closed(self, help_page):
         help_page.click_help_cell()
@@ -23,16 +23,17 @@ class TestHelpPage(BaseCase):
         help_page.click_help_cell()
         help_page.click_cases_tip()
         help_page.go_to_new_tab()
-        assert self.is_opened('https://ads.vk.com/cases')
+        assert self.is_opened("https://ads.vk.com/cases")
 
     def test_is_on_help_tip_click_redirected(self, help_page):
         help_page.click_help_cell()
         help_page.click_help_tip()
         help_page.go_to_new_tab()
-        assert self.is_opened('https://ads.vk.com/help')
+        assert self.is_opened("https://ads.vk.com/help")
 
     def test_is_on_forum_tip_click_redirected(self, help_page):
         help_page.click_help_cell()
         help_page.click_forum_tip()
         help_page.go_to_new_tab()
-        assert self.is_opened('https://ads.vk.com/upvote')
+        assert self.is_opened("https://ads.vk.com/upvote")
+

@@ -2,16 +2,18 @@ import time
 import pytest
 from base_case import BaseCase
 
+
 class TestBudgetPage(BaseCase):
-    def test_is_open_replenishment_modal_page(self, budget_page):
+    
+    def test_is_opened_replenishment_modal_page(self, budget_page):
         budget_page.click_replenish_budget_button()
-        assert budget_page.replenishment_modal_page_became_visible()
-        assert budget_page.modal_h2_became_visible()
+        assert budget_page.has_replenishment_modal_page_title()
+        assert budget_page.modal_has_h2_content_title()
         assert budget_page.close_modal_page_became_visible()
         assert budget_page.submit_button_became_visible()
         assert budget_page.inputs_became_visible()
 
-    def test_is_close_replenishment_modal_page(self, budget_page):
+    def test_is_closed_replenishment_modal_page(self, budget_page):
         budget_page.click_replenish_budget_button()
         budget_page.close_replenishment_modal_page()
         assert budget_page.replenishment_modal_page_became_invisible()
@@ -65,3 +67,4 @@ class TestBudgetPage(BaseCase):
         budget_page.enter_amount(budget_page.MIN_AMOUNT)
         budget_page.click_submit_button()
         assert budget_page.vkpay_iframe_became_visible()
+

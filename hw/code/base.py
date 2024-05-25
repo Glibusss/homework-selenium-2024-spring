@@ -2,7 +2,7 @@ import pytest
 from _pytest.fixtures import FixtureRequest
 
 from ui.pages.base_page import PageNotOpenedException
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -14,10 +14,10 @@ class BaseCase:
 
     def is_opened(self, url, timeout=None):
         if timeout is None:
-            timeout = 5
+            timeout = 7
 
         try:
-            WebDriverWait(self.driver, timeout).until(EC.url_matches(url))
+            WebDriverWait(self.driver, timeout).until(ec.url_matches(url))
             return True
         except:
             raise PageNotOpenedException(

@@ -1,6 +1,6 @@
 import time
-
 import allure
+
 from selenium.common import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
@@ -16,14 +16,16 @@ class PageNotOpenedException(Exception):
 
 class BasePage(object):
     locators = BasePageLocators()
-    url = 'https://ads.vk.com/'
+    url = "https://ads.vk.com/"
 
     def is_opened(self, timeout=15):
         started = time.time()
         while time.time() - started < timeout:
             if self.driver.current_url == self.url:
                 return True
-        raise PageNotOpenedException(f'{self.url} did not open in {timeout} sec, current url {self.driver.current_url}')
+        raise PageNotOpenedException(
+            f"{self.url} did not open in {timeout} sec, current url {self.driver.current_url}"
+        )
 
     def close_cookie_banner(self):
         try:
@@ -41,13 +43,16 @@ class BasePage(object):
             timeout = 7
         return WebDriverWait(self.driver, timeout=timeout)
 
-    def find(self, locator, timeout=None) -> WebElement:
+    def find(self, locator, timeout=None):
         return self.wait(timeout).until(ec.presence_of_element_located(locator))
 
-    def find_multiple(self, locator, timeout=None):
-        return self.wait(timeout).until(ec.visibility_of_all_elements_located(locator))
+    def find_interactable(self, locator, timeout=None):
+        return self.wait(timeout).until(ec.element_to_be_clickable(locator))
 
-    @allure.step('Click')
+    def find_all(self, locator, timeout=None):
+        return self.wait(timeout).until(ec.presence_of_all_elements_located(locator))
+
+    @allure.step("Click")
     def click(self, locator, timeout=None) -> WebElement:
         elem = self.wait(timeout).until(ec.element_to_be_clickable(locator))
         elem.click()
@@ -63,20 +68,21 @@ class BasePage(object):
         assert len(handles) > 1
         self.driver.switch_to.window(handles[1])
 
-    def became_invisible(self, locator, timeout=None):
-        try:
-            self.wait(timeout).until(ec.invisibility_of_element(locator))
-            return True
-        except TimeoutException:
-            return False
-
     def became_visible(self, locator, timeout=None):
         try:
             self.wait(timeout).until(ec.visibility_of_element_located(locator))
             return True
         except TimeoutException:
             return False
-        
-    def hover(self, locator, timeout=None):
+
+    def became_invisible(self, locator, timeout=None):
+        try:
+            self.wait(timeout).until(ec.invisibility_of_element_located(locator))
+            return True
+        except TimeoutException:
+            return False
+
+    def hover(self, locator, timeout=5):
         elem = self.wait(timeout).until(ec.presence_of_element_located(locator))
         ActionChains(self.driver).move_to_element(elem).perform()
+

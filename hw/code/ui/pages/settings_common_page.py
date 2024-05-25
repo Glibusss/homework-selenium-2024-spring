@@ -4,32 +4,43 @@ from ui.locators.settings_common_page_locators import SettingsCommonPageLocators
 
 
 class SettingsCommonPage(BasePage):
-    url = 'https://ads.vk.com/hq/settings'
+    url = "https://ads.vk.com/hq/settings"
     locators = SettingsCommonPageLocators()
 
-    ERROR_INVALID_PHONE_NUMBER = 'Некорректный номер телефона'
-    ERROR_INVALID_EMAIL = 'Некорректный email адрес'
-    ERROR_EMPTY_FIELD = 'Обязательное поле'
-    ERROR_TOO_SHORT_INN = 'Длина ИНН должна быть 12 символов'
-    ERROR_INVALID_INN = 'Некорректный ИНН'
+    ERROR_INVALID_PHONE_NUMBER = "Некорректный номер телефона"
+    ERROR_INVALID_EMAIL = "Некорректный email адрес"
+    ERROR_EMPTY_FIELD = "Обязательное поле"
+    ERROR_TOO_SHORT_INN = "Длина ИНН должна быть 12 символов"
+    ERROR_INVALID_INN = "Некорректный ИНН"
+
+    FULL_NAME = "Coolbro G M"
 
     def inputs_became_visible(self):
-        return self.became_visible(self.locators.PHONE_NUMBER_INPUT) and self.became_visible(self.locators.FULL_NAME_INPUT) and self.became_visible(self.locators.INN_INPUT)
-    
-    def buttons_became_visible(self):
-        return self.became_visible(self.locators.ADD_EMAIL_BUTTON) and self.became_visible(self.locators.DELETE_CABINET_BUTTON) and self.became_visible(self.locators.LOGOUT_OTHER_DEVICES_BUTTON)
+        return (
+            self.became_visible(self.locators.PHONE_NUMBER_INPUT)
+            and self.became_visible(self.locators.FULL_NAME_INPUT)
+            and self.became_visible(self.locators.INN_INPUT)
+        )
 
-    def enter_full_name(self, full_name: str):
+    def has_buttons_content(self):
+        return (
+            self.became_visible(self.locators.ADD_EMAIL_BUTTON)
+            and self.became_visible(self.locators.DELETE_CABINET_BUTTON)
+            and self.became_visible(self.locators.LOGOUT_OTHER_DEVICES_BUTTON)
+        )
+
+    def enter_full_name(self):
         full_name_input = self.find(self.locators.FULL_NAME_INPUT)
         full_name_input.clear()
-        full_name_input.send_keys(full_name)
+        full_name_input.send_keys(self.FULL_NAME)
 
     def get_full_name_field_value(self) -> str:
-        return self.find(self.locators.FULL_NAME_INPUT).get_attribute('value')
+        return self.find(self.locators.FULL_NAME_INPUT).get_attribute("value")
 
     def save_and_cancel_buttons_became_visible(self) -> bool:
-        return (self.became_visible(self.locators.SAVE_BUTTON)
-                and self.became_visible(self.locators.CANCEL_BUTTON))
+        return self.became_visible(self.locators.SAVE_BUTTON) and self.became_visible(
+            self.locators.CANCEL_BUTTON
+        )
 
     def enter_phone_number(self, phone_number: str):
         phone_number_input = self.find(self.locators.PHONE_NUMBER_INPUT)
@@ -84,3 +95,4 @@ class SettingsCommonPage(BasePage):
 
     def click_cancel_button(self):
         self.click(self.locators.CANCEL_BUTTON)
+

@@ -3,7 +3,7 @@ from ui.locators.budget_page_locators import BudgetPageLocators
 
 
 class BudgetPage(BasePage):
-    url = 'https://ads.vk.com/hq/budget/transactions'
+    url = "https://ads.vk.com/hq/budget/transactions"
     locators = BudgetPageLocators()
 
     MIN_AMOUNT = 600
@@ -11,26 +11,28 @@ class BudgetPage(BasePage):
     MAX_AMOUNT = 200000
     MAX_AMOUNT_WITHOUT_VAT = 166666
 
-    ERROR_TOO_LITTLE_AMOUNT = 'Минимальная сумма 600,00 ₽'
-    ERROR_TOO_LARGE_AMOUNT = 'уменьшите сумму'
+    ERROR_TOO_LITTLE_AMOUNT = "Минимальная сумма 600,00 ₽"
+    ERROR_TOO_LARGE_AMOUNT = "уменьшите сумму"
 
     def click_replenish_budget_button(self):
         self.click(self.locators.REPLENISH_BUDGET_BUTTON)
 
-    def replenishment_modal_page_became_visible(self) -> bool:
+    def has_replenishment_modal_page_title(self) -> bool:
         return self.became_visible(self.locators.REPLENISHMENT_MODAL_PAGE)
-    
-    def modal_h2_became_visible(self):
+
+    def modal_has_h2_content_title(self):
         return self.became_visible(self.locators.MODAL_H2)
-    
+
     def close_modal_page_became_visible(self):
         return self.became_visible(self.locators.CLOSE_MODAL_PAGE_BUTTON)
-    
+
     def submit_button_became_visible(self):
         return self.became_visible(self.locators.SUBMIT_BUTTON)
-    
+
     def inputs_became_visible(self):
-        return self.became_visible(self.locators.AMOUNT_INPUT) and self.became_visible(self.locators.AMOUNT_WITHOUT_VAT_INPUT)
+        return self.became_visible(self.locators.AMOUNT_INPUT) and self.became_visible(
+            self.locators.AMOUNT_WITHOUT_VAT_INPUT
+        )
 
     def close_replenishment_modal_page(self):
         self.click(self.locators.CLOSE_MODAL_PAGE_BUTTON)
@@ -44,7 +46,7 @@ class BudgetPage(BasePage):
         amount_input.send_keys(amount)
 
     def get_amount_value(self) -> str | None:
-        return self.find(self.locators.AMOUNT_INPUT).get_attribute('value')
+        return self.find(self.locators.AMOUNT_INPUT).get_attribute("value")
 
     def enter_amount_without_vat(self, amount: str | int):
         amount_without_vat_input = self.find(self.locators.AMOUNT_WITHOUT_VAT_INPUT)
@@ -52,7 +54,7 @@ class BudgetPage(BasePage):
         amount_without_vat_input.send_keys(amount)
 
     def get_amount_without_vat_value(self) -> str | None:
-        return self.find(self.locators.AMOUNT_WITHOUT_VAT_INPUT).get_attribute('value')
+        return self.find(self.locators.AMOUNT_WITHOUT_VAT_INPUT).get_attribute("value")
 
     def get_error_message(self) -> str:
         return self.find(self.locators.ERROR_MESSAGE).text
@@ -62,3 +64,4 @@ class BudgetPage(BasePage):
 
     def vkpay_iframe_became_visible(self) -> bool:
         return self.became_visible(self.locators.VKPAY_IFRAME)
+

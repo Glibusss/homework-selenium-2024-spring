@@ -4,7 +4,7 @@ from ui.locators.budget_page_locators import BudgetPageLocators
 
 
 class CabinetPage(BasePage):
-    url = 'https://ads.vk.com/hq/overview'
+    url = "https://ads.vk.com/hq/overview"
     locators = CabinetPageLocators()
     budget_locators = BudgetPageLocators()
 
@@ -31,3 +31,4 @@ class CabinetPage(BasePage):
 
     def click_logout_button(self):
         self.click(self.locators.LOGOUT_BUTTON)
+
