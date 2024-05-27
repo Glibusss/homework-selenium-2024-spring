@@ -45,11 +45,11 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
     def ACCOUNT_TYPE_LABEL(label):
         return By.XPATH, f"//*[text()='{label}']"
 
-    COUNTRY_DROPDOWN = (By.XPATH, f"//*[@data-testid='country']")
+    COUNTRY_DROPDOWN = (By.XPATH, "//*[@data-testid='country']")
 
     COUNTRY_DROPDOWN_LIST = (
         By.XPATH,
-        f"//*[contains(@class, 'vkuiCustomSelect--pop-down') and following-sibling::*[@data-testid='country']]",
+        "//*[contains(@class, 'vkuiCustomSelect--pop-down') and following-sibling::*[@data-testid='country']]",
     )
 
     @staticmethod
@@ -59,11 +59,11 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
             f"//*[contains(@class, 'vkuiCustomSelectOption') and text()='{country_name}']",
         )
 
-    CURRENCY_DROPDOWN = (By.XPATH, f"//*[@data-testid='currency']")
+    CURRENCY_DROPDOWN = (By.XPATH, "//*[@data-testid='currency']")
 
     CURRENCY_DROPDOWN_LIST = (
         By.XPATH,
-        f"//*[contains(@class, 'vkuiCustomSelect--pop-down') and following-sibling::*[@data-testid='currency']]",
+        "//*[contains(@class, 'vkuiCustomSelect--pop-down') and following-sibling::*[@data-testid='currency']]",
     )
 
     @staticmethod
@@ -128,7 +128,7 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
         "//*[@role='alert' and preceding-sibling::*[contains(@class, 'registration_offerDesc__')]]",
     )
 
-    SUBMIT_BUTTON = (By.XPATH, f"//*[@data-testid='create-button']")
+    SUBMIT_BUTTON = (By.XPATH, "//*[@data-testid='create-button']")
 
     OFFER_CHECKBOX = (By.NAME, "offer")
 
@@ -167,4 +167,3 @@ class RegistrationCreateCabinetPageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'Tooltip_tooltipContainer') and contains(@class, 'registration_hint_')]",
     )
-
