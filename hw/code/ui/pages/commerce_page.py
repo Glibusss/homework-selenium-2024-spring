@@ -1,4 +1,3 @@
-from selenium.webdriver import Keys
 from ui.pages.base_page import BasePage
 from ui.locators.commerce_page_locators import CommercePageLocators
 
