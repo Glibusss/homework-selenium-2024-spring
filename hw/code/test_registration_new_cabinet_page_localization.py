@@ -1,5 +1,4 @@
 from base_case import BaseCase
-from ui.pages.registration_create_cabinet_page import RegistrationCreateCabinetPage
 
 
 class TestRegistrationNewCabinetPageLocalization(BaseCase):
@@ -120,4 +119,3 @@ class TestRegistrationNewCabinetPageLocalization(BaseCase):
         registration_create_cabinet_page.select_language("English")
         registration_create_cabinet_page.click_privacy_policy_link()
         assert self.is_opened("https://help.mail.ru/legal/terms/adsvk/euprivacy")
-

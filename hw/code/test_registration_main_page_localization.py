@@ -35,4 +35,3 @@ class TestRegistrationMainPageLocalization(BaseCase):
         registration_main_page.select_language("English")
         registration_main_page.click_import_mytarget_cabinet_button()
         assert registration_main_page.get_selected_language() == "English"
-

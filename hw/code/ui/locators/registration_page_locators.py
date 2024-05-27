@@ -17,7 +17,7 @@ class RegistrationPageLocators(BasePageLocators):
         "//*[contains(@class, 'vkuiSegmentedControlOption--checked')]/h4",
     )
 
-    COUNTRY_DROPDOWN = (By.XPATH, f"//*[@data-testid='country']")
+    COUNTRY_DROPDOWN = (By.XPATH, "//*[@data-testid='country']")
 
     @staticmethod
     def COUNTRY_DROPDOWN_ITEM(country_name):
@@ -26,7 +26,7 @@ class RegistrationPageLocators(BasePageLocators):
             f"//*[contains(@class, 'vkuiCustomSelectOption') and text()='{country_name}']",
         )
 
-    CURRENCY_DROPDOWN = (By.XPATH, f"//*[@data-testid='currency']")
+    CURRENCY_DROPDOWN = (By.XPATH, "//*[@data-testid='currency']")
 
     @staticmethod
     def CURRENCY_DROPDOWN_ITEM(currency_item):
@@ -47,7 +47,7 @@ class RegistrationPageLocators(BasePageLocators):
         "//*[@role='alert' and preceding-sibling::div[contains(@class, 'registration_offerDesc__')]]",
     )
 
-    SUBMIT_BUTTON = (By.XPATH, f"//*[@data-testid='create-button']")
+    SUBMIT_BUTTON = (By.XPATH, "//*[@data-testid='create-button']")
 
     OFFER_CHECKBOX = (By.NAME, "offer")
 
@@ -57,4 +57,3 @@ class RegistrationPageLocators(BasePageLocators):
             By.XPATH,
             f"//*[contains(@class, 'vkuiRadio__title')]//span[text()='{account_type}']",
         )
-
