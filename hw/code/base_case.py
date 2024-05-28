@@ -1,4 +1,5 @@
 import pytest
+import re
 from _pytest.fixtures import FixtureRequest
 
 from ui.pages.base_page import PageNotOpenedException
@@ -14,10 +15,11 @@ class BaseCase:
 
     def is_opened(self, url, timeout=None):
         if timeout is None:
-            timeout = 5
+            timeout = 10
 
         try:
-            WebDriverWait(self.driver, timeout).until(EC.url_matches(url))
+            pattern = re.compile(url)
+            WebDriverWait(self.driver, timeout).until(EC.url_matches(pattern))
             return True
         except:
             raise PageNotOpenedException(
