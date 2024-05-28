@@ -20,6 +20,7 @@ from ui.pages.help_page import HelpPage
 from ui.pages.studying_page import StudyingPage
 from ui.pages.main_page import MainPage
 from ui.pages.upvote_page import UpvotePage
+from ui.pages.campaign_page import CampaignPage
 
 import os
 from dotenv import load_dotenv
@@ -171,4 +172,10 @@ def settings_notifications_page(driver, cabinet_page):
 def commerce_page(driver, cabinet_page):
     driver.get(CommercePage.url)
     return CommercePage(driver=driver)
+
+@pytest.fixture
+def campaign_page(driver, cabinet_page):
+    driver.get(CampaignPage.url)
+    return CampaignPage(driver=driver)
+
 

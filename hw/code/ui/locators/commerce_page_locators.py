@@ -5,7 +5,7 @@ from ui.locators.base_page_locators import BasePageLocators
 class CommercePageLocators(BasePageLocators):
     CREATE_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'vkuiButton__content') and text()='Создать каталог']",
+        "//*[@data-testid='create-catalog']",
     )
 
     SIDEBAR = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_')]")

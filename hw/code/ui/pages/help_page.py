@@ -12,7 +12,7 @@ class HelpPage(BasePage):
     def click_help_cell(self):
         self.click(self.locators.HELP_CELL)
 
-    def tooltip_with_content_became_visible(self):
+    def has_tooltip_content(self):
         return self.became_visible(self.locators.HELP_TOOLTIP)
 
     def tooltip_became_invisible(self):
