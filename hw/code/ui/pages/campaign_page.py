@@ -296,6 +296,7 @@ class CampaignPage(BasePage):
     def checkbox_all_became_visible(self):
         return self.became_visible(self.locators.CHECKBOX_ALL)
         
+    #Я так делаю проверки потому что инпуты и селекты криво работают. Нет возможности сделать это по-другому
     def check_campaign_title(self):
         return self.became_visible(self.locators.ENTITY_NAME_CELL(self.CAMPAIGN_NAME))
     
@@ -396,5 +397,4 @@ class CampaignPage(BasePage):
     
     def check_ad_advertiser(self):
         return self.find(self.locators.ADVERTISER_DESCRIPTION).text == self.AD_ADVERTISER
-
 
