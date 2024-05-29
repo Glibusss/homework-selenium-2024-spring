@@ -41,7 +41,7 @@ class PollPage(BasePage):
             self.became_visible(PollPageLocators.POLL_CREATE_BUTTON)
             self.click(PollPageLocators.POLL_CREATE_BUTTON)
 
-    def paste_poll_appearance_stage(self, text):
+    def paste_poll_appearance_page(self, text):
         self._paste_text_by_locator(PollPageLocators.POLL_NAME, text[0])
         self._paste_text_by_locator(PollPageLocators.COMPANY_NAME, text[1])
         self._paste_text_by_locator(PollPageLocators.POLL_HEADER, text[2])
@@ -61,9 +61,11 @@ class PollPage(BasePage):
     def go_to_the_next_poll_stage(self):
         self.click(PollPageLocators.NEXT_POLL_BUTTON)
 
-    def set_up_questions_page(self, questions_and_answers):
+    def modify_questions_page(self):
         self.click(PollPageLocators.ADD_QUESTION_BUTTON)
         self.find_all(PollPageLocators.ADD_ANSWER_BUTTON)[-1].click()
+
+    def set_up_questions_page(self, questions_and_answers):
         questions = list(questions_and_answers.keys())
         answers = list(questions_and_answers.values())
         poll_questions = self.find_all(PollPageLocators.POLL_QUESTION)
