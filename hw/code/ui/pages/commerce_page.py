@@ -1,10 +1,11 @@
 from ui.pages.base_page import BasePage
 from ui.locators.commerce_page_locators import CommercePageLocators
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
 
 
 class CommercePage(BasePage):
     url = "https://ads.vk.com/hq/ecomm/catalogs"
-    catalogue_url = r"https://ads.vk.com/hq/ecomm/catalogs/\d+"
+    catalog_url = r"https://ads.vk.com/hq/ecomm/catalogs/\d+"
     locators = CommercePageLocators()
 
     TABS_LIST = ["Фид или сообщество", "Маркетплейс", "Вручную"]
@@ -21,7 +22,7 @@ class CommercePage(BasePage):
         "https://nota-tabula.ru",
         "https://nota-tabula.rur",
     ]
-    CATALOGUE_NAME = "Тестовый каталог"
+    CATALOG_NAME = "Тестовый каталог"
     VK_COMMUNITY = "https://vk.com/otpechatayru"
     REFRESH_PERIODS = ["1 час", "4 часа", "8 часов", "Ежедневно"]
 
@@ -34,6 +35,51 @@ class CommercePage(BasePage):
         "h",
         "http://",
         "https://www.wildberries.rus/brands/310451382-miryuyu",
+    ]
+    
+    CATALOG_COUNT = 1
+    
+    ITEMS = [
+        {
+            "name": "Стикерпаки / плоттерная резка наклеек",
+            "price": 90,    
+        },
+        {
+            "name": "Наклейки на плёнке и бумаге",
+            "price": 60,    
+        },
+        {
+            "name": "Меню",
+            "price": 40,    
+        },
+        {
+            "name": "Листовки",
+            "price": 7,    
+        },
+        {
+            "name": "Брошюры",
+            "price": 150,    
+        },
+        {
+            "name": "Блокноты",
+            "price": 50,    
+        },
+        {
+            "name": "Визитки шелкография",
+            "price": 25,    
+        },
+        {
+            "name": "Визитки (стандартные)",
+            "price": 9,    
+        },
+        {
+            "name": "Пластиковые карты",
+            "price": 50,    
+        },
+        {
+            "name": "Визитки на плотной бумаге",
+            "price": 17,    
+        },
     ]
 
     def sidebar_became_visible(self):
@@ -123,22 +169,22 @@ class CommercePage(BasePage):
     def click_cross_button(self):
         self.click(self.locators.CROSS_BUTTON)
 
-    def enter_catalogue_name(self):
+    def enter_catalog_name(self):
         name_input = self.find(self.locators.NAME_INPUT)
         name_input.clear()
-        name_input.send_keys(self.CATALOGUE_NAME)
+        name_input.send_keys(self.CATALOG_NAME)
 
-    def get_catalogue_name_in_settings(self) -> str:
+    def get_catalog_name_in_settings(self) -> str:
         return self.find(self.locators.NAME_INPUT).get_attribute("value")
 
-    def get_catalogue_name_in_selector(self) -> str:
-        return self.find(self.locators.CATALOGUE_NAME_IN_SELECTOR).text
+    def get_catalog_name_in_selector(self) -> str:
+        return self.find(self.locators.CATALOG_NAME_IN_SELECTOR).text
 
-    def catalogue_name_matches_in_settings(self) -> bool:
-        return self.CATALOGUE_NAME in self.get_catalogue_name_in_settings()
+    def catalog_name_matches_in_settings(self) -> bool:
+        return self.CATALOG_NAME in self.get_catalog_name_in_settings()
 
-    def catalogue_name_matches_in_selector(self) -> bool:
-        return self.CATALOGUE_NAME in self.get_catalogue_name_in_selector()
+    def catalog_name_matches_in_selector(self) -> bool:
+        return self.CATALOG_NAME in self.get_catalog_name_in_selector()
 
     def enter_community_link(self):
         link_input = self.find(self.locators.FEED_OR_COMMUNITY_INPUT)
@@ -170,8 +216,75 @@ class CommercePage(BasePage):
     def click_modal_create_button(self):
         self.click(self.locators.MODAL_CREATE_BUTTON)
 
+    def finish_creating(self):
+        while not self.sidebar_became_invisible():
+            try:
+                self.click_modal_create_button()
+            except Exception as e:
+                if e in [ElementClickInterceptedException, TimeoutException]:
+                    continue
+
     def click_settings_button(self):
-        self.click(self.locators.CATALOGUE_SETTINGS_BUTTON)
+        self.click(self.locators.CATALOG_SETTINGS_BUTTON)
 
     def settings_title_became_visible(self):
         return self.became_visible(self.locators.SETTINGS_H2)
+
+    def delete_catalog(self):
+        self.click_settings_button()
+        assert self.became_visible(self.locators.SETTINGS_H2)
+        self.click(self.locators.DELETE_CATALOG_BUTTON)
+        assert self.became_visible(self.locators.CONFIRM_POPUP)
+        self.click(self.locators.DELETE_BUTTON)
+        
+    def count_catalogs(self):
+        return len(self.find_all(self.locators.CATALOG_LIST_ITEM))
+    
+    def set_item_count(self, count: int):
+        self.CATALOG_COUNT = count
+        
+    def catalog_gone(self) -> bool:
+        return len(self.find_all(self.locators.CATALOG_LIST_ITEM)) == self.CATALOG_COUNT
+    
+    def close_settings(self):
+        while not self.sidebar_became_invisible():
+            try:
+                self.click_cancel_button()
+                self.click_cross_button()
+            except Exception as e:
+                if e in [ElementClickInterceptedException, TimeoutException]:
+                    continue
+    
+    def goods_loaded(self) -> bool:
+        return self.became_invisible(self.locators.SPINNER, timeout=60)
+    
+    def click_goods_tab(self):
+        self.click(self.locators.CATALOG_GOODS_TAB)
+    
+    def get_catalog_items(self) -> int:
+        name_elems = self.find_all(self.locators.STOCK_ITEM_NAME)
+        price_elems = self.find_all(self.locators.STOCK_ITEM_PRICE)
+        return list(
+            zip(
+                [elem.text for elem in name_elems],
+                [elem.text for elem in price_elems]
+            )
+        )
+    
+    def items_match(self) -> bool:
+        page_items = self.get_catalog_items()
+        print(len(page_items))
+        if len(page_items) != len(self.ITEMS):
+            return False
+        
+        for item in page_items:
+            dict_form = {
+                "name": item[0],
+                "price": int(item[1].split(',')[0])
+            }
+            print(dict_form)
+            if dict_form not in self.ITEMS:
+                return False
+            
+        return True
+        
