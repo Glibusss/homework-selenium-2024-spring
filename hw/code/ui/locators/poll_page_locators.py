@@ -6,7 +6,7 @@ class PollPageLocators(BasePageLocators):
 
     LEAD_FORMS_AND_POLLS_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'vkuiSimpleCell') and contains(@href, '/hq/leadads')]//*[text()='Лид-формы и опросы']",
+        "//*[contains(@class, 'vkuiSimpleCell')]//*[text()='Лид-формы и опросы']",
     )
 
     POLLS_BUTTON = (
@@ -61,7 +61,7 @@ class PollPageLocators(BasePageLocators):
 
     NEXT_POLL_BUTTON = (
         By.XPATH,
-        "//*[contains(@class, 'vkuiInput__') and contains(@data-testid, 'submit')]",
+        "//*[contains(@class, 'vkuiButton') and contains(@data-testid, 'submit')]",
     )
 
     ADD_QUESTION_BUTTON = (
