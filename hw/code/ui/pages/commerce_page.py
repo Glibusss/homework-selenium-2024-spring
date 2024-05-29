@@ -4,7 +4,7 @@ from ui.locators.commerce_page_locators import CommercePageLocators
 
 class CommercePage(BasePage):
     url = "https://ads.vk.com/hq/ecomm/catalogs"
-    catalogue_url = r"https://ads.vk.com/hq/ecomm/catalogs/\d+"
+    catalog_url = r"https://ads.vk.com/hq/ecomm/catalogs/\d+"
     locators = CommercePageLocators()
 
     TABS_LIST = ["Фид или сообщество", "Маркетплейс", "Вручную"]
@@ -21,7 +21,7 @@ class CommercePage(BasePage):
         "https://nota-tabula.ru",
         "https://nota-tabula.rur",
     ]
-    CATALOGUE_NAME = "Тестовый каталог"
+    CATALOG_NAME = "Тестовый каталог"
     VK_COMMUNITY = "https://vk.com/otpechatayru"
     REFRESH_PERIODS = ["1 час", "4 часа", "8 часов", "Ежедневно"]
 
@@ -35,6 +35,8 @@ class CommercePage(BasePage):
         "http://",
         "https://www.wildberries.rus/brands/310451382-miryuyu",
     ]
+    
+    CATALOG_COUNT = 1
 
     def sidebar_became_visible(self):
         return self.became_visible(self.locators.SIDEBAR)
@@ -123,22 +125,22 @@ class CommercePage(BasePage):
     def click_cross_button(self):
         self.click(self.locators.CROSS_BUTTON)
 
-    def enter_catalogue_name(self):
+    def enter_catalog_name(self):
         name_input = self.find(self.locators.NAME_INPUT)
         name_input.clear()
-        name_input.send_keys(self.CATALOGUE_NAME)
+        name_input.send_keys(self.CATALOG_NAME)
 
-    def get_catalogue_name_in_settings(self) -> str:
+    def get_catalog_name_in_settings(self) -> str:
         return self.find(self.locators.NAME_INPUT).get_attribute("value")
 
-    def get_catalogue_name_in_selector(self) -> str:
-        return self.find(self.locators.CATALOGUE_NAME_IN_SELECTOR).text
+    def get_catalog_name_in_selector(self) -> str:
+        return self.find(self.locators.CATALOG_NAME_IN_SELECTOR).text
 
-    def catalogue_name_matches_in_settings(self) -> bool:
-        return self.CATALOGUE_NAME in self.get_catalogue_name_in_settings()
+    def catalog_name_matches_in_settings(self) -> bool:
+        return self.CATALOG_NAME in self.get_catalog_name_in_settings()
 
-    def catalogue_name_matches_in_selector(self) -> bool:
-        return self.CATALOGUE_NAME in self.get_catalogue_name_in_selector()
+    def catalog_name_matches_in_selector(self) -> bool:
+        return self.CATALOG_NAME in self.get_catalog_name_in_selector()
 
     def enter_community_link(self):
         link_input = self.find(self.locators.FEED_OR_COMMUNITY_INPUT)
@@ -171,7 +173,18 @@ class CommercePage(BasePage):
         self.click(self.locators.MODAL_CREATE_BUTTON)
 
     def click_settings_button(self):
-        self.click(self.locators.CATALOGUE_SETTINGS_BUTTON)
+        self.click(self.locators.CATALOG_SETTINGS_BUTTON)
 
     def settings_title_became_visible(self):
         return self.became_visible(self.locators.SETTINGS_H2)
+
+    def delete_catalog(self):
+        self.click_settings_button()
+        assert self.became_visible(self.locators.SETTINGS_H2)
+        self.click(self.locators.DELETE_CATALOG_BUTTON)
+        assert self.became_visible(self.locators.CONFIRM_POPUP)
+        self.click(self.locators.DELETE_BUTTON)
+        
+    def catalog_gone(self) -> bool:
+        return len(self.find_all(self.locators.CATALOG_LIST_ITEM)) == self.CATALOG_COUNT
+        

@@ -84,12 +84,12 @@ class CommercePageLocators(BasePageLocators):
     )
 
     # Много vkuiHeadline--level-1, выбираем в хедере; таких элементов два, выбираем именно h4 с .text, а не span
-    CATALOGUE_NAME_IN_SELECTOR = (
+    CATALOG_NAME_IN_SELECTOR = (
         By.XPATH,
         "//*[@data-testid='current-catalog']//*[contains(@class, 'vkuiHeadline--level-1') and following-sibling::*[contains(@class, 'Catalog')]]",
     )
 
-    CATALOGUE_SETTINGS_BUTTON = (
+    CATALOG_SETTINGS_BUTTON = (
         By.XPATH,
         "//*[contains(@class, 'vkuiButton') and descendant::*[text()='Настройки']]",
     )
@@ -98,3 +98,11 @@ class CommercePageLocators(BasePageLocators):
         By.XPATH,
         "//*[contains(@class, 'vkuiTitle--level-2') and text()='Настройки каталога']",
     )
+    
+    DELETE_CATALOG_BUTTON = (By.XPATH, "//*[contains(@class, 'ModalFooterSimple_deleteButton')]")
+    
+    CONFIRM_POPUP = (By.XPATH, "//*[contains(@class, 'ModalConfirm_wrapper')]")
+    
+    DELETE_BUTTON = (By.XPATH, "//*[@data-testid='button-remove']")
+    
+    CATALOG_LIST_ITEM = (By.XPATH, "//*[@data-testid='catalog-item']")
