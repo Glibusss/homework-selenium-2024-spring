@@ -21,6 +21,7 @@ from ui.pages.studying_page import StudyingPage
 from ui.pages.main_page import MainPage
 from ui.pages.upvote_page import UpvotePage
 from ui.pages.campaign_page import CampaignPage
+from ui.pages.poll_page import PollPage
 
 import os
 from dotenv import load_dotenv
@@ -173,9 +174,14 @@ def commerce_page(driver, cabinet_page):
     driver.get(CommercePage.url)
     return CommercePage(driver=driver)
 
+
 @pytest.fixture
 def campaign_page(driver, cabinet_page):
     driver.get(CampaignPage.url)
     return CampaignPage(driver=driver)
 
 
+@pytest.fixture
+def poll_page(driver, cabinet_page):
+    driver.get(PollPage.url)
+    return PollPage(driver=driver)

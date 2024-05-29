@@ -42,7 +42,7 @@ class BasePage(object):
         if timeout is None:
             timeout = 7
         return WebDriverWait(self.driver, timeout=timeout)
-
+    
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(ec.presence_of_element_located(locator))
 
