@@ -70,7 +70,10 @@ class PollPage(BasePage):
     def modify_questions_page(self):
         self.click(PollPageLocators.ADD_QUESTION_BUTTON)
         self.find_all(PollPageLocators.ADD_ANSWER_BUTTON)[-1].click()
-
+        
+        
+    # функция специально сделана не атомарной для обобщения, чтобы можно было менять лишь словарь questions_and_answers с вопросами/ответами
+    # функция в этом случае будет неизменной для любого количества вопросов/ответов
     def set_up_questions_page(self, questions_and_answers):
         questions = list(questions_and_answers.keys())
         answers = list(questions_and_answers.values())
@@ -112,7 +115,10 @@ class PollPage(BasePage):
 
     def check_poll_description(self, text):
         return self._compare_text_by_locator(PollPageLocators.POLL_DESCRIPTION, text)
-
+    
+    
+    # данная функция сделана по подобию функции заполнения set_up_questions_page, чтобы она автоматически подстраивалась под словарь questions_and_answers
+    # таким образом, проверка будет осуществляться для всех вопросов/ответов, сколько бы их не было в словаре questions_and_answers
     def check_questions_page(self, questions_and_answers):
         checks = []
         questions = list(questions_and_answers.keys())
