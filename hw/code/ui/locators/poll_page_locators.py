@@ -74,6 +74,11 @@ class PollPageLocators(BasePageLocators):
         "//*[text()='Добавить вариант']",
     )
 
+    POLL_QUESTION = (
+        By.XPATH,
+        "//*[contains(@class, 'Question_questionWrapper__')]",
+    )
+
     QUESTION_TEXT_INPUT = (
         By.XPATH,
         "//*[contains(@class, 'vkuiTextarea__') and contains(@placeholder, 'Текст вопроса')]",
