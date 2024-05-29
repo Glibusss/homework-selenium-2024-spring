@@ -185,6 +185,12 @@ class CommercePage(BasePage):
         assert self.became_visible(self.locators.CONFIRM_POPUP)
         self.click(self.locators.DELETE_BUTTON)
         
+    def count_catalog_items(self):
+        return len(self.find_all(self.locators.CATALOG_LIST_ITEM))
+    
+    def set_item_count(self, count: int):
+        self.CATALOG_COUNT = count
+        
     def catalog_gone(self) -> bool:
         return len(self.find_all(self.locators.CATALOG_LIST_ITEM)) == self.CATALOG_COUNT
         
