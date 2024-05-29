@@ -47,6 +47,8 @@ class TestCommercePage(BaseCase):
     #     assert commerce_page.manual_became_visible()
 
     def test_create_catalog(self, commerce_page):
+        catalog_count = commerce_page.count_catalog_items()
+        commerce_page.set_item_count(catalog_count)
         commerce_page.click_create_button()
         assert commerce_page.sidebar_became_visible()
         assert commerce_page.new_catalog_has_h2_content_title()
