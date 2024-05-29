@@ -99,7 +99,9 @@ class PollPageLocators(BasePageLocators):
         "//*[contains(@class, 'vkuiInput__') and contains(@placeholder, 'Введите описание: например, поблагодарите за прохождение опроса')]",
     )
 
-    CREATED_POLL_NAME = (
-        By.XPATH,
-        "//*[contains(@class, 'ContextMenuWrapper_content__')]",
-    )
+    @staticmethod
+    def find_created_poll(name):
+        return (
+            By.XPATH,
+            f"//*[text()='{name}']",
+        )

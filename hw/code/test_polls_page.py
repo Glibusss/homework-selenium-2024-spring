@@ -1,6 +1,7 @@
 from base import BaseCase
 import uuid
 import time
+import copy
 
 
 class TestPollPage(BaseCase):
@@ -18,12 +19,12 @@ class TestPollPage(BaseCase):
         "Проверка базовых знаний по вычислительной гидродинамике",
     ]
 
-    QUESTONS_AND_ANSWERS = {
-        "Какая из форм расчётной сетки обладает наименьшей численной диффузией?": [
+    QUESTIONS_AND_ANSWERS = {
+        "Какая форма расчётной сетки обладает min численной диффузией": [
             "Многогранная",
             "Прямоугольная",
         ],
-        "Какие из моделей многофазности менее требовательны к вычислительным ресурсам?": [
+        "Какие модели многофазности менее требовательны к сетке": [
             "Euler-Euler (EMP)",
             "Volume of Fluid (VOF)",
             "Mixture Multiphase (MMP)",
@@ -41,7 +42,14 @@ class TestPollPage(BaseCase):
         poll_page.set_up_logo()
         poll_page.paste_poll_appearance_stage(self.POLL_DESCRIPTION)
         poll_page.go_to_the_next_poll_stage()
-        poll_page.set_up_questions_page(self.QUESTONS_AND_ANSWERS)
+        poll_page.set_up_questions_page(self.QUESTIONS_AND_ANSWERS)
         poll_page.go_to_the_next_poll_stage()
         poll_page.set_up_result_page(self.HEAD_AND_DESCRIPTION)
+        poll_page.go_to_the_next_poll_stage()
+        poll_page.open_poll(self.UNIQUE_POLL_NAME)
+        assert poll_page.check_description_page(self.POLL_DESCRIPTION)
+        poll_page.go_to_the_next_poll_stage()
+        assert poll_page.check_questions_page(self.QUESTIONS_AND_ANSWERS)
+        poll_page.go_to_the_next_poll_stage()
+        assert poll_page.check_result_page(self.HEAD_AND_DESCRIPTION)
         poll_page.go_to_the_next_poll_stage()
