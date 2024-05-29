@@ -99,10 +99,19 @@ class CommercePageLocators(BasePageLocators):
         "//*[contains(@class, 'vkuiTitle--level-2') and text()='Настройки каталога']",
     )
     
+    SPINNER = (By.XPATH, "//*[contains(@class, 'vkuiSpinner')]")
+    
     DELETE_CATALOG_BUTTON = (By.XPATH, "//*[contains(@class, 'ModalFooterSimple_deleteButton')]")
     
     CONFIRM_POPUP = (By.XPATH, "//*[contains(@class, 'ModalConfirm_wrapper')]")
     
     DELETE_BUTTON = (By.XPATH, "//*[@data-testid='button-remove']")
     
+    CATALOG_GOODS_TAB = (By.XPATH, "//*[@data-testid='catalog-tabs-goods']")
+    
     CATALOG_LIST_ITEM = (By.XPATH, "//*[@data-testid='catalog-item']")
+
+    STOCK_ITEM_NAME = (By.XPATH, "//*[contains(@class, '_itemName_')]") 
+    
+    # Цены хранятся в span без классов, но это не единственные такие спаны, надо ещё отфильтровать по тому, что он в строке таблицы
+    STOCK_ITEM_PRICE = (By.XPATH, "//*[contains(@class, 'BaseTable__table-main')]//*[contains(@class, 'TableWrap_tableRow')]//*[not(@class)]")
