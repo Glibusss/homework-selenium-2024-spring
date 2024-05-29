@@ -10,6 +10,11 @@ class CommercePageLocators(BasePageLocators):
 
     SIDEBAR = (By.XPATH, "//*[contains(@class, 'ModalSidebarPage_')]")
 
+    MODAL_CREATE_BUTTON = (
+        By.XPATH,
+        "//*[contains(@class, 'ModalSidebarPage_')]//*[contains(@class, 'vkuiButton__content') and text()='Создать каталог']",
+    )
+
     NEW_CATALOG_H2 = (
         By.XPATH,
         "//*[contains(@class, 'vkuiTitle--level-2') and text()='Новый каталог']",
@@ -31,6 +36,20 @@ class CommercePageLocators(BasePageLocators):
 
     FEED_OR_COMMUNITY_INPUT = (By.XPATH, "//input[@data-testid='catalogUrl-input']")
     PERIOD_SELECT = (By.XPATH, "//input[@data-testid='catalogPeriod-select']")
+
+    @staticmethod
+    def PERIOD_SELECT_ELEMENT(period: str):
+        return (
+            By.XPATH,
+            f"//*[contains(@class, 'vkuiCustomSelectOption') and text()='{period}']",
+        )
+
+    SELECTED_PERIOD = (
+        By.XPATH,
+        "//*[following-sibling::input[@data-testid='catalogPeriod-select']]/*[contains(@class, 'vkuiText')]",
+    )
+
+    HISTORY_PERIOD = (By.XPATH, "//*[child::*[text()='Период обновления']]")
 
     CHECKBOX_UTM_SIGN = (
         By.XPATH,
@@ -64,3 +83,18 @@ class CommercePageLocators(BasePageLocators):
         "//*[contains(@class, 'FeedFileSelector_fileSelectorDescription__')]",
     )
 
+    # Много vkuiHeadline--level-1, выбираем в хедере; таких элементов два, выбираем именно h4 с .text, а не span
+    CATALOGUE_NAME_IN_SELECTOR = (
+        By.XPATH,
+        "//*[@data-testid='current-catalog']//*[contains(@class, 'vkuiHeadline--level-1') and following-sibling::*[contains(@class, 'Catalog')]]",
+    )
+
+    CATALOGUE_SETTINGS_BUTTON = (
+        By.XPATH,
+        "//*[contains(@class, 'vkuiButton') and descendant::*[text()='Настройки']]",
+    )
+
+    SETTINGS_H2 = (
+        By.XPATH,
+        "//*[contains(@class, 'vkuiTitle--level-2') and text()='Настройки каталога']",
+    )

@@ -79,4 +79,3 @@ class TestRegistrationImportMytargetPage(BaseCase):
     def test_continue_import(self, registration_import_mytarget_page):
         registration_import_mytarget_page.click_import_continue_button()
         assert self.is_opened(url="target.my.com")
-

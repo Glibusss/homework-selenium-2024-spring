@@ -70,4 +70,3 @@ class HeaderLocators(BasePageLocators):
     VK_ID_BUTTON = (By.XPATH, "//*[contains(@class, 'userMenu_avatar')]")
 
     VK_ID_POPUP = (By.XPATH, "//*[contains(@class, 'userMenu_menu')]")
-

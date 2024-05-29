@@ -107,4 +107,3 @@ class RegistrationMainPage(BasePage):
             check &= self.became_visible(self.locators.TEXT(item))
         self.hover_image()
         return check
-
