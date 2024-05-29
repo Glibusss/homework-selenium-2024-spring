@@ -41,11 +41,17 @@ class PollPage(BasePage):
             self.became_visible(PollPageLocators.POLL_CREATE_BUTTON)
             self.click(PollPageLocators.POLL_CREATE_BUTTON)
 
-    def paste_poll_appearance_page(self, text):
-        self._paste_text_by_locator(PollPageLocators.POLL_NAME, text[0])
-        self._paste_text_by_locator(PollPageLocators.COMPANY_NAME, text[1])
-        self._paste_text_by_locator(PollPageLocators.POLL_HEADER, text[2])
-        self._paste_text_by_locator(PollPageLocators.POLL_DESCRIPTION, text[3])
+    def paste_poll_name(self, text):
+        self._paste_text_by_locator(PollPageLocators.POLL_NAME, text)
+
+    def paste_poll_company_name(self, text):
+        self._paste_text_by_locator(PollPageLocators.COMPANY_NAME, text)
+
+    def paste_poll_header(self, text):
+        self._paste_text_by_locator(PollPageLocators.POLL_HEADER, text)
+
+    def paste_poll_description(self, text):
+        self._paste_text_by_locator(PollPageLocators.POLL_DESCRIPTION, text)
 
     def set_up_logo(self):
         try:
@@ -78,12 +84,12 @@ class PollPage(BasePage):
             for j in range(len(question_answer_inputs)):
                 self._paste_text(question_answer_inputs[j], answers[i][j])
 
-    def set_up_result_page(self, head_and_description):
+    def set_up_result_header(self, header):
+        self._paste_text_by_locator(PollPageLocators.POLL_RESULT_HEADER, header)
+
+    def set_up_result_header(self, description):
         self._paste_text_by_locator(
-            PollPageLocators.POLL_RESULT_HEADER, head_and_description[0]
-        )
-        self._paste_text_by_locator(
-            PollPageLocators.POLL_RESULT_DESCRIPTION, head_and_description[1]
+            PollPageLocators.POLL_RESULT_DESCRIPTION, description
         )
 
     def open_poll(self, name):
@@ -95,21 +101,17 @@ class PollPage(BasePage):
             self.became_visible(locator)
             self.click(locator)
 
-    def check_description_page(self, text):
-        checks = []
-        checks.append(
-            self._compare_text_by_locator(PollPageLocators.POLL_NAME, text[0])
-        )
-        checks.append(
-            self._compare_text_by_locator(PollPageLocators.COMPANY_NAME, text[1])
-        )
-        checks.append(
-            self._compare_text_by_locator(PollPageLocators.POLL_HEADER, text[2])
-        )
-        checks.append(
-            self._compare_text_by_locator(PollPageLocators.POLL_DESCRIPTION, text[3])
-        )
-        return all(checks)
+    def check_poll_name(self, text):
+        return self._compare_text_by_locator(PollPageLocators.POLL_NAME, text)
+
+    def check_poll_company_name(self, text):
+        return self._compare_text_by_locator(PollPageLocators.COMPANY_NAME, text)
+
+    def check_poll_header(self, text):
+        return self._compare_text_by_locator(PollPageLocators.POLL_HEADER, text)
+
+    def check_poll_description(self, text):
+        return self._compare_text_by_locator(PollPageLocators.POLL_DESCRIPTION, text)
 
     def check_questions_page(self, questions_and_answers):
         checks = []
@@ -128,16 +130,12 @@ class PollPage(BasePage):
                 )
         return all(checks)
 
-    def check_result_page(self, head_and_description):
-        checks = []
-        checks.append(
-            self._compare_text_by_locator(
-                PollPageLocators.POLL_RESULT_HEADER, head_and_description[0]
-            )
+    def check_result_header(self, header):
+        return self._compare_text_by_locator(
+            PollPageLocators.POLL_RESULT_HEADER, header
         )
-        checks.append(
-            self._compare_text_by_locator(
-                PollPageLocators.POLL_RESULT_DESCRIPTION, head_and_description[1]
-            )
+
+    def check_result_description(self, description):
+        return self._compare_text_by_locator(
+            PollPageLocators.POLL_RESULT_DESCRIPTION, description
         )
-        return all(checks)
